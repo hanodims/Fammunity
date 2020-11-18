@@ -2,7 +2,8 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 // Screens
-import { FEEDLIST } from "../screenNames";
+import { FEEDLIST, FEED } from "../screenNames";
+import Feed from "../../Components/Feed/Feed";
 import FeedList from "../../Components/Feed/FeedList";
 
 // Config
@@ -12,8 +13,13 @@ const { Navigator, Screen } = createStackNavigator();
 
 function FeedStack() {
   return (
-    <Navigator initialRouteName={FEEDLIST} screenOptions={tabScreenOptions}>
-      <Screen name={FEEDLIST} component={FeedList} />
+    <Navigator initialRouteName={FEED} screenOptions={tabScreenOptions}>
+      <Screen name={FEED} component={Feed} options={{ headerShown: false }} />
+      <Screen
+        name={FEEDLIST}
+        component={FeedList}
+        options={{ headerShown: false }}
+      />
     </Navigator>
   );
 }

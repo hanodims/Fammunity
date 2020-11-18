@@ -5,7 +5,7 @@ import { Alert, Image } from "react-native";
 import styles from "./styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const FeedItem = ({ post }) => {
+const FeedItem = ({ post, likes }) => {
   console.log(`${post.description}`);
 
   return (

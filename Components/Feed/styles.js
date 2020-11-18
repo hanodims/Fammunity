@@ -7,4 +7,9 @@ export default styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  feedListImage: {
+    width: 120,
+    height: 120,
+    margin: 2,
+  },
 });

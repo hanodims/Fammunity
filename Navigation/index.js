@@ -8,7 +8,7 @@ import { tabBarOptions, tabScreenOptions } from "./options";
 import { FEED, EXPLORE, USER } from "./screenNames.js";
 
 //component
-import Feed from "../Components/Feed/Feed";
+import FeedList from "../Components/Feed/FeedList";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -21,7 +21,7 @@ export default function RootTabNavigator() {
     >
       {/* <Screen name={USER} /> */}
       {/* <Screen name={EXPLORE} /> */}
-      <Screen name={FEED} component={Feed} />
+      <Screen name={FEED} component={FeedList} />
     </Navigator>
   );
 }

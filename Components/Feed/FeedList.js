@@ -12,13 +12,12 @@ import { FlatList } from "react-native-gesture-handler";
 const FeedList = ({ feeds }) => {
   function feedsList({ item }) {
     console.log(`${item.description}`);
-    return <FeedItem post={item} />;
+    return <FeedItem post={item} likes={false} />;
   }
 
   return (
     <Container>
       <Container style={styles.FeedDev}>
-        <Container></Container>
         <FlatList
           data={feeds}
           numColumns={3}

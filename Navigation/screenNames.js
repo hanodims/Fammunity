@@ -1,6 +1,6 @@
 //user info
-export const USER = "user";
-
+export const USER = "User";
+export const PROFILE = "Profile";
 export const EXPLORE = "Explore";
 
 export const POST_ADDING = "PostAdding";

@@ -2,7 +2,7 @@ import React from "react";
 import { Icon } from "native-base";
 
 // Screens
-import { FEED, POST_ADDING } from "./screenNames";
+import { FEED, POST_ADDING, USER } from "./screenNames";
 
 export const tabBarOptions = {
   showLabel: false,
@@ -25,6 +25,11 @@ export const tabScreenOptions = ({ route }) => ({
       case POST_ADDING:
         iconName = "star-half";
         //color = "white";
+        break;
+
+      case USER:
+        iconName = "person";
+        color = "white";
         break;
 
       default:

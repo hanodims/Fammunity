@@ -5,10 +5,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { tabBarOptions, tabScreenOptions } from "./options";
 
 // Screens
-import { FEED, EXPLORE, USER } from "./screenNames.js";
+import { FEED, POST_ADDING, EXPLORE, USER } from "./screenNames.js";
 
-//component
+//stacks
 import FeedStack from "./StackNavigators/FeedStack";
+import PostAddingStack from "./StackNavigators/PostAddingStack";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -20,8 +21,8 @@ export default function RootTabNavigator() {
       screenOptions={tabScreenOptions}
     >
       {/* <Screen name={USER} /> */}
-      {/* <Screen name={EXPLORE} /> */}
       <Screen name={FEED} component={FeedStack} />
+      <Screen name={POST_ADDING} component={PostAddingStack} />
     </Navigator>
   );
 }

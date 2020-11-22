@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { Platform } from "react-native";
 
 import * as ImagePicker from "expo-image-picker";
 
@@ -17,9 +18,14 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 const AddImage = ({ addImage, navigation }) => {
   const [selectImg, setSelectedImg] = useState(null);
-
+  console.log(Platform.OS === "android");
   function handelAdding() {
-    let filename = selectImg.localUri.split("/").pop();
+    let filename;
+    if (Platform.OS === "android") {
+      filename = selectImg.localUri.split("/").pop();
+    } else {
+      filename = "hi";
+    }
     // image type
     let match = /\.(\w+)$/.exec(filename);
     let type = match ? `image/${match[1]}` : `image`;
@@ -58,7 +64,7 @@ const AddImage = ({ addImage, navigation }) => {
       </View>
 
       <View style={styles.container}>
-        {selectImg !== null ? (
+        {selectImg && (
           <Image
             style={styles.image}
             source={{
@@ -68,8 +74,6 @@ const AddImage = ({ addImage, navigation }) => {
                   : "https://astronomy.com/-/media/Images/News%20and%20Observing/News/2019/08/FullMoon.jpg?mw=600",
             }}
           />
-        ) : (
-          <Text>pick Image</Text>
         )}
         <TouchableOpacity onPress={openImage} style={styles.button}>
           <Text>Click</Text>

@@ -16,6 +16,11 @@ import { ADD_POST } from "../../Navigation/screenNames";
 import { addItem } from "../../redux/actions";
 
 const AddItem = ({ addItem, navigation }) => {
+  let brands = ["Prada", "Zara", "Dior"];
+  let brandsOrginized = brands.map((brand, index) => ({
+    value: index,
+    label: brand,
+  }));
   const brands = [
     { value: 1, label: "Prada" },
     { value: 2, label: "Louis Vuitton" },
@@ -23,14 +28,19 @@ const AddItem = ({ addItem, navigation }) => {
     { value: 4, label: "Dior" },
     { value: 5, label: "Dolce & Gabbana" },
   ];
-
+  const [item, setItem] = useState({
+    name: "",
+    brand: "",
+    price: "",
+    size: "",
+  });
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [size, setSize] = useState("");
   const [brand, setBrand] = useState("");
 
   function handelAdding() {
-    addItem({ name: name, brand: brand, price: price, size: size });
+    addItem(item);
     setName("");
     setPrice("");
     setSize("");
@@ -44,8 +54,8 @@ const AddItem = ({ addItem, navigation }) => {
         <TextInput
           placeholder="Blouse, Skirt ..."
           placeholderTextColor="#A6AEC1"
-          value={name}
-          onChangeText={setName}
+          value={item.name}
+          onChangeText={(value) => setItem({ ...item, name: value })}
           autoCapitalize="none"
         />
         <TextInput

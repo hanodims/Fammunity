@@ -14,20 +14,14 @@ const FeedItem = ({ post, likes }) => {
     <TouchableOpacity
       onPress={() => Alert.alert("You pressed me", `${post.description}`)}
     >
-      {post.photos != null ? (
-        <Image
-          style={styles.feedListImage}
-          source={{ uri: post.photos[0].image }}
-        />
-      ) : (
-        <Image
-          style={styles.feedListImage}
-          source={{
-            uri:
-              "https://astronomy.com/-/media/Images/News%20and%20Observing/News/2019/08/FullMoon.jpg?mw=600",
-          }}
-        />
-      )}
+      <Image
+        style={styles.feedListImage}
+        source={{
+          uri: post.photos
+            ? post.photos[0].image
+            : "https://astronomy.com/-/media/Images/News%20and%20Observing/News/2019/08/FullMoon.jpg?mw=600",
+        }}
+      />
     </TouchableOpacity>
   );
 };

@@ -38,28 +38,24 @@ export const addPost = (item) => async (dispatch) => {
     let formData = new FormData();
     let items = item.items;
     let itemsCounter = 0;
+    let photos = item.photos;
+    let counter = 0;
+    // Adding form items for each image
     items.map((item) => {
-      formData.append("name" + itemsCounter, item.name);
-      formData.append("price" + itemsCounter, item.price);
-      formData.append("size" + itemsCounter, item.size);
-      formData.append("brand" + itemsCounter, item.brand);
+      Object.keys(item).forEach((key) => {
+        formData.append(key + itemsCounter, item[key]);
+      });
       itemsCounter++;
     });
     formData.append("itemsCounter", itemsCounter);
-
     formData.append("description", item.description);
 
-    console.log("item.photos", item.photos);
-    let photos = item.photos;
-    let counter = 0;
     photos.map((photo) => {
       formData.append("photo" + counter, photo);
       counter++;
     });
-    console.log("counter", counter);
-    formData.append("counter", counter);
 
-    console.log("trying to add", formData);
+    formData.append("counter", counter);
 
     let config = {
       headers: {

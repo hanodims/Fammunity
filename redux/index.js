@@ -14,5 +14,5 @@ const store = createStore(
 );
 
 store.dispatch(fetchFeeds());
-
+store.dispatch(fetchBrands());
 export default store;

@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { tabBarOptions, tabScreenOptions } from "./options";
 
 // Screens
-import { FEED, POST_ADDING, EXPLORE, USER, PROFILE } from "./screenNames.js";
+import { FEED, POST_ADDING, USER } from "./screenNames.js";
 
 //stacks
 import FeedStack from "./StackNavigators/FeedStack";

@@ -39,13 +39,16 @@ const AddImage = ({ addImage, navigation }) => {
       return;
     }
 
-    let picker = await ImagePicker.launchImageLibraryAsync();
+    let picker = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+    });
 
     if (picker.cancelled === true) {
       return;
     }
     setSelectedImg({ localUri: picker.uri });
-    // console.log("picker", picker);
+    console.log("picker", picker);
   };
 
   return (

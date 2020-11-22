@@ -14,14 +14,22 @@ const { Navigator, Screen } = createStackNavigator();
 
 function PostAddingStack() {
   return (
-    <Navigator initialRouteName={ADD_POST} screenOptions={tabScreenOptions}>
+    <Navigator initialRouteName={ADD_POST}>
       <Screen
         name={ADD_POST}
         component={AddPost}
         options={{ headerShown: false }}
       />
-      <Screen name={ADDIMAGE} component={AddImage} />
-      <Screen name={ADDITEM} component={AddItem} />
+      <Screen
+        name={ADDIMAGE}
+        component={AddImage}
+        options={{ headerShown: false }}
+      />
+      <Screen
+        name={ADDITEM}
+        component={AddItem}
+        options={{ headerShown: false }}
+      />
     </Navigator>
   );
 }

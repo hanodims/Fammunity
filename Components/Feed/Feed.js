@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 //components
 import FeedsList from "./FeedList";
@@ -20,8 +19,4 @@ const Feed = () => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  feeds: state.feedsReducer.feeds,
-});
-
-export default connect(mapStateToProps)(Feed);
+export default Feed;

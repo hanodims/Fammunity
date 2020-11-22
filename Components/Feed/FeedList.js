@@ -9,9 +9,9 @@ import { Container } from "native-base";
 import styles from "./styles";
 import { FlatList } from "react-native-gesture-handler";
 
-const FeedList = ({ feeds }) => {
+const FeedList = ({ feeds, photos }) => {
   function feedsList({ item }) {
-    console.log(`${item.description}`);
+    //console.log(`${item.description}`);
     return <FeedItem post={item} likes={false} />;
   }
 

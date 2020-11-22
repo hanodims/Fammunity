@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon } from "native-base";
+//import Icon from "react-native-vector-icons/Feather";
 
 // Screens
 import { FEED, POST_ADDING, USER } from "./screenNames";
@@ -24,11 +25,11 @@ export const tabScreenOptions = ({ route }) => ({
 
       case POST_ADDING:
         iconName = "star-half";
-        //color = "white";
+        color = "white";
         break;
 
       case USER:
-        iconName = "person";
+        iconName = "account";
         color = "white";
         break;
 

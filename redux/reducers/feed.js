@@ -9,6 +9,7 @@ const reducer = (state = initialState, { type, payload }) => {
     case SET_FEED:
       console.log("feeds reduser", payload);
       const feeds = payload;
+
       return {
         ...state,
         feeds: feeds,

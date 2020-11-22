@@ -18,4 +18,25 @@ export default styles = StyleSheet.create({
     lineHeight: 40,
     fontFamily: "Chalkboard SE",
   },
+  AddPostDev: {
+    alignItems: "center",
+    alignSelf: "stretch",
+  },
+  button: {
+    width: 100,
+    justifyContent: "center",
+    backgroundColor: "transparent",
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  image: {
+    width: 300,
+    height: 300,
+    resizeMode: "contain",
+  },
 });

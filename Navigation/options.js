@@ -5,6 +5,7 @@ import { Icon } from "native-base";
 // Screens
 import { FEED, POST_ADDING, USER } from "./screenNames";
 
+
 export const tabBarOptions = {
   showLabel: false,
   activeTintColor: "#FFF",

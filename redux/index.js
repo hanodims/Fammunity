@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 import rootReducer from "./reducers";
 
 // Actions
-import { fetchFeeds } from "./actions";
+import { fetchFeeds, checkForToken } from "./actions";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -14,5 +14,6 @@ const store = createStore(
 );
 
 store.dispatch(fetchFeeds());
+store.dispatch(checkForToken());
 
 export default store;

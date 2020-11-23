@@ -4,6 +4,7 @@ import decode from "jwt-decode";
 import { SET_CURRENT_USER } from "./types";
 
 import instance from "./instance";
+import { fetchFeeds, fetchProfile } from "./index";
 
 const setCurrentUser = (token) => async (dispatch) => {
   await setAuthToken(token);
@@ -11,6 +12,8 @@ const setCurrentUser = (token) => async (dispatch) => {
     type: SET_CURRENT_USER,
     payload: token ? decode(token) : null,
   });
+  dispatch(fetchFeeds());
+  dispatch(fetchProfile());
 };
 
 const setAuthToken = async (token) => {
@@ -31,7 +34,6 @@ export const login = (userData, navigation) => async (dispatch) => {
     console.log("login");
     console.log(access);
     dispatch(setCurrentUser(access));
-    // navigation.navigate(SHOP);
   } catch (error) {
     console.error("Error while logging in", error);
   }

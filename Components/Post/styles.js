@@ -16,7 +16,7 @@ export default styles = StyleSheet.create({
     color: "#000",
     fontSize: 30,
     lineHeight: 40,
-    fontFamily: "Chalkboard SE",
+    //fontFamily: "Chalkboard SE",
   },
   AddPostDev: {
     alignItems: "center",

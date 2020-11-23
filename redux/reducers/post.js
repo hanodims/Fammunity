@@ -5,17 +5,22 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "SET_ITEMS":
-      console.log("tred", state.items);
+    case "ADD_ITEM":
       return {
         ...state,
         items: state.items.concat(action.payload),
       };
-    case "SET_PHOTOS":
-      console.log("photos red", state.photos);
+    case "ADD_PHOTO":
+      // console.log("photos red", state.photos);
       return {
         ...state,
         photos: state.photos.concat(action.payload),
+      };
+    case "RESET":
+      // console.log("RESET red", state);
+      return {
+        items: [],
+        photos: [],
       };
     default:
       return state;

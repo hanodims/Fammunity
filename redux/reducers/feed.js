@@ -1,4 +1,4 @@
-import { SET_FEED } from "../actions/types";
+import { SET_FEED, ADD_FEED } from "../actions/types";
 
 const initialState = {
   feeds: [],
@@ -7,12 +7,20 @@ const initialState = {
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_FEED:
-      console.log("feeds reduser", payload);
+      // console.log("feeds reduser", payload);
       const feeds = payload;
 
       return {
         ...state,
         feeds: feeds,
+      };
+    case ADD_FEED:
+      // console.log("feeds reduser", payload);
+      const feed = payload;
+
+      return {
+        feeds: state.feeds.concat(feed),
+        ...state,
       };
 
     default:

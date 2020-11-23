@@ -1,18 +1,21 @@
 import React from "react";
 
+//screens
+import { POST_DETAIL } from "../../Navigation/screenNames";
+
 //style
 import { Alert, Image } from "react-native";
 import styles from "./styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const FeedItem = ({ post, likes }) => {
-  console.log("hi", `${post.description}`);
-  console.log("photos", `${post.photos}`);
-  console.log(`${post.photos[0]["image"]}`);
+const FeedItem = ({ post, navigation, likes }) => {
+  //console.log("post", `${post.id}`);
+  // console.log("photos", `${post.photos}`);
+  // console.log(`${post.photos[0]["image"]}`);
 
   return (
     <TouchableOpacity
-      onPress={() => Alert.alert("You pressed me", `${post.description}`)}
+      onPress={() => navigation.navigate(POST_DETAIL, { feed: post })}
     >
       {post.photos != null ? (
         <Image

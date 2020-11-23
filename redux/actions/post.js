@@ -1,38 +1,32 @@
-import { SET_ITEMS, SET_PHOTOS } from "./types";
-import instance from "./instance";
 import { Alert } from "react-native";
 
+import { RESET, ADD_ITEM, ADD_PHOTO, ADD_FEED } from "./types";
+import instance from "./instance";
+
 export const addItem = (item) => {
-  //console.log("trying to add", item);
+  //console.log("trying to add item", item);
   return {
-    type: SET_ITEMS,
+    type: ADD_ITEM,
     payload: item,
   };
 };
 
 export const addImage = (image) => {
-  //console.log("trying to add", image);
+  //console.log("trying to add image", image);
   return {
-    type: SET_PHOTOS,
+    type: ADD_PHOTO,
     payload: image,
   };
 };
-//working => send post with items
-// export const addPost = (item) => async (dispatch) => {
-//   try {
-//     console.log("try to add post", item);
-//     const res = await instance.post("/post/", item);
-//     //const post = res.data;
-//     Alert.alert("Done");
-//     // dispatch({
-//     //   type: SET_POST,
-//     //   payload: post,
-//     // });
-//   } catch (error) {
-//     //console.error("no adding", error.res.data);
-//     Alert.alert("Failed");
-//   }
-// };
+
+export const likePost = (post_id) => async () => {
+  try {
+    await instance.post(`/like/`, post_id);
+  } catch (error) {
+    Alert.alert("Failed");
+  }
+};
+
 export const addPost = (item) => async (dispatch) => {
   try {
     let formData = new FormData();
@@ -41,7 +35,6 @@ export const addPost = (item) => async (dispatch) => {
     items.map((item) => {
       formData.append("name" + itemsCounter, item.name);
       formData.append("price" + itemsCounter, item.price);
-      formData.append("size" + itemsCounter, item.size);
       formData.append("brand" + itemsCounter, item.brand);
       itemsCounter++;
     });
@@ -49,38 +42,34 @@ export const addPost = (item) => async (dispatch) => {
 
     formData.append("description", item.description);
 
-    console.log("item.photos", item.photos);
+    // console.log("item.photos", item.photos);
     let photos = item.photos;
     let counter = 0;
     photos.map((photo) => {
       formData.append("photo" + counter, photo);
       counter++;
     });
-    console.log("counter", counter);
+    // console.log("counter", counter);
     formData.append("counter", counter);
 
-    console.log("trying to add", formData);
+    // console.log("trying to add", formData);
 
     let config = {
       headers: {
         "content-type": "multipart/form-data",
       },
     };
-    await instance.post(`/post/`, formData, config);
+    const res = await instance.post(`/post/`, formData, config);
+    const feed = res.data;
+    console.log("feed.res", feed);
+    dispatch({ type: RESET });
+    dispatch({
+      type: ADD_FEED,
+      payload: feed,
+    });
+    Alert.alert("Done");
   } catch (error) {
     //console.error("no adding",);
     Alert.alert("Failed");
   }
 };
-
-// formData.append("photos", {
-//   name: "3FC69516-9EEF-48B7-ABC9-4D504D56DCC7.jpg",
-//   type: "image/jpg",
-//   uri:
-//     "/Users/hanodia/Library/Developer/CoreSimulator/Devices/17C8BCFD-BC89-412B-92E4-33DEB30AE458/data/Containers/Data/Application/67B2284C-BCC8-43AF-AEDC-F5490FD6031C/Library/Caches/ExponentExperienceData/%2540hend_mohammed%252FFammunity/ImagePicker/3FC69516-9EEF-48B7-ABC9-4D504D56DCC7.jpg",
-// });
-
-// formData.append("name", "rr");
-// formData.append("price", 44);
-// formData.append("size", 44);
-// formData.append("brand", 1);

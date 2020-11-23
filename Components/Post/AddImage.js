@@ -10,28 +10,62 @@ import { ADD_POST } from "../../Navigation/screenNames";
 import { addImage } from "../../redux/actions";
 
 //style
-import { Button, Container, View } from "native-base";
-import { Image, Text } from "react-native";
+import { Button, Container, Toast, View } from "native-base";
+import { Alert, Image, Text } from "react-native";
 import styles from "./styles";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const AddImage = ({ addImage, navigation }) => {
+  console.log(Platform.OS);
   const [selectImg, setSelectedImg] = useState(null);
 
   function handelAdding() {
-    let filename = selectImg.localUri.split("/").pop();
-    // image type
-    let match = /\.(\w+)$/.exec(filename);
-    let type = match ? `image/${match[1]}` : `image`;
+    if (selectImg) {
+      let filename = selectImg.localUri.split("/").pop();
+      // image type
+      let match = /\.(\w+)$/.exec(filename);
+      let type = match ? `image/${match[1]}` : `image`;
 
-    addImage({
-      uri: selectImg.localUri.replace("file://", ""),
-      name: filename,
-      type,
-    });
-    setSelectedImg(null);
+      let uri;
+      if (Platform.OS === "ios") {
+        uri = selectImg.localUri.replace("file://", "");
+      } else {
+        uri = selectImg.localUri;
+      }
+
+      addImage({
+        uri: uri,
+        name: filename,
+        type,
+      });
+      setSelectedImg(null);
+    } else {
+      Alert.alert("Pick Image First");
+    }
   }
 
+  let takePhoto = async () => {
+    let permission = await ImagePicker.requestCameraPermissionsAsync();
+
+    if (permission.granted === false) {
+      return;
+    }
+    let permission2 = await ImagePicker.getCameraRollPermissionsAsync();
+
+    if (permission2.granted === false) {
+      return;
+    }
+
+    let picker = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+    });
+
+    if (picker.cancelled === true) {
+      return;
+    }
+    setSelectedImg({ localUri: picker.uri });
+    // console.log("picker", picker);
+  };
   let openImage = async () => {
     let permission = await ImagePicker.requestCameraRollPermissionsAsync();
 
@@ -48,7 +82,7 @@ const AddImage = ({ addImage, navigation }) => {
       return;
     }
     setSelectedImg({ localUri: picker.uri });
-    console.log("picker", picker);
+    // console.log("picker", picker);
   };
 
   return (
@@ -58,7 +92,7 @@ const AddImage = ({ addImage, navigation }) => {
       </View>
 
       <View style={styles.container}>
-        {selectImg !== null ? (
+        {selectImg && (
           <Image
             style={styles.image}
             source={{
@@ -68,12 +102,13 @@ const AddImage = ({ addImage, navigation }) => {
                   : "https://astronomy.com/-/media/Images/News%20and%20Observing/News/2019/08/FullMoon.jpg?mw=600",
             }}
           />
-        ) : (
-          <Text>pick Image</Text>
         )}
-        <TouchableOpacity onPress={openImage} style={styles.button}>
-          <Text>Click</Text>
-        </TouchableOpacity>
+        <Button onPress={openImage} style={styles.button}>
+          <Text>Choose from library</Text>
+        </Button>
+        <Button onPress={takePhoto} style={styles.button}>
+          <Text>Take photo</Text>
+        </Button>
       </View>
       <Button style={styles.button} onPress={handelAdding}>
         <Text>Add</Text>
@@ -84,7 +119,7 @@ const AddImage = ({ addImage, navigation }) => {
         bordered
         dark
         style={styles.button}
-        onPress={() => navigation.replace(ADD_POST)}
+        onPress={() => navigation.goBack(ADD_POST)}
       >
         <Text>Done</Text>
       </Button>

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import DropDownPicker from "react-native-dropdown-picker";
 import Icon from "react-native-vector-icons/Feather";
 import { Button, Container, Picker, View } from "native-base";
-import { Text } from "react-native";
+import { Alert, Text } from "react-native";
 import styles from "./styles";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 
@@ -26,14 +26,14 @@ const AddItem = ({ addItem, navigation }) => {
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [size, setSize] = useState("");
   const [brand, setBrand] = useState("");
 
   function handelAdding() {
-    addItem({ name: name, brand: brand, price: price, size: size });
-    setName("");
-    setPrice("");
-    setSize("");
+    if (brand != "" && price != "" && name != "") {
+      addItem({ name: name, brand: brand, price: price });
+      setName("");
+      setPrice("");
+    } else Alert.alert("please fill all Fields");
   }
   return (
     <Container style={styles.AddPostDev}>
@@ -55,14 +55,6 @@ const AddItem = ({ addItem, navigation }) => {
           onChangeText={setPrice}
           autoCapitalize="none"
         />
-        <TextInput
-          placeholder="XL"
-          placeholderTextColor="#A6AEC1"
-          value={size}
-          onChangeText={setSize}
-          autoCapitalize="none"
-        />
-
         <DropDownPicker
           searchable={true}
           searchablePlaceholder="Search for an item"
@@ -89,7 +81,7 @@ const AddItem = ({ addItem, navigation }) => {
           bordered
           dark
           style={styles.button}
-          onPress={() => navigation.replace(ADD_POST)}
+          onPress={() => navigation.goBack(ADD_POST)}
         >
           <Text>Done</Text>
         </Button>
@@ -103,26 +95,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(null, mapDispatchToProps)(AddItem);
-
-// <Text style={styles.authOther} onPress={() => navigation.replace(SIGNUP)}>
-// Click here to register!
-// </Text>
-
-{
-  /* <Picker
-        mode="dropdown"
-        iosIcon={<Icon name="arrow-down" />}
-        placeholder="Brand"
-        placeholderStyle={{ color: "#bfc6ea" }}
-        placeholderIconColor="#007aff"
-        style={{ width: undefined }}
-        selectedValue={brand}
-        onValueChange={setBrand.bind()}
-      >
-        <Picker.Item label="Prada" value="key0" />
-        <Picker.Item label="Louis Vuitton" value="key1" />
-        <Picker.Item label="Zara" value="key2" />
-        <Picker.Item label="Dior" value="key3" />
-        <Picker.Item label="Dolce & Gabbana" value="key4" />
-      </Picker> */
-}

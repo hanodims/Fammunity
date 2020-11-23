@@ -7,6 +7,13 @@ export const RESET = "RESET";
 export const ADD_ITEM = "ADD_ITEM";
 
 export const SET_PHOTOS = "SET_PHOTOS";
+
 export const ADD_PHOTO = "ADD_PHOTO";
 
 export const SET_LIKERS = "SET_LIKERS";
+
+
+  
+// Auth
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
+

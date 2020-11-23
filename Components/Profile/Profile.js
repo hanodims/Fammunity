@@ -1,32 +1,31 @@
 import React from "react";
+import { Text, View } from "native-base";
+
+// Redux
 import { connect } from "react-redux";
+import { logout } from "../../redux/actions";
 
-//style
-import { Container } from "native-base";
-import {
-  Text,
-  View,
-  StyleSheet,
-  SafeAreaView,
-  Image,
-  ScrollView,
-} from "react-native";
+// Components
+import LogoutButton from "./LogoutButton";
 
-const Profile = () => {
-  return (
-    <Container>
-      <View>
-        <Image
-          style={{ width: 600, height: 600 }}
-          source={{
-            uri:
-              "https://planetfashion.imgix.net/resources/img/planet_fashion/PF_D_S2_aboutUs.jpg",
-          }}
-          resizeMode="center"
-        ></Image>
-      </View>
-    </Container>
-  );
+const Profile = ({ user, logout, name, profile }) => (
+  <View>
+    <Text>{name?.username}'s Profile</Text>
+    <LogoutButton logout={logout} />
+  </View>
+);
+
+const mapStateToProps = (state) => {
+  console.log("profile", state.profile);
+  return {
+    profile: state.profile.profile,
+    name: state.profile.name,
+    user: state.user,
+  };
 };
 
-export default Profile;
+const mapDispatchToProps = {
+  logout,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

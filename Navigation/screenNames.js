@@ -1,6 +1,9 @@
 //user info
 export const USER = "User";
 export const PROFILE = "Profile";
+export const LOGIN = "Login";
+export const SIGNUP = "Signup";
+
 export const EXPLORE = "Explore";
 
 export const POST_ADDING = "PostAdding";

@@ -61,7 +61,7 @@ export const addPost = (item) => async (dispatch) => {
     };
     const res = await instance.post(`/post/`, formData, config);
     const feed = res.data;
-    console.log("feed.res", feed);
+    // console.log("feed.res", feed);
     dispatch({ type: RESET });
     dispatch({
       type: ADD_FEED,

@@ -9,7 +9,7 @@ const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_PROFILE:
       const profile = payload;
-      console.log("payload red", payload);
+      // console.log("payload red", payload);
       return {
         profile: profile,
         name: profile.user,

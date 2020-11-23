@@ -1,22 +1,27 @@
 import React from "react";
+import { connect } from "react-redux";
 
 //components
-import FeedsList from "./FeedList";
+import FeedList from "./FeedList";
 
 //style
 import { Container, View } from "native-base";
 import { Text } from "react-native";
 import styles from "./styles";
 
-const Feed = ({ navigation }) => {
+const Feed = ({ feeds, navigation }) => {
+  // console.log("feeds", feeds);
   return (
     <Container style={styles.FeedDev}>
       <View style={{ paddingBottom: 30 }}>
         <Text style={styles.feedTitle}>Fammunity</Text>
       </View>
-      <FeedsList navigation={navigation} />
+      <FeedList feeds={feeds} navigation={navigation} />
     </Container>
   );
 };
 
-export default Feed;
+const mapStateToProps = (state) => ({
+  feeds: state.feedsReducer.feeds,
+});
+export default connect(mapStateToProps)(Feed);

@@ -13,11 +13,11 @@ const Likers = ({ likers, route }) => {
   const filterLikers = likers.filter((liker) => (liker.id = post_id));
   const postLikers = filterLikers.map((liker) => liker.likers);
 
-  console.log("post_id ", post_id);
-  console.log("filterLikers ", filterLikers);
+  // console.log("post_id ", post_id);
+  // console.log("filterLikers ", filterLikers);
 
   function likersList({ item }) {
-    console.log("likers,item", item.likers);
+    // console.log("likers,item", item.likers);
     return (
       <ListItem bottomDivider>
         <Avatar source={{ uri: item.image }} />

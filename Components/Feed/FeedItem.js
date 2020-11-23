@@ -8,7 +8,7 @@ import { Alert, Image } from "react-native";
 import styles from "./styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const FeedItem = ({ post, navigation, likes }) => {
+const FeedItem = ({ post, navigation }) => {
   //console.log("post", `${post.id}`);
   // console.log("photos", `${post.photos}`);
   // console.log(`${post.photos[0]["image"]}`);

@@ -12,8 +12,6 @@ export const ADD_PHOTO = "ADD_PHOTO";
 
 export const SET_LIKERS = "SET_LIKERS";
 
-
-  
 // Auth
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
-
+export const SET_PROFILE = "SET_PROFILE";

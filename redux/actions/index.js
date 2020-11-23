@@ -12,7 +12,7 @@ export { ADD_FEED } from "./types";
 
 export { SET_LIKERS } from "./types";
 
-
 // Auth
 export * from "./authentication";
 
+export * from "./profile";

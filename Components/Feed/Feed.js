@@ -8,13 +8,13 @@ import { Container, View } from "native-base";
 import { Text } from "react-native";
 import styles from "./styles";
 
-const Feed = () => {
+const Feed = ({ navigation }) => {
   return (
     <Container style={styles.FeedDev}>
       <View style={{ paddingBottom: 30 }}>
         <Text style={styles.feedTitle}>Fammunity</Text>
       </View>
-      <FeedsList />
+      <FeedsList navigation={navigation} />
     </Container>
   );
 };

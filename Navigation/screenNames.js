@@ -11,3 +11,6 @@ export const ADDITEM = "AddItem";
 //feed
 export const FEED = "Feed";
 export const FEED_LIST = "FeedList";
+export const POST_DETAIL = "POST_DETAIL";
+
+export const LIKERS = "likers";

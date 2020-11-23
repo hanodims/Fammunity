@@ -1,14 +1,5 @@
 import instance from "./instance";
 import { SET_FEED } from "./types";
-import { data } from "./data";
-
-// export const fetchFeeds = () => {
-//   const feeds = data;
-//   return {
-//     type: SET_FEED,
-//     payload: feeds,
-//   };
-// };
 
 export const fetchFeeds = () => async (dispatch) => {
   try {

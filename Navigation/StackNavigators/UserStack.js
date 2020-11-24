@@ -21,7 +21,11 @@ function UserStack({ user }) {
       screenOptions={tabScreenOptions}
     >
       {user ? (
-        <Screen name={PROFILE} component={Profile} />
+        <Screen
+          name={PROFILE}
+          component={Profile}
+          options={{ headerShown: false }}
+        />
       ) : (
         <>
           <Screen

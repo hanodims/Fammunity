@@ -1,4 +1,5 @@
 import React from "react";
+import { Image } from "react-native";
 import { Button, Container, Text, View } from "native-base";
 
 // Redux
@@ -16,7 +17,23 @@ const Profile = ({ logout, name, profile, navigation }) => {
       <View style={{ padding: 30 }}>
         <Text>{name?.username}'s Profile</Text>
       </View>
-      <View style={{ paddingBottom: 30 }}>
+      <View>
+        <Image
+          source={{
+            uri: profile.image
+              ? profile.image
+              : "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png",
+          }}
+          style={{
+            width: 100,
+            height: 100,
+            borderRadius: 200,
+            alignSelf: "center",
+          }}
+        ></Image>
+      </View>
+
+      <View style={{ padding: 20 }}>
         <Button bordered dark>
           <Text>Liked</Text>
         </Button>

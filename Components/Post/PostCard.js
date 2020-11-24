@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 //components
@@ -33,9 +33,12 @@ const PostCard = ({
   fetchLikers,
   fetchUserProfile,
   navigation,
+  profile,
 }) => {
-  fetchLikers(post.id);
-  fetchUserProfile(post.owner);
+  useEffect(() => {
+    fetchLikers(post.id);
+    fetchUserProfile(post.owner);
+  }, []);
 
   const [liked, setLiked] = useState(post.liked);
   const [likers, setLikers] = useState(post.likers_number);
@@ -45,9 +48,7 @@ const PostCard = ({
   });
 
   let handelUserProfile = () => {
-    // await fetchUserProfile(post.owner);
-    //console.log("post.owner", post.owner_name);
-    navigation.navigate(USER_PROFILE, { owner: post.owner_name });
+    navigation.navigate(USER_PROFILE, { owner: post.owner_name, profile });
   };
 
   function handelLike() {
@@ -84,7 +85,13 @@ const PostCard = ({
       <Card transparent style={{}}>
         <CardItem>
           <Left>
-            <Thumbnail source={{ uri: post.photos[0].image }} />
+            <Thumbnail
+              source={{
+                uri: profile.image
+                  ? profile.image
+                  : "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png",
+              }}
+            />
             <Body>
               <TouchableOpacity onPress={handelUserProfile}>
                 <Text>{post.owner_name}</Text>
@@ -98,7 +105,9 @@ const PostCard = ({
               name="heart"
               style={liked ? { color: "#ED4A6A" } : { color: "#000" }}
             />
-            <TouchableOpacity onPress={() => navigation.navigate(LIKERS)}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate(LIKERS, { profile: profile })}
+            >
               <Text note>{likers}</Text>
             </TouchableOpacity>
           </Right>
@@ -129,6 +138,7 @@ const PostCard = ({
 };
 const mapStateToProps = (state) => ({
   like: state.likersReducer.like,
+  profile: state.profileReducer.userProfile,
 });
 
 const mapDispatchToProps = {

@@ -46,6 +46,7 @@ const AddPost = ({ navigation, items, photos, addPost }) => {
           value={description}
           onChangeText={setDescription}
           autoCapitalize="none"
+          style={styles.description}
         ></TextInput>
         <Button
           rounded

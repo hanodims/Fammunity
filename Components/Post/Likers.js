@@ -13,7 +13,13 @@ const Likers = ({ likers }) => {
   function likersList({ item }) {
     return (
       <ListItem key={item.id} bottomDivider>
-        <Avatar source={{ uri: item.image }} />
+        <Avatar
+          source={{
+            uri: item.image
+              ? item.image
+              : "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png",
+          }}
+        />
         <ListItem.Content>
           <ListItem.Title>{item.user.username}</ListItem.Title>
           <ListItem.Subtitle>{item.user.username}</ListItem.Subtitle>

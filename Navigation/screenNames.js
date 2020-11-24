@@ -1,6 +1,7 @@
 //user info
 export const USER = "User";
 export const PROFILE = "Profile";
+export const USER_PROFILE = "UserProfile";
 export const LOGIN = "Login";
 export const SIGNUP = "Signup";
 
@@ -14,6 +15,6 @@ export const ADDITEM = "AddItem";
 //feed
 export const FEED = "Feed";
 export const FEED_LIST = "FeedList";
-export const POST_DETAIL = "POST_DETAIL";
+export const POST_DETAIL = "PostDetail";
 
 export const LIKERS = "likers";

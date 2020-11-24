@@ -11,8 +11,12 @@ export { ADD_ITEM } from "./types";
 export { ADD_FEED } from "./types";
 
 export { SET_LIKERS } from "./types";
+export { LIKE_POST } from "./types";
+
+export { SET_USER_PROFILE } from "./types";
+export { SET_PROFILE } from "./types";
 
 // Auth
 export * from "./authentication";
 
-export { fetchProfile } from "./profile";
+export { fetchProfile, fetchUserProfile } from "./profile";

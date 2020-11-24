@@ -10,7 +10,7 @@ import { Text } from "react-native";
 import styles from "./styles";
 
 const Feed = ({ feeds, navigation }) => {
-  // console.log("feeds", feeds);
+  //console.log("feeds", feeds);
   return (
     <Container style={styles.FeedDev}>
       <View style={{ paddingBottom: 30 }}>

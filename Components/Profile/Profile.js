@@ -9,8 +9,8 @@ import { logout } from "../../redux/actions";
 import FeedList from "../Feed/FeedList";
 import LogoutButton from "./LogoutButton";
 
-const Profile = ({ user, logout, name, profile, navigation, feeds }) => {
-  console.log(profile.posts);
+const Profile = ({ logout, name, profile, navigation }) => {
+  //console.log("profile.posts", profile.posts);
   return (
     <Container style={styles.FeedDev}>
       <View style={{ paddingBottom: 30 }}>
@@ -23,13 +23,9 @@ const Profile = ({ user, logout, name, profile, navigation, feeds }) => {
 };
 
 const mapStateToProps = (state) => {
-  // console.log("profile", state.profileReducer);
-  // console.log("user", state.user);
   return {
     profile: state.profileReducer.profile,
     name: state.profileReducer.name,
-    user: state.user,
-    feeds: state.feedsReducer.feeds,
   };
 };
 

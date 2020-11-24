@@ -15,7 +15,7 @@ import { Alert, Image, Text } from "react-native";
 import styles from "./styles";
 
 const AddImage = ({ addImage, navigation }) => {
-  console.log(Platform.OS);
+  // console.log(Platform.OS);
   const [selectImg, setSelectedImg] = useState(null);
 
   function handelAdding() {

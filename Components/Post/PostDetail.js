@@ -9,7 +9,7 @@ const PostDetail = ({ feeds, route, navigation }) => {
   const { feed } = route.params;
 
   const post = feeds.find((post) => post.id === feed.id);
-  //console.log("post.photos", post.id);
+
   return (
     <Container style={{ backgroundColor: "#fff" }}>
       <PostCard navigation={navigation} key={post.id} post={post} />

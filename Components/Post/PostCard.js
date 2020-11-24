@@ -5,14 +5,13 @@ import { connect } from "react-redux";
 import PostItems from "./PostItems";
 
 //actions
-import { likePost } from "../../redux/actions";
+import { likePost, fetchLikers, fetchUserProfile } from "../../redux/actions";
 
 //screens
-import { LIKERS } from "../../Navigation/screenNames";
+import { LIKERS, USER_PROFILE } from "../../Navigation/screenNames";
 
 import {
   View,
-  DeckSwiper,
   Card,
   CardItem,
   Thumbnail,
@@ -28,17 +27,39 @@ import Swiper from "react-native-swiper";
 import styles from "./styles";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
-const PostCard = ({ post, likePost, navigation }) => {
+const PostCard = ({
+  post,
+  likePost,
+  fetchLikers,
+  fetchUserProfile,
+  navigation,
+}) => {
+  fetchLikers(post.id);
+  fetchUserProfile(post.owner);
+
+  const [liked, setLiked] = useState(post.liked);
+  const [likers, setLikers] = useState(post.likers_number);
+
   const itemsList = post.items.map((item) => {
     return <PostItems key={item.id} item={item} />;
   });
+
+  let handelUserProfile = () => {
+    // await fetchUserProfile(post.owner);
+    //console.log("post.owner", post.owner_name);
+    navigation.navigate(USER_PROFILE, { owner: post.owner_name });
+  };
+
   function handelLike() {
     likePost({ post_id: post.id });
     if (liked) {
       setLiked(false);
-    } else setLiked(true);
+      setLikers(likers - 1);
+    } else {
+      setLiked(true);
+      setLikers(likers + 1);
+    }
   }
-  const [liked, setLiked] = useState(false);
 
   const imgList = post.photos.map((item) => {
     return (
@@ -51,6 +72,7 @@ const PostCard = ({ post, likePost, navigation }) => {
       </View>
     );
   });
+
   return (
     <Container>
       <View style={styles.sliderContainer}>
@@ -64,20 +86,20 @@ const PostCard = ({ post, likePost, navigation }) => {
           <Left>
             <Thumbnail source={{ uri: post.photos[0].image }} />
             <Body>
-              <Text>post.owner</Text>
-              <Text note> decide later</Text>
+              <TouchableOpacity onPress={handelUserProfile}>
+                <Text>{post.owner_name}</Text>
+                <Text note> decide later</Text>
+              </TouchableOpacity>
             </Body>
           </Left>
           <Right>
-            <TouchableOpacity
-              onPress={() => navigation.navigate(LIKERS, { post_id: post.id })}
-            >
-              <Icon
-                onPress={handelLike}
-                name="heart"
-                style={liked ? { color: "#ED4A6A" } : { color: "#000" }}
-              />
-              <Text note>{post.likers_number}</Text>
+            <Icon
+              onPress={handelLike}
+              name="heart"
+              style={liked ? { color: "#ED4A6A" } : { color: "#000" }}
+            />
+            <TouchableOpacity onPress={() => navigation.navigate(LIKERS)}>
+              <Text note>{likers}</Text>
             </TouchableOpacity>
           </Right>
         </CardItem>
@@ -105,8 +127,14 @@ const PostCard = ({ post, likePost, navigation }) => {
     </Container>
   );
 };
+const mapStateToProps = (state) => ({
+  like: state.likersReducer.like,
+});
+
 const mapDispatchToProps = {
   likePost,
+  fetchLikers,
+  fetchUserProfile,
 };
 
-export default connect(null, mapDispatchToProps)(PostCard);
+export default connect(mapStateToProps, mapDispatchToProps)(PostCard);

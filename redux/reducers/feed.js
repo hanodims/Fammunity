@@ -19,8 +19,8 @@ const reducer = (state = initialState, { type, payload }) => {
       const feed = payload;
 
       return {
-        feeds: state.feeds.concat(feed),
         ...state,
+        feeds: state.feeds.concat(feed),
       };
 
     default:

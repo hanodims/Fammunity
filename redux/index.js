@@ -5,12 +5,7 @@ import rootReducer from "./reducers";
 
 // Actions
 
-import {
-  checkForToken,
-  fetchFeeds,
-  fetchLikers,
-  fetchProfile,
-} from "./actions";
+import { checkForToken } from "./actions";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -20,8 +15,5 @@ const store = createStore(
 );
 
 store.dispatch(checkForToken());
-store.dispatch(fetchFeeds());
-store.dispatch(fetchLikers());
-//store.dispatch(fetchProfile());
 
 export default store;

@@ -1,9 +1,9 @@
 import instance from "./instance";
 import { SET_LIKERS } from "./types";
 
-export const fetchLikers = () => async (dispatch) => {
+export const fetchLikers = (post_id) => async (dispatch) => {
   try {
-    const res = await instance.get("/likers/");
+    const res = await instance.get(`/likers/` + post_id);
     const likers = res.data;
     dispatch({
       type: SET_LIKERS,

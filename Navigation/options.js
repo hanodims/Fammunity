@@ -5,16 +5,14 @@ import { Icon } from "native-base";
 // Screens
 import { FEED, POST_ADDING, USER } from "./screenNames";
 
-
 export const tabBarOptions = {
   showLabel: false,
-  activeTintColor: "#FFF",
-  inactiveTintColor: "#000",
+  activeTintColor: "red",
+  inactiveTintColor: "black",
   style: {
-    backgroundColor: "#000",
+    backgroundColor: "#111",
   },
 };
-
 export const tabScreenOptions = ({ route }) => ({
   tabBarIcon: ({ color }) => {
     let iconName = "";

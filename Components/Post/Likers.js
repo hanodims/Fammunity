@@ -7,19 +7,12 @@ import styles from "./styles";
 import { FlatList } from "react-native-gesture-handler";
 import { ListItem, Avatar } from "react-native-elements";
 
-const Likers = ({ likers, route }) => {
-  const { post_id } = route.params;
-
-  const filterLikers = likers.filter((liker) => (liker.id = post_id));
-  const postLikers = filterLikers.map((liker) => liker.likers);
-
-  // console.log("post_id ", post_id);
-  // console.log("filterLikers ", filterLikers);
+const Likers = ({ likers }) => {
+  const postLikers = likers.liked_by.map((liker) => liker);
 
   function likersList({ item }) {
-    // console.log("likers,item", item.likers);
     return (
-      <ListItem bottomDivider>
+      <ListItem key={item.id} bottomDivider>
         <Avatar source={{ uri: item.image }} />
         <ListItem.Content>
           <ListItem.Title>{item.user.username}</ListItem.Title>
@@ -32,13 +25,11 @@ const Likers = ({ likers, route }) => {
 
   return (
     <Container>
-      <Container style={styles.FeedDev}>
-        <FlatList
-          data={postLikers}
-          renderItem={likersList}
-          keyExtractor={(item) => item.id}
-        />
-      </Container>
+      <FlatList
+        data={postLikers}
+        renderItem={likersList}
+        keyExtractor={(item) => item.id}
+      />
     </Container>
   );
 };

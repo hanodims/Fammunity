@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Text, View } from "native-base";
+import { Button, Container, Text, View } from "native-base";
 
 // Redux
 import { connect } from "react-redux";
@@ -13,9 +13,15 @@ const Profile = ({ logout, name, profile, navigation }) => {
   //console.log("profile.posts", profile.posts);
   return (
     <Container style={styles.FeedDev}>
-      <View style={{ paddingBottom: 30 }}>
+      <View style={{ padding: 30 }}>
         <Text>{name?.username}'s Profile</Text>
       </View>
+      <View style={{ paddingBottom: 30 }}>
+        <Button bordered dark>
+          <Text>Liked</Text>
+        </Button>
+      </View>
+
       <FeedList feeds={profile.posts} navigation={navigation} />
       <LogoutButton logout={logout} />
     </Container>

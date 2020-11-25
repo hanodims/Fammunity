@@ -10,7 +10,7 @@ import { LOGIN } from "../../Navigation/screenNames";
 // Styling Components
 import { TextInput, TouchableOpacity, View } from "react-native";
 import { Text } from "native-base";
-import styles from "./styles";
+import styles from "./Styles";
 
 const Signup = ({ navigation, signup }) => {
   const [username, setUsername] = useState("");

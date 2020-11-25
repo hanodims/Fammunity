@@ -1,5 +1,6 @@
 import instance from "./instance";
 import { SET_FEED } from "./types";
+import axios from "axios";
 
 export const fetchFeeds = () => async (dispatch) => {
   try {

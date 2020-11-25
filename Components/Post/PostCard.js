@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { PROFILE } from "../../Navigation/screenNames";
 
 //components
 import PostItems from "./PostItems";
@@ -33,6 +34,7 @@ const PostCard = ({
   fetchLikers,
   fetchUserProfile,
   navigation,
+  profile,
 }) => {
   fetchLikers(post.id);
   fetchUserProfile(post.owner);
@@ -84,12 +86,17 @@ const PostCard = ({
       <Card transparent style={{}}>
         <CardItem>
           <Left>
-            <Thumbnail source={{ uri: post.photos[0].image }} />
+            <Thumbnail source={{
+              uri:
+                profile.image? profile.image : "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png",
+            }} />
             <Body>
+
               <TouchableOpacity onPress={handelUserProfile}>
                 <Text>{post.owner_name}</Text>
                 <Text note> decide later</Text>
               </TouchableOpacity>
+
             </Body>
           </Left>
           <Right>
@@ -129,6 +136,7 @@ const PostCard = ({
 };
 const mapStateToProps = (state) => ({
   like: state.likersReducer.like,
+  profile: state.profileReducer.userProfile
 });
 
 const mapDispatchToProps = {

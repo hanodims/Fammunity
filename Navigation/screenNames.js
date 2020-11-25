@@ -5,6 +5,7 @@ export const USER_PROFILE = "UserProfile";
 export const LOGIN = "Login";
 export const SIGNUP = "Signup";
 
+export const LIKED_FEEDS = "LikedFeeds";
 export const EXPLORE = "Explore";
 
 export const POST_ADDING = "PostAdding";

@@ -3,7 +3,7 @@ import { Icon } from "native-base";
 //import Icon from "react-native-vector-icons/Feather";
 
 // Screens
-import { FEED, POST_ADDING, USER } from "./screenNames";
+import { EXPLORE, FEED, POST_ADDING, USER } from "./screenNames";
 
 export const tabBarOptions = {
   showLabel: false,
@@ -29,6 +29,11 @@ export const tabScreenOptions = ({ route }) => ({
 
       case USER:
         iconName = "account";
+        color = "white";
+        break;
+
+      case EXPLORE:
+        iconName = "grid";
         color = "white";
         break;
 

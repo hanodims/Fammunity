@@ -3,11 +3,18 @@ import { connect } from "react-redux";
 import { createStackNavigator } from "@react-navigation/stack";
 
 // Screens
-import { LOGIN, SIGNUP, PROFILE, POST_DETAIL } from "../screenNames";
+import {
+  LOGIN,
+  SIGNUP,
+  PROFILE,
+  POST_DETAIL,
+  LIKED_FEEDS,
+} from "../screenNames";
 import Profile from "../../Components/Profile/Profile";
 import Login from "../../Components/Authentication/Login";
 import Signup from "../../Components/Authentication/Signup";
 import PostDetail from "../../Components/Post/PostDetail";
+import LikedFeeds from "../../Components/Feed/LikedFeeds";
 
 // Config
 import { tabScreenOptions } from "../options";
@@ -21,11 +28,24 @@ function UserStack({ user }) {
       screenOptions={tabScreenOptions}
     >
       {user ? (
-        <Screen
-          name={PROFILE}
-          component={Profile}
-          options={{ headerShown: false }}
-        />
+        <>
+          <Screen
+            name={PROFILE}
+            component={Profile}
+            options={{ headerShown: false }}
+          />
+
+          <Screen
+            name={POST_DETAIL}
+            component={PostDetail}
+            options={{ headerShown: false }}
+          />
+          <Screen
+            name={LIKED_FEEDS}
+            component={LikedFeeds}
+            options={{ headerShown: false }}
+          />
+        </>
       ) : (
         <>
           <Screen
@@ -36,11 +56,6 @@ function UserStack({ user }) {
           <Screen
             name={SIGNUP}
             component={Signup}
-            // options={{ headerShown: false }}
-          />
-          <Screen
-            name={POST_DETAIL}
-            component={PostDetail}
             // options={{ headerShown: false }}
           />
         </>

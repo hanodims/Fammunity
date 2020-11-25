@@ -9,8 +9,8 @@ import { Container, View } from "native-base";
 import { Text } from "react-native";
 import styles from "./styles";
 
-const LikedFeeds = ({ feeds, navigation }) => {
-  const likedFeeds = feeds.filter((feed) => feed.liked == true);
+const LikedFeeds = ({ explore, navigation }) => {
+  const likedFeeds = explore.filter((feed) => feed.liked == true);
   //console.log("likedFeeds", likedFeeds);
   return (
     <Container style={styles.FeedDev}>
@@ -23,6 +23,6 @@ const LikedFeeds = ({ feeds, navigation }) => {
 };
 
 const mapStateToProps = (state) => ({
-  feeds: state.feedsReducer.feeds,
+  explore: state.feedsReducer.explore,
 });
 export default connect(mapStateToProps)(LikedFeeds);

@@ -11,7 +11,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 const FeedItem = ({ post, navigation }) => {
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate(POST_DETAIL, { feed: post })}
+      onPress={() => navigation.push(POST_DETAIL, { feed: post })}
     >
       {post.photos && (
         <Image

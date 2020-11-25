@@ -9,25 +9,24 @@ import { Container, View } from "native-base";
 import { Text } from "react-native";
 import styles from "./styles";
 
-const Feed = ({ feeds, navigation, following }) => {
-  let userFeeds = [];
-  for (var i = 0; i < following.length; i++) {
-    userFeeds.push(following[i].user_to);
-  }
-  const explore = feeds.filter((feed) => userFeeds.includes(feed.owner));
-
+const Feed = ({ feeds, navigation }) => {
   return (
     <Container style={styles.FeedDev}>
-      <View style={{ paddingBottom: 30 }}>
-        <Text style={styles.feedTitle}>FEED</Text>
-      </View>
-      <FeedList feeds={explore} navigation={navigation} />
+      {feeds.length > 0 ? (
+        <View style={styles.FeedDev}>
+          <View style={{ paddingBottom: 30 }}>
+            <Text style={styles.feedTitle}>FEED</Text>
+          </View>
+          <FeedList feeds={feeds} navigation={navigation} />
+        </View>
+      ) : (
+        <Text style={styles.feedTitle}>Follow Some People</Text>
+      )}
     </Container>
   );
 };
 
 const mapStateToProps = (state) => ({
   feeds: state.feedsReducer.feeds,
-  following: state.profileReducer.profile.following,
 });
 export default connect(mapStateToProps)(Feed);

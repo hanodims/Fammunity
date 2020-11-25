@@ -10,7 +10,6 @@ import { FlatList } from "react-native-gesture-handler";
 
 const FeedList = ({ feeds, navigation }) => {
   function feedsList({ item }) {
-    //console.log(`${item.description}`);
     return <FeedItem post={item} navigation={navigation} />;
   }
 

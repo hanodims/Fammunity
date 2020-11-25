@@ -1,18 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { Button, Container, Text, View } from "native-base";
+import { Container, View } from "native-base";
 import styles from "../Post/styles";
-import { Alert, Image } from "react-native";
-
-// Redux
-import { connect } from "react-redux";
-import { followProfile } from "../../redux/actions";
+import { Image } from "react-native";
 
 // Components
 import FeedList from "../Feed/FeedList";
 import Follow from "./Follow";
 
-const UserProfile = ({ username, navigation, route, followProfile }) => {
+const UserProfile = ({ navigation, route }) => {
   const { owner, profile } = route.params;
 
   return (
@@ -39,11 +35,5 @@ const UserProfile = ({ username, navigation, route, followProfile }) => {
     </Container>
   );
 };
-const mapStateToProps = (state) => ({
-  username: state.profileReducer.name.username,
-});
-const mapDispatchToProps = {
-  followProfile,
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
+export default UserProfile;

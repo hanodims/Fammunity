@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { Container, View } from "native-base";
+import { Container } from "native-base";
 
 import PostCard from "./PostCard";
 
-const PostDetail = ({ feeds, route, navigation }) => {
+const PostDetail = ({ explore, route, navigation }) => {
   const { feed } = route.params;
 
-  const post = feeds.find((post) => post.id === feed.id);
+  const post = explore.find((post) => post.id === feed.id);
 
   return (
     <Container style={{ backgroundColor: "#fff" }}>
@@ -18,7 +18,7 @@ const PostDetail = ({ feeds, route, navigation }) => {
 };
 
 const mapStateToProps = (state) => ({
-  feeds: state.feedsReducer.feeds,
+  explore: state.feedsReducer.explore,
 });
 
 export default connect(mapStateToProps)(PostDetail);

@@ -1,5 +1,6 @@
 import { SET_PROFILE, SET_USER_PROFILE } from "./types";
 import instance from "./instance";
+import { fetchFeeds } from "./feeds";
 
 export const fetchProfile = () => async (dispatch) => {
   try {
@@ -32,6 +33,8 @@ export const fetchUserProfile = (owner_id) => async (dispatch) => {
 export const followProfile = (profile_id) => async (dispatch) => {
   try {
     await instance.post(`/follow/`, profile_id);
+    dispatch(fetchProfile());
+    dispatch(fetchFeeds());
   } catch (error) {
     Alert.alert("Failed");
   }

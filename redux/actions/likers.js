@@ -13,3 +13,11 @@ export const fetchLikers = (post_id) => async (dispatch) => {
     console.error("wrong likers List fetching", err);
   }
 };
+
+export const likePost = (post_id) => async (dispatch) => {
+  try {
+    await instance.post(`/like/`, post_id);
+  } catch (error) {
+    Alert.alert("Failed");
+  }
+};

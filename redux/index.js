@@ -5,7 +5,7 @@ import rootReducer from "./reducers";
 
 // Actions
 
-import { checkForToken } from "./actions";
+import { checkForToken, fetchExplore } from "./actions";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -15,5 +15,6 @@ const store = createStore(
 );
 
 store.dispatch(checkForToken());
+store.dispatch(fetchExplore());
 
 export default store;

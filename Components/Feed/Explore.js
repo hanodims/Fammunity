@@ -9,19 +9,18 @@ import { Container, View } from "native-base";
 import { Text } from "react-native";
 import styles from "./styles";
 
-const Explore = ({ feeds, navigation }) => {
-  //console.log("feeds", feeds);
+const Explore = ({ explore, navigation }) => {
   return (
     <Container style={styles.FeedDev}>
       <View style={{ paddingBottom: 30 }}>
         <Text style={styles.feedTitle}>FAMMUNITY</Text>
       </View>
-      <FeedList feeds={feeds} navigation={navigation} />
+      <FeedList feeds={explore} navigation={navigation} />
     </Container>
   );
 };
 
 const mapStateToProps = (state) => ({
-  feeds: state.feedsReducer.feeds,
+  explore: state.feedsReducer.explore,
 });
 export default connect(mapStateToProps)(Explore);

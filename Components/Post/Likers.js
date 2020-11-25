@@ -1,13 +1,14 @@
 import React from "react";
-import { connect } from "react-redux";
 
 //style
-import { Container, Text } from "native-base";
+import { Container } from "native-base";
 import styles from "./styles";
 import { FlatList } from "react-native-gesture-handler";
 import { ListItem, Avatar } from "react-native-elements";
 
-const Likers = ({ likers }) => {
+const Likers = ({ route }) => {
+  const { likers } = route.params;
+
   const postLikers = likers.liked_by.map((liker) => liker);
 
   function likersList({ item }) {
@@ -40,8 +41,4 @@ const Likers = ({ likers }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  likers: state.likersReducer.likers,
-});
-
-export default connect(mapStateToProps)(Likers);
+export default Likers;

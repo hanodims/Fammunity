@@ -1,24 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Button, Container, Text, View } from "native-base";
 import styles from "../Post/styles";
-import { Image } from "react-native";
+import { Alert, Image } from "react-native";
 
 // Redux
 import { connect } from "react-redux";
-import { logout } from "../../redux/actions";
+import { followProfile } from "../../redux/actions";
 
 // Components
 import FeedList from "../Feed/FeedList";
+import Follow from "./Follow";
 
-const UserProfile = ({ username, navigation, route }) => {
+const UserProfile = ({ username, navigation, route, followProfile }) => {
   const { owner, profile } = route.params;
 
   return (
     <Container style={styles.FeedDev}>
-      <View style={{ paddingBottom: 30 }}>
-        <Text>{owner}'s Profile</Text>
-      </View>
       <View>
         <Image
           source={{
@@ -34,12 +32,8 @@ const UserProfile = ({ username, navigation, route }) => {
           }}
         ></Image>
       </View>
-      <View style={{ padding: 20 }}>
-        {username != owner && (
-          <Button bordered dark>
-            <Text>Follow</Text>
-          </Button>
-        )}
+      <View>
+        <Follow owner={owner} profile={profile} />
       </View>
       <FeedList feeds={profile.posts} navigation={navigation} />
     </Container>
@@ -49,7 +43,7 @@ const mapStateToProps = (state) => ({
   username: state.profileReducer.name.username,
 });
 const mapDispatchToProps = {
-  logout,
+  followProfile,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

@@ -6,6 +6,8 @@ import { Button, Container, Text, View } from "native-base";
 import { connect } from "react-redux";
 import { logout } from "../../redux/actions";
 
+import { LIKED_FEEDS } from "../../Navigation/screenNames";
+
 // Components
 import FeedList from "../Feed/FeedList";
 import LogoutButton from "./LogoutButton";
@@ -34,7 +36,7 @@ const Profile = ({ logout, name, profile, navigation }) => {
       </View>
 
       <View style={{ padding: 20 }}>
-        <Button bordered dark>
+        <Button bordered dark onPress={() => navigation.navigate(LIKED_FEEDS)}>
           <Text>Liked</Text>
         </Button>
       </View>

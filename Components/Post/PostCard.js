@@ -34,14 +34,15 @@ const PostCard = ({
   fetchUserProfile,
   navigation,
   profile,
+  likers,
 }) => {
   useEffect(() => {
-    fetchLikers(post.id);
     fetchUserProfile(post.owner);
+    fetchLikers(post.id);
   }, []);
 
   const [liked, setLiked] = useState(post.liked);
-  const [likers, setLikers] = useState(post.likers_number);
+  const [likersNumber, setLikersNumber] = useState(post.likers_number);
 
   const itemsList = post.items.map((item) => {
     return <PostItems key={item.id} item={item} />;
@@ -55,10 +56,10 @@ const PostCard = ({
     likePost({ post_id: post.id });
     if (liked) {
       setLiked(false);
-      setLikers(likers - 1);
+      setLikersNumber(likersNumber - 1);
     } else {
       setLiked(true);
-      setLikers(likers + 1);
+      setLikersNumber(likersNumber + 1);
     }
   }
 
@@ -106,9 +107,9 @@ const PostCard = ({
               style={liked ? { color: "#ED4A6A" } : { color: "#000" }}
             />
             <TouchableOpacity
-              onPress={() => navigation.navigate(LIKERS, { profile: profile })}
+              onPress={() => navigation.navigate(LIKERS, { likers: likers })}
             >
-              <Text note>{likers}</Text>
+              <Text note>{likersNumber}</Text>
             </TouchableOpacity>
           </Right>
         </CardItem>
@@ -137,8 +138,8 @@ const PostCard = ({
   );
 };
 const mapStateToProps = (state) => ({
-  like: state.likersReducer.like,
   profile: state.profileReducer.userProfile,
+  likers: state.likersReducer.likers,
 });
 
 const mapDispatchToProps = {

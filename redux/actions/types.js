@@ -11,6 +11,7 @@ export const SET_PHOTOS = "SET_PHOTOS";
 export const ADD_PHOTO = "ADD_PHOTO";
 
 export const SET_LIKERS = "SET_LIKERS";
+export const REMOVE_LIKE_POST = "REMOVE_LIKE_POST";
 export const LIKE_POST = "LIKE_POST";
 
 // Auth

@@ -28,3 +28,11 @@ export const fetchUserProfile = (owner_id) => async (dispatch) => {
     console.error(error);
   }
 };
+
+export const followProfile = (profile_id) => async (dispatch) => {
+  try {
+    await instance.post(`/follow/`, profile_id);
+  } catch (error) {
+    Alert.alert("Failed");
+  }
+};

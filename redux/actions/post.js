@@ -1,6 +1,6 @@
 import { Alert } from "react-native";
 
-import { RESET, ADD_ITEM, ADD_PHOTO, ADD_FEED, LIKE_POST } from "./types";
+import { RESET, ADD_ITEM, ADD_PHOTO, ADD_FEED, SET_LIKERS } from "./types";
 import instance from "./instance";
 
 export const addItem = (item) => {
@@ -19,14 +19,13 @@ export const addImage = (image) => {
 
 export const likePost = (post_id) => async (dispatch) => {
   try {
-    await instance.post(`/like/`, post_id);
+    let res = await instance.post(`/like/`, post_id);
+    let likersList = res.data.likers;
     dispatch({
-      type: LIKE_POST,
+      type: SET_LIKERS,
+      payload: likersList,
     });
   } catch (error) {
-    dispatch({
-      type: LIKE_POST,
-    });
     Alert.alert("Failed");
   }
 };

@@ -1,26 +1,31 @@
-import { SET_FEED, ADD_FEED } from "../actions/types";
+import { SET_FEED, ADD_FEED, SET_EXPLORE } from "../actions/types";
 
 const initialState = {
   feeds: [],
+  explore: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_FEED:
-      // console.log("feeds reduser", payload);
       const feeds = payload;
-
       return {
         ...state,
         feeds: feeds,
       };
+
+    case SET_EXPLORE:
+      const explore = payload;
+      return {
+        ...state,
+        explore: explore,
+      };
     case ADD_FEED:
-      // console.log("feeds reduser", payload);
-      const feed = payload;
+      const post = payload;
 
       return {
         ...state,
-        feeds: state.feeds.concat(feed),
+        explore: state.feeds.concat(post),
       };
 
     default:

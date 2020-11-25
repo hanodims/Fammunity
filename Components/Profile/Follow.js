@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Button, Container, Text, View } from "native-base";
+import { Button, Text, View } from "native-base";
 import styles from "../Post/styles";
 
 // Redux

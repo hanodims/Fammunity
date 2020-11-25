@@ -1,14 +1,14 @@
 import React from "react";
 import { Icon } from "native-base";
-//import Icon from "react-native-vector-icons/Feather";
+//import Icon from "react-native-vector-icons/AntDesign";
 
 // Screens
 import { EXPLORE, FEED, POST_ADDING, USER } from "./screenNames";
 
 export const tabBarOptions = {
-  showLabel: false,
-  activeTintColor: "red",
-  inactiveTintColor: "black",
+  showLabel: true,
+  activeTintColor: "white",
+  inactiveTintColor: "grey",
   style: {
     backgroundColor: "#111",
   },
@@ -33,7 +33,7 @@ export const tabScreenOptions = ({ route }) => ({
         break;
 
       case EXPLORE:
-        iconName = "grid";
+        iconName = "earth";
         color = "white";
         break;
 

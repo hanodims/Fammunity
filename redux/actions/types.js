@@ -1,6 +1,7 @@
 import { exp } from "react-native/Libraries/Animated/src/Easing";
 
 export const SET_FEED = "SET_FEED";
+export const SET_EXPLORE = "SET_EXPLORE";
 export const ADD_FEED = "ADD_FEED";
 
 export const RESET = "RESET";

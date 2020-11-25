@@ -5,10 +5,11 @@ import { connect } from "react-redux";
 import PostItems from "./PostItems";
 
 //actions
-import { likePost, fetchLikers, fetchUserProfile } from "../../redux/actions";
+import { likePost, fetchLikers, fetchUserProfile, fetchComments } from "../../redux/actions";
 
 //screens
 import { LIKERS, USER_PROFILE } from "../../Navigation/screenNames";
+import Comments from './Comments'
 
 import {
   View,
@@ -34,11 +35,14 @@ const PostCard = ({
   fetchUserProfile,
   navigation,
   profile,
+  fetchComments,
+  comments,
   likers,
 }) => {
   useEffect(() => {
     fetchUserProfile(post.owner);
     fetchLikers(post.id);
+    fetchComments(post.id)
   }, [liked]);
 
   const [liked, setLiked] = useState(post.liked);
@@ -125,6 +129,7 @@ const PostCard = ({
           </Left>
         </CardItem>
       </Card>
+      <Comments comments={comments}></Comments>
 
       <ScrollView>{itemsList}</ScrollView>
       <View
@@ -136,6 +141,7 @@ const PostCard = ({
         }}
       >
         <Text>Comment Section</Text>
+        
       </View>
     </Container>
   );
@@ -143,12 +149,14 @@ const PostCard = ({
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.userProfile,
   likers: state.likersReducer.likers,
+  comments: state.commentsReducer.comments,
 });
 
 const mapDispatchToProps = {
   likePost,
   fetchLikers,
   fetchUserProfile,
+  fetchComments,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostCard);

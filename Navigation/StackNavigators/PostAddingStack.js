@@ -18,17 +18,17 @@ function PostAddingStack() {
       <Screen
         name={ADD_POST}
         component={AddPost}
-        // options={{ headerShown: false }}
+        options={{ headerShown: false }}
       />
       <Screen
         name={ADDIMAGE}
         component={AddImage}
-        // options={{ headerShown: false }}
+        options={{ headerShown: false }}
       />
       <Screen
         name={ADDITEM}
         component={AddItem}
-        // options={{ headerShown: false }}
+        options={{ headerShown: false }}
       />
     </Navigator>
   );

@@ -35,13 +35,14 @@ const PostCard = ({
   navigation,
   profile,
   likers,
+  isLiked,
 }) => {
   useEffect(() => {
     fetchUserProfile(post.owner);
     fetchLikers(post.id);
   }, [liked]);
 
-  const [liked, setLiked] = useState(post.liked);
+  const [liked, setLiked] = useState(isLiked);
   const [likersNumber, setLikersNumber] = useState(post.likers_number);
 
   const itemsList = post.items.map((item) => {
@@ -53,10 +54,8 @@ const PostCard = ({
   };
 
   function handelLike() {
-    console.log("liked: postcard ", post.liked);
-    console.log("likersNumber: postcard ", post.likers_number);
     likePost({ post_id: post.id });
-    console.log("post_id: post.id ", post.id);
+
     if (liked) {
       setLiked(false);
       setLikersNumber(likersNumber - 1);
@@ -142,7 +141,9 @@ const PostCard = ({
 };
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.userProfile,
+  profile1: state.profileReducer.profile,
   likers: state.likersReducer.likers,
+  user: state.user,
 });
 
 const mapDispatchToProps = {

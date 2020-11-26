@@ -12,7 +12,12 @@ const PostDetail = ({ explore, route, navigation }) => {
 
   return (
     <Container style={{ backgroundColor: "#fff" }}>
-      <PostCard navigation={navigation} key={post.id} post={post} />
+      <PostCard
+        navigation={navigation}
+        key={post.id}
+        post={post}
+        isLiked={feed.liked}
+      />
     </Container>
   );
 };

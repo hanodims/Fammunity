@@ -33,29 +33,57 @@ const AddItem = ({ addItem, navigation }) => {
       addItem({ name: name, brand: brand, price: price });
       setName("");
       setPrice("");
+      Alert.alert("Done");
     } else Alert.alert("please fill all Fields");
   }
   return (
-    <Container style={styles.AddPostDev}>
-      <View style={{ paddingBottom: 30 }}>
-        <Text style={styles.feedTitle}>Add Item</Text>
+    <View style={styles.itemDiv}>
+      <TextInput
+        placeholder="Prad, Dior ..."
+        textBreakStrategy="highQuality"
+        placeholderTextColor="rgba(179,173,173,1)"
+        selectionColor="rgba(230, 230, 230,1)"
+        autoCapitalize="words"
+        style={styles.itemBrand}
+        value={brand}
+        onChangeText={setBrand}
+      ></TextInput>
+
+      <TextInput
+        placeholder="Dress, Watch ..."
+        textBreakStrategy="highQuality"
+        placeholderTextColor="rgba(179,173,173,1)"
+        selectionColor="rgba(230, 230, 230,1)"
+        autoCapitalize="words"
+        style={styles.itemName}
+        value={name}
+        onChangeText={setName}
+      ></TextInput>
+
+      <TextInput
+        placeholder="33 SR ..."
+        textBreakStrategy="highQuality"
+        placeholderTextColor="rgba(179,173,173,1)"
+        selectionColor="rgba(230, 230, 230,1)"
+        autoCapitalize="words"
+        style={styles.itemPrice}
+        value={price}
+        onChangeText={setPrice}
+      ></TextInput>
+      <View style={styles.rect5}>
+        <Icon onPress={handelAdding} name="plus" size="20" />
       </View>
-      <View style={{ width: 300 }}>
-        <TextInput
-          placeholder="Blouse, Skirt ..."
-          placeholderTextColor="#A6AEC1"
-          value={name}
-          onChangeText={setName}
-          autoCapitalize="none"
-        />
-        <TextInput
-          placeholder="20.00"
-          placeholderTextColor="#A6AEC1"
-          value={price}
-          onChangeText={setPrice}
-          autoCapitalize="none"
-        />
-        <DropDownPicker
+    </View>
+  );
+};
+
+const mapDispatchToProps = {
+  addItem,
+};
+
+export default connect(null, mapDispatchToProps)(AddItem);
+{
+  /* <DropDownPicker
           searchable={true}
           searchablePlaceholder="Search for an item"
           searchablePlaceholderTextColor="gray"
@@ -84,14 +112,5 @@ const AddItem = ({ addItem, navigation }) => {
           onPress={() => navigation.goBack(ADD_POST)}
         >
           <Text>Done</Text>
-        </Button>
-      </View>
-    </Container>
-  );
-};
-
-const mapDispatchToProps = {
-  addItem,
-};
-
-export default connect(null, mapDispatchToProps)(AddItem);
+        </Button> */
+}

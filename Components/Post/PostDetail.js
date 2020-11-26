@@ -12,7 +12,7 @@ const PostDetail = ({ explore, route, navigation }) => {
 
   return (
     <Container style={{ backgroundColor: "#fff" }}>
-      <PostCard navigation={navigation} key={post.id} post={post} />
+      <PostCard navigation={navigation} key={feed.id} post={post} r={feed.id}/>
     </Container>
   );
 };

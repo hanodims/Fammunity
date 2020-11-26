@@ -6,7 +6,7 @@ import instance from "./instance";
 
 export const fetchComments = (post_id) => async (dispatch) => {
     try {
-      const res = await instance.get(`/comments/`, post_id);
+      const res = await instance.get(`/comments/`+ post_id);
       const comments = res.data;
       dispatch({
         type: SET_COMMENT,

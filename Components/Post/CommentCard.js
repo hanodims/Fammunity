@@ -7,7 +7,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 const CommentCard = ({ comment }) => {
   return (
-      <Text>{comment.txt}</Text>
+      <Text>{comment}</Text>
   )
 };
 

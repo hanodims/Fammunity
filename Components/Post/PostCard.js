@@ -41,11 +41,12 @@ const PostCard = ({
   fetchComments,
   comments,
   likers,
+  r,
 }) => {
   useEffect(() => {
     fetchUserProfile(post.owner);
     fetchLikers(post.id);
-    fetchComments({ post_id: post.id })
+    fetchComments(r)
   }, [liked]);
 
   const [liked, setLiked] = useState(post.liked);
@@ -68,7 +69,7 @@ const PostCard = ({
 
 
   let handelComment = () => {
-    fetchComments({ post_id: post.id });
+    fetchComments(r);
     
   };
   function handelLike() {

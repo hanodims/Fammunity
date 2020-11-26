@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import PostItems from "./PostItems";
 
 //actions
-import { likePost, fetchLikers, fetchUserProfile, fetchComments } from "../../redux/actions";
+import { likePost, fetchLikers, fetchUserProfile, fetchComments, addComment } from "../../redux/actions";
 
 //screens
 import { LIKERS, USER_PROFILE } from "../../Navigation/screenNames";
@@ -22,17 +22,20 @@ import {
   Icon,
   Container,
   Right,
+  Button
 } from "native-base";
 import { Image } from "react-native";
 import Swiper from "react-native-swiper";
 import styles from "./styles";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import { TextInput } from "react-native-gesture-handler";
 
 const PostCard = ({
   post,
   likePost,
   fetchLikers,
   fetchUserProfile,
+  addComment,
   navigation,
   profile,
   fetchComments,
@@ -42,11 +45,12 @@ const PostCard = ({
   useEffect(() => {
     fetchUserProfile(post.owner);
     fetchLikers(post.id);
-    fetchComments(post.id)
+    fetchComments({ post_id: post.id })
   }, [liked]);
 
   const [liked, setLiked] = useState(post.liked);
   const [likersNumber, setLikersNumber] = useState(post.likers_number);
+  const [comment, setComment] = useState("");
 
   const itemsList = post.items.map((item) => {
     return <PostItems key={item.id} item={item} />;
@@ -56,6 +60,17 @@ const PostCard = ({
     navigation.navigate(USER_PROFILE, { owner: post.owner_name, profile });
   };
 
+  let handelAddComment = () => {
+    if (comment != "") {
+    addComment({txt: comment, post_id: post.id});
+    }
+  };
+
+
+  let handelComment = () => {
+    fetchComments({ post_id: post.id });
+    
+  };
   function handelLike() {
     console.log("liked: postcard ", post.liked);
     console.log("likersNumber: postcard ", post.likers_number);
@@ -129,7 +144,24 @@ const PostCard = ({
           </Left>
         </CardItem>
       </Card>
+      <TextInput
+          placeholder="description"
+          placeholderTextColor="#A6AEC1"
+          value={comment}
+          onChangeText={setComment}
+          autoCapitalize="none"
+          style={styles.description}
+        ></TextInput>
+         <Button
+          bordered
+          dark
+          style={styles.button}
+          onPress={() => handelAddComment()}
+        >
+          <Text>Comment</Text>
+        </Button>
       <Comments comments={comments}></Comments>
+
 
       <ScrollView>{itemsList}</ScrollView>
       <View
@@ -140,6 +172,11 @@ const PostCard = ({
           alignItems: "center",
         }}
       >
+        <TouchableOpacity
+              onPress={handelComment}
+            >
+              <Text >Comments</Text>
+            </TouchableOpacity>
         <Text>Comment Section</Text>
         
       </View>
@@ -157,6 +194,7 @@ const mapDispatchToProps = {
   fetchLikers,
   fetchUserProfile,
   fetchComments,
+  addComment,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostCard);

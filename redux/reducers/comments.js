@@ -6,14 +6,13 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_COMMENT:
-      //console.log("likers red", state.likers);
       return {
         ...state,
         comments: action.payload,
       };
 
       case ADD_COMMENT:
-      const newComment = payload;
+      const newComment = action.payload;
       return {
         ...state,
         comments: [...state.comments, newComment],

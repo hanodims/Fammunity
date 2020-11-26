@@ -6,17 +6,22 @@ import instance from "./instance";
 
 export const fetchComments = (post_id) => async (dispatch) => {
     try {
-    await instance.get(`/comments/`, post_id);
+      const res = await instance.get(`/comments/`, post_id);
+      const comments = res.data;
+      dispatch({
+        type: SET_COMMENT,
+        payload: comments,
+      });
+      
     } catch (err) {
       console.error("wrong comments List fetching", err);
     }
   };
 
 
-export const addComment = (comment, post_id) => async (dispatch) => {
+export const addComment = (comment) => async (dispatch) => {
   try {
-    const txt = { comment };
-    const res = await instance.post('comment', post_id,txt);
+    const res = await instance.post('/comment/', comment);
     const newComment = res.data;
     dispatch({
       type: ADD_COMMENT,

@@ -8,9 +8,10 @@ import { Container } from "native-base";
 import styles from "./styles";
 import { FlatList } from "react-native-gesture-handler";
 
-const Comments = ({ comments}) => {
+const Comments = ({ comments }) => {
   function commentsList({ item }) {
-    return <CommentCard comment={item} />;
+    console.log("item", item);
+    return <CommentCard key={item.id} comment={item} />;
   }
 
   return (

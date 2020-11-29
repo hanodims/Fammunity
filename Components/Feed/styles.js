@@ -17,7 +17,9 @@ export default styles = StyleSheet.create({
     fontSize: 30,
     lineHeight: 40,
     fontFamily: "Chalkboard SE",
+    alignSelf: "center",
   },
+  container: { flex: 1, paddingTop: 30 },
 });
 
 //Arial Rounded MT Bold ,,

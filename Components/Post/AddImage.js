@@ -38,11 +38,15 @@ const AddImage = ({ addImage, navigation, photos, removePhoto }) => {
           imageStyle={{ borderRadius: 15 }}
           resizeMode="cover"
         ></ImageBackground>
-        <Icon
-          style={{ marginLeft: 30 }}
-          name="x-circle"
-          onPress={() => removePhoto(item)}
-        />
+        <View style={styles.removeItemButton}>
+          <Icon
+            style={{}}
+            name="x-circle"
+            size={20}
+            color="#000"
+            onPress={() => removePhoto(item)}
+          />
+        </View>
       </View>
     );
   }

@@ -170,7 +170,7 @@ const PostCard = ({
       >
         <Text>Comment</Text>
       </Button>
-      <Comments comments={comments}></Comments>
+      {/* <Comments comments={comments}></Comments> */}
 
       <ScrollView>{itemsList}</ScrollView>
       <View

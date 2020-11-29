@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 //components
@@ -8,8 +8,11 @@ import FeedList from "./FeedList";
 import { Container, View } from "native-base";
 import { Text } from "react-native";
 import styles from "./styles";
+import { fetchExplore } from "../../redux/actions";
 
 const LikedFeeds = ({ explore, navigation }) => {
+  //console.log("explore", explore);
+
   const likedFeeds = explore.filter((feed) => feed.liked == true);
   //console.log("likedFeeds", likedFeeds);
   return (

@@ -1,6 +1,6 @@
 export { fetchFeeds, fetchExplore } from "./feeds";
 export { fetchLikers, likePost } from "./likers";
-export { addItem, addImage, addPost, removePhoto } from "./post";
+export { addItem, addImage, addPost, removePhoto, removeItem } from "./post";
 
 export * from "./types";
 

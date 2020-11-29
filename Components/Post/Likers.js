@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 //style
 import { Container } from "native-base";
 import styles from "./styles";
 import { FlatList } from "react-native-gesture-handler";
 import { ListItem, Avatar } from "react-native-elements";
+import { fetchLikers } from "../../redux/actions";
+import { connect } from "react-redux";
 
 const Likers = ({ route }) => {
-  const { likers } = route.params;
+  const { likers, post_id } = route.params;
+
+  // useEffect(() => {
+  //   console.log("im here2");
+  //   fetchLikers(post_id);
+  // }, []);
 
   const postLikers = likers.liked_by.map((liker) => liker);
 
@@ -41,4 +48,12 @@ const Likers = ({ route }) => {
   );
 };
 
-export default Likers;
+const mapStateToProps = (state) => ({
+  likers: state.likersReducer.likers,
+});
+
+const mapDispatchToProps = {
+  fetchLikers,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Likers);

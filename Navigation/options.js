@@ -7,10 +7,10 @@ import { EXPLORE, FEED, POST_ADDING, USER } from "./screenNames";
 
 export const tabBarOptions = {
   showLabel: true,
-  activeTintColor: "white",
+  activeTintColor: "#111",
   inactiveTintColor: "grey",
   style: {
-    backgroundColor: "#111",
+    backgroundColor: "transparent",
   },
 };
 export const tabScreenOptions = ({ route }) => ({
@@ -19,22 +19,22 @@ export const tabScreenOptions = ({ route }) => ({
     switch (route.name) {
       case FEED:
         iconName = "grid";
-        color = "white";
+        // color = "black";
         break;
 
       case POST_ADDING:
         iconName = "star-half";
-        color = "white";
+        // color = "black";
         break;
 
       case USER:
         iconName = "account";
-        color = "white";
+        // color = "black";
         break;
 
       case EXPLORE:
         iconName = "earth";
-        color = "white";
+        // color = "black";
         break;
 
       default:

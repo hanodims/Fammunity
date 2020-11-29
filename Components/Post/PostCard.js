@@ -38,9 +38,10 @@ const PostCard = ({
   isLiked,
 }) => {
   useEffect(() => {
+    console.log("im here");
     fetchUserProfile(post.owner);
     fetchLikers(post.id);
-  }, [liked]);
+  }, []);
 
   const [liked, setLiked] = useState(isLiked);
   const [likersNumber, setLikersNumber] = useState(post.likers_number);
@@ -109,7 +110,12 @@ const PostCard = ({
               style={liked ? { color: "#ED4A6A" } : { color: "#000" }}
             />
             <TouchableOpacity
-              onPress={() => navigation.navigate(LIKERS, { likers: likers })}
+              onPress={() =>
+                navigation.navigate(LIKERS, {
+                  likers: likers,
+                  post_id: post.id,
+                })
+              }
             >
               <Text note>{likersNumber}</Text>
             </TouchableOpacity>

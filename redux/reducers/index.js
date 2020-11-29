@@ -6,6 +6,8 @@ import postReducer from "./post";
 import likersReducer from "./likers";
 import user from "./user";
 import profileReducer from "./profile";
+import commentsReducer from "./comments";
+
 
 const rootReducer = combineReducers({
   feedsReducer,
@@ -13,6 +15,7 @@ const rootReducer = combineReducers({
   likersReducer,
   user,
   profileReducer,
+  commentsReducer,
 });
 
 export default rootReducer;

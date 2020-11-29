@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
     alignItems: "center",
     padding: 20,
-    backgroundColor: "rgb(20,90,100)",
+    backgroundColor: "black",
     marginTop: 30
   },
   authButtonText: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     paddingLeft: 60
   },
   authOther: {
-    color: "rgb(20,90,100)",
+    color: "grey",
     marginTop: 15
   },
   authTextInput: {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   authTitle: {
-    color: "rgb(20,90,100)",
+    color: "grey",
     fontSize: 24,
     marginBottom: 20,
     borderBottomColor: "rgb(20,90,100)"

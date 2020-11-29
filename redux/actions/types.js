@@ -20,3 +20,7 @@ export const LIKE_POST = "LIKE_POST";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const SET_PROFILE = "SET_PROFILE";
 export const SET_USER_PROFILE = "SET_USER_PROFILE";
+
+export const SET_COMMENT = "SET_COMMENT";
+export const ADD_COMMENT = "ADD_COMMENT";
+

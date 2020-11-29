@@ -16,7 +16,12 @@ export const fetchLikers = (post_id) => async (dispatch) => {
 
 export const likePost = (post_id) => async (dispatch) => {
   try {
-    await instance.post(`/like/`, post_id);
+    const allLikers = await instance.post(`/like/`, post_id);
+    console.log("allLikers", allLikers.data);
+    dispatch({
+      type: SET_LIKERS,
+      payload: allLikers.data.likers,
+    });
   } catch (error) {
     Alert.alert("Failed");
   }

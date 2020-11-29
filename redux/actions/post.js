@@ -1,11 +1,26 @@
 import { Alert } from "react-native";
 
-import { RESET, ADD_ITEM, ADD_PHOTO, ADD_FEED } from "./types";
+import {
+  RESET,
+  ADD_ITEM,
+  ADD_PHOTO,
+  ADD_FEED,
+  REMOVE_PHOTO,
+  REMOVE_ITEM,
+} from "./types";
 import instance from "./instance";
 
 export const addItem = (item) => {
+  console.log("items act: ", item);
   return {
     type: ADD_ITEM,
+    payload: item,
+  };
+};
+
+export const removeItem = (item) => {
+  return {
+    type: REMOVE_ITEM,
     payload: item,
   };
 };
@@ -13,6 +28,13 @@ export const addItem = (item) => {
 export const addImage = (image) => {
   return {
     type: ADD_PHOTO,
+    payload: image,
+  };
+};
+
+export const removePhoto = (image) => {
+  return {
+    type: REMOVE_PHOTO,
     payload: image,
   };
 };

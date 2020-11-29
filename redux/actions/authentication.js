@@ -5,6 +5,7 @@ import { SET_CURRENT_USER } from "./types";
 
 import instance from "./instance";
 import { fetchFeeds } from "./feeds";
+import { fetchExplore } from "./feeds";
 import { fetchProfile } from "./profile";
 
 const setCurrentUser = (token) => async (dispatch) => {
@@ -13,8 +14,9 @@ const setCurrentUser = (token) => async (dispatch) => {
     type: SET_CURRENT_USER,
     payload: token ? decode(token) : null,
   });
-  dispatch(fetchFeeds());
   dispatch(fetchProfile());
+  fetchExplore();
+  dispatch(fetchFeeds());
 };
 
 const setAuthToken = async (token) => {

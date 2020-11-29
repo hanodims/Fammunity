@@ -41,15 +41,18 @@ const PostCard = ({
   fetchComments,
   comments,
   likers,
+  isLiked,
   r,
 }) => {
   useEffect(() => {
+    console.log("im here");
     fetchUserProfile(post.owner);
     fetchLikers(post.id);
     fetchComments(r)
-  }, [liked]);
+  }, []);
 
-  const [liked, setLiked] = useState(post.liked);
+
+  const [liked, setLiked] = useState(isLiked);
   const [likersNumber, setLikersNumber] = useState(post.likers_number);
   const [comment, setComment] = useState("");
 
@@ -73,10 +76,8 @@ const PostCard = ({
     
   };
   function handelLike() {
-    console.log("liked: postcard ", post.liked);
-    console.log("likersNumber: postcard ", post.likers_number);
     likePost({ post_id: post.id });
-    console.log("post_id: post.id ", post.id);
+
     if (liked) {
       setLiked(false);
       setLikersNumber(likersNumber - 1);
@@ -130,7 +131,12 @@ const PostCard = ({
               style={liked ? { color: "#ED4A6A" } : { color: "#000" }}
             />
             <TouchableOpacity
-              onPress={() => navigation.navigate(LIKERS, { likers: likers })}
+              onPress={() =>
+                navigation.navigate(LIKERS, {
+                  likers: likers,
+                  post_id: post.id,
+                })
+              }
             >
               <Text note>{likersNumber}</Text>
             </TouchableOpacity>
@@ -186,8 +192,11 @@ const PostCard = ({
 };
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.userProfile,
+  profile1: state.profileReducer.profile,
   likers: state.likersReducer.likers,
+  user: state.user,
   comments: state.commentsReducer.comments,
+
 });
 
 const mapDispatchToProps = {

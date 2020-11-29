@@ -3,25 +3,26 @@ import { connect } from "react-redux";
 
 //screens
 import { ADDIMAGE } from "../../Navigation/screenNames";
-import { ADDITEM } from "../../Navigation/screenNames";
-
-//style
-import { Button, Container, View } from "native-base";
-import { Text, Alert } from "react-native";
-import styles from "./styles";
-import { color } from "react-native-reanimated";
 
 //actions
 import { addPost } from "../../redux/actions";
-import { TextInput } from "react-native-gesture-handler";
+
+//style
+import { Container } from "native-base";
+import { Text, Alert, ImageBackground } from "react-native";
+import styles from "./styles";
+
+import { TouchableOpacity } from "react-native-gesture-handler";
+
+// import Icon from "react-native-vector-icons/Feather";
 
 const AddPost = ({ navigation, items, photos, addPost }) => {
   const [description, setDescription] = useState("");
+  console.log(photos.length);
+  console.log(items.length);
 
-  // console.log("im state.items", items);
-  // console.log("im state.photos", photos);
   function handelAddPost() {
-    if (description != "" && items != null && photos != null) {
+    if (description != "" && items.length > 0 && photos.length > 0) {
       addPost({
         description,
         items,
@@ -30,55 +31,20 @@ const AddPost = ({ navigation, items, photos, addPost }) => {
       setDescription("");
     } else Alert.alert("please fill all Fields");
   }
+
   return (
-    <Container style={styles.FeedDev}>
-      <View style={{ paddingBottom: 30 }}>
-        <Text style={styles.feedTitle}>Add post</Text>
-      </View>
-      <View
-        style={{
-          paddingBottom: 30,
-        }}
+    <Container style={{ flex: 1 }}>
+      <ImageBackground
+        source={require("../../assets/add_post17.png")}
+        style={{ flex: 1, resizeMode: "cover" }}
       >
-        <TextInput
-          placeholder="description"
-          placeholderTextColor="#A6AEC1"
-          value={description}
-          onChangeText={setDescription}
-          autoCapitalize="none"
-          style={styles.description}
-        ></TextInput>
-        <Button
-          rounded
-          bordered
-          dark
-          style={styles.button}
+        <TouchableOpacity
           onPress={() => navigation.navigate(ADDIMAGE)}
+          style={styles.startPostButtonDiv}
         >
-          <Text>+ Image</Text>
-        </Button>
-      </View>
-      <View style={{ paddingBottom: 30 }}>
-        <Button
-          rounded
-          bordered
-          dark
-          style={styles.button}
-          onPress={() => navigation.navigate(ADDITEM)}
-        >
-          <Text>+ Item</Text>
-        </Button>
-      </View>
-      <View style={{ paddingBottom: 30 }}>
-        <Button
-          bordered
-          dark
-          style={styles.button}
-          onPress={() => handelAddPost()}
-        >
-          <Text>Add</Text>
-        </Button>
-      </View>
+          <Text style={styles.showOff}>show off your elegance..</Text>
+        </TouchableOpacity>
+      </ImageBackground>
     </Container>
   );
 };

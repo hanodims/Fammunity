@@ -5,10 +5,11 @@ export const SET_EXPLORE = "SET_EXPLORE";
 export const ADD_FEED = "ADD_FEED";
 
 export const RESET = "RESET";
+export const REMOVE_ITEM = "REMOVE_ITEM";
 export const ADD_ITEM = "ADD_ITEM";
 
 export const SET_PHOTOS = "SET_PHOTOS";
-
+export const REMOVE_PHOTO = "REMOVE_PHOTO";
 export const ADD_PHOTO = "ADD_PHOTO";
 
 export const SET_LIKERS = "SET_LIKERS";

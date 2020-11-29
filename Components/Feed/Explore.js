@@ -11,7 +11,7 @@ import styles from "./styles";
 
 const Explore = ({ explore, navigation }) => {
   return (
-    <Container style={styles.FeedDev}>
+    <Container style={styles.container}>
       <View style={{ paddingBottom: 30 }}>
         <Text style={styles.feedTitle}>FAMMUNITY</Text>
       </View>

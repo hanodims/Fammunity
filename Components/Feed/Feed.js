@@ -11,7 +11,13 @@ import styles from "./styles";
 
 const Feed = ({ feeds, navigation }) => {
   return (
-    <Container style={styles.FeedDev}>
+    <Container
+      style={{
+        alignItems: "center",
+        flex: 1,
+        paddingTop: 30,
+      }}
+    >
       {feeds.length > 0 ? (
         <View style={styles.FeedDev}>
           <View style={{ paddingBottom: 30 }}>

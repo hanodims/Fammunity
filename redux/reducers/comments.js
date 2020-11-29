@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
         comments: action.payload,
       };
 
-      case ADD_COMMENT:
+    case ADD_COMMENT:
       const newComment = action.payload;
       return {
         ...state,

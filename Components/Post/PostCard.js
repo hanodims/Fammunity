@@ -5,11 +5,17 @@ import { connect } from "react-redux";
 import PostItems from "./PostItems";
 
 //actions
-import { likePost, fetchLikers, fetchUserProfile, fetchComments, addComment } from "../../redux/actions";
+import {
+  likePost,
+  fetchLikers,
+  fetchUserProfile,
+  fetchComments,
+  addComment,
+} from "../../redux/actions";
 
 //screens
 import { LIKERS, USER_PROFILE } from "../../Navigation/screenNames";
-import Comments from './Comments'
+import Comments from "./Comments";
 
 import {
   View,
@@ -22,7 +28,7 @@ import {
   Icon,
   Container,
   Right,
-  Button
+  Button,
 } from "native-base";
 import { Image } from "react-native";
 import Swiper from "react-native-swiper";
@@ -48,9 +54,8 @@ const PostCard = ({
     console.log("im here");
     fetchUserProfile(post.owner);
     fetchLikers(post.id);
-    fetchComments(r)
+    fetchComments(r);
   }, []);
-
 
   const [liked, setLiked] = useState(isLiked);
   const [likersNumber, setLikersNumber] = useState(post.likers_number);
@@ -66,14 +71,12 @@ const PostCard = ({
 
   let handelAddComment = () => {
     if (comment != "") {
-    addComment({txt: comment, post_id: post.id});
+      addComment({ txt: comment, post_id: post.id });
     }
   };
 
-
   let handelComment = () => {
     fetchComments(r);
-    
   };
   function handelLike() {
     likePost({ post_id: post.id });
@@ -152,23 +155,22 @@ const PostCard = ({
         </CardItem>
       </Card>
       <TextInput
-          placeholder="description"
-          placeholderTextColor="#A6AEC1"
-          value={comment}
-          onChangeText={setComment}
-          autoCapitalize="none"
-          style={styles.description}
-        ></TextInput>
-         <Button
-          bordered
-          dark
-          style={styles.button}
-          onPress={() => handelAddComment()}
-        >
-          <Text>Comment</Text>
-        </Button>
+        placeholder="description"
+        placeholderTextColor="#A6AEC1"
+        value={comment}
+        onChangeText={setComment}
+        autoCapitalize="none"
+        style={styles.description}
+      ></TextInput>
+      <Button
+        bordered
+        dark
+        style={styles.button}
+        onPress={() => handelAddComment()}
+      >
+        <Text>Comment</Text>
+      </Button>
       <Comments comments={comments}></Comments>
-
 
       <ScrollView>{itemsList}</ScrollView>
       <View
@@ -179,13 +181,9 @@ const PostCard = ({
           alignItems: "center",
         }}
       >
-        <TouchableOpacity
-              onPress={handelComment}
-            >
-              <Text >Comments</Text>
-            </TouchableOpacity>
-        <Text>Comment Section</Text>
-        
+        <TouchableOpacity onPress={handelComment}>
+          <Text>Comments</Text>
+        </TouchableOpacity>
       </View>
     </Container>
   );
@@ -196,7 +194,6 @@ const mapStateToProps = (state) => ({
   likers: state.likersReducer.likers,
   user: state.user,
   comments: state.commentsReducer.comments,
-
 });
 
 const mapDispatchToProps = {

@@ -5,7 +5,7 @@ import { Button, Container, Text, View, Icon } from "native-base";
 // Redux
 import { connect } from "react-redux";
 import { logout } from "../../redux/actions";
-import { Ionicons} from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { LIKED_FEEDS } from "../../Navigation/screenNames";
 
 // Components
@@ -14,7 +14,7 @@ import FeedList from "../Feed/FeedList";
 const Profile = ({ logout, name, profile, navigation }) => {
   //console.log("profile.posts", profile.posts);
   return (
-    <Container style={styles.FeedDev}>
+    <Container style={styles.container}>
       <View style={styles.titleBar}>
         <View>
           <View style={styles.statsBoxTitle}>
@@ -89,7 +89,7 @@ const Profile = ({ logout, name, profile, navigation }) => {
   );
 };
 const styles = StyleSheet.create({
-
+  container: { flex: 1, paddingTop: 30 },
   text: {
     fontFamily: "HelveticaNeue",
     color: "#52575D",
@@ -135,7 +135,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
   },
-
 });
 
 const mapStateToProps = (state) => {

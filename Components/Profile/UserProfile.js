@@ -12,7 +12,7 @@ const UserProfile = ({ navigation, route }) => {
   const { owner, profile } = route.params;
 
   return (
-    <Container style={styles.FeedDev}>
+    <Container style={{ flex: 1, paddingTop: 100 }}>
       <View>
         <Image
           source={{

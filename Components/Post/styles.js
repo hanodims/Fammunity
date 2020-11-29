@@ -5,6 +5,7 @@ const screen = Dimensions.get("screen");
 
 export default styles = StyleSheet.create({
   FeedDev: {
+    paddingTop: 20,
     backgroundColor: "#fff",
     alignItems: "center",
   },
@@ -69,9 +70,8 @@ export default styles = StyleSheet.create({
     height: 50,
     justifyContent: "center",
     alignItems: "center",
-    shadowColor: "rgb(210,169,123)",
+    shadowColor: "rgb(210,169,223)",
     shadowOpacity: 40,
-    //marginBottom: 5,
     shadowOffset: {
       height: 1,
     },
@@ -94,6 +94,8 @@ export default styles = StyleSheet.create({
   },
   iconDev: {
     marginLeft: windowWidth - 50,
+    marginTop: -30,
+    marginBottom: 30,
   },
 
   description: {
@@ -144,22 +146,7 @@ export default styles = StyleSheet.create({
     height: 54,
     position: "absolute",
   },
-  removeItemButton: {
-    backgroundColor: "white",
-    borderColor: "white",
-    borderWidth: 1,
-    borderRadius: 60,
-    width: 30,
-    height: 30,
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "flex-end",
-    shadowColor: "#999",
-    shadowOpacity: 40,
-    shadowOffset: {
-      height: 1,
-    },
-  },
+
   scrolItems: {
     width: 348,
     height: 219,
@@ -325,5 +312,23 @@ export default styles = StyleSheet.create({
     borderColor: "#121212",
     alignContent: "flex-start",
     justifyContent: "center",
+  },
+  removeItemButton: {
+    backgroundColor: "white",
+    borderColor: "white",
+    borderWidth: 1,
+    borderRadius: 60,
+    width: 21,
+    height: 21,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#999",
+    shadowOpacity: 40,
+    shadowOffset: {
+      height: 1,
+    },
+    marginLeft: 30,
+    marginLeft: 300,
+    marginTop: -460,
   },
 });

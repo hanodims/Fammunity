@@ -94,25 +94,34 @@ const AddItem = ({ addItem, navigation, items, removeItem }) => {
               <Text style={styles.itemBrand}>
                 Select the Brand of your item:
               </Text>
-              <View style={{ width: 200, alignSelf: "center" }}>
-                <DropDownPicker
-                  searchable={true}
-                  searchablePlaceholder="Brand name or letters..."
-                  searchablePlaceholderTextColor="gray"
-                  seachableStyle={{}}
-                  searchableError={() => <Text>Not Found</Text>}
-                  items={brands}
-                  defaultValue={brand}
-                  containerStyle={{ height: 40 }}
-                  style={{ backgroundColor: "#fff" }}
-                  itemStyle={{
-                    justifyContent: "flex-start",
-                    fontFamily: "Cochin",
-                  }}
-                  dropDownStyle={{ backgroundColor: "#fafafa" }}
-                  onChangeItem={(item) => setBrand(item.value)}
-                />
-              </View>
+
+              <DropDownPicker
+                searchable={true}
+                searchablePlaceholder="Brand name or letters..."
+                searchablePlaceholderTextColor="grey"
+                seachableStyle={{ opacity: 1 }}
+                searchableError={() => <Text>Not Found</Text>}
+                items={brands}
+                defaultValue={brand}
+                containerStyle={{
+                  height: 40,
+                  opacity: 1,
+                  width: 200,
+                  alignSelf: "center",
+                }}
+                style={{ backgroundColor: "#fff", opacity: 1 }}
+                itemStyle={{
+                  justifyContent: "flex-start",
+                  fontFamily: "Cochin",
+                  opacity: 1,
+                }}
+                dropDownStyle={{
+                  backgroundColor: "white",
+                  opacity: 1,
+                }}
+                onChangeItem={(item) => setBrand(item.value)}
+              />
+
               <Text style={styles.itemBrand}>Define it:</Text>
               <View style={{ width: 200, alignSelf: "center" }}>
                 <TextInput

@@ -6,7 +6,7 @@ import { Card, CardItem, Text, Left, Body, View } from "native-base";
 const PostItems = ({ item }) => {
   return (
     <View key={item.id}>
-      <Card style={{}}>
+      <Card style={{ marginVertical: 40, width: 50, height: 50 }}>
         <CardItem>
           <Left>
             <Body>
@@ -17,7 +17,7 @@ const PostItems = ({ item }) => {
           </Left>
         </CardItem>
         <CardItem>
-          <Text>next</Text>
+          {/*<Text>next</Text>*/}
         </CardItem>
       </Card>
     </View>

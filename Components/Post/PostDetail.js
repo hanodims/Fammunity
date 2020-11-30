@@ -1,25 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
-import { Container, View } from "native-base";
-import { Text, Image } from "react-native";
+import {
+  Card,
+  CardItem,
+  Thumbnail,
+  Left,
+  Body,
+  Icon,
+  Container,
+  Right,
+  Button,
+} from "native-base";
+import { View, Text, Image } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import PostItems from "./PostItems";
 
 import PostCard from "./PostCard";
 import SwiperComponent from "./SwiperComponent";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import {
+  likePost,
+  fetchLikers,
+  fetchUserProfile,
+  fetchComments,
+  addComment,
+  fetchExplore,
+  fetchFeeds,
+} from "../../redux/actions";
 
-const PostDetail = ({ explore, route, navigation }) => {
+const PostDetail = ({ explore, route, navigation, profile }) => {
   const { feed } = route.params;
+
+
+  useEffect(() => {
+    //console.log("im here");
+    fetchExplore();
+    fetchFeeds();
+    fetchUserProfile(post.owner.id);
+    fetchLikers(post.id);
+    fetchComments(post.id);
+  }, );
+
+
+  let handelUserProfile = () => {
+    navigation.navigate(USER_PROFILE, { owner: post.owner_name, profile });
+  };
+
+
+  const itemsList = feed.items.map((item) => {
+    return <PostItems key={item.id} item={item} />;
+  });
+
 
   const post = explore.find((post) => post.id === feed.id);
 
+
   return (
+
+    
     <View
       style={{
         flex: 1,
         backgroundColor: "#FFF",
       }}
     >
+      
       <View
         style={{
           flexDirection: "row",
@@ -27,73 +73,26 @@ const PostDetail = ({ explore, route, navigation }) => {
           height: "90%",
         }}
       >
-        <View style={{ width: "10%", paddingLeft: 20 }}>
+        
+        <View style={{ width: "18%", paddingLeft: 20 }}>
+          
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Image
-              source={{ uri: feed.photos[0].image }}
-              style={{ marginVertical: 40 }}
+            <Ionicons
+              name="ios-arrow-back"
+              size={24}
+              color="black"
+              style={{ marginVertical: 30 }}
             />
           </TouchableOpacity>
-          <View
-            style={{
-              backgroundColor: "#FFF",
-              height: 50,
-              width: 50,
-              borderRadius: 5,
-              elevation: 5,
-              alignItems: "center",
-              justifyContent: "center",
-              marginTop: 50,
-            }}
-          >
-            <Image source={{ uri: feed.photos[0].image }} />
-          </View>
-          <View
-            style={{
-              backgroundColor: "#FFF",
-              height: 50,
-              width: 50,
-              borderRadius: 5,
-              elevation: 5,
-              alignItems: "center",
-              justifyContent: "center",
-              marginTop: 50,
-            }}
-          >
-            <Image source={{ uri: feed.photos[0].image }} />
-          </View>
-          <View
-            style={{
-              backgroundColor: "#FFF",
-              height: 50,
-              width: 50,
-              borderRadius: 5,
-              elevation: 5,
-              alignItems: "center",
-              justifyContent: "center",
-              marginTop: 50,
-            }}
-          >
-            <Image source={{ uri: feed.photos[0].image }} />
-          </View>
-          <View
-            style={{
-              backgroundColor: "#FFF",
-              height: 50,
-              width: 50,
-              borderRadius: 5,
-              elevation: 5,
-              alignItems: "center",
-              justifyContent: "center",
-              marginTop: 50,
-            }}
-          >
-            <Image source={{ uri: feed.photos[0].image }} />
-          </View>
+          <ScrollView>
+        {itemsList}
+      </ScrollView>
+          
         </View>
         <View style={{ width: "90%" }}>
-          <SwiperComponent />
+          <SwiperComponent post={post}/>
         </View>
+        
       </View>
 
       <View
@@ -104,6 +103,8 @@ const PostDetail = ({ explore, route, navigation }) => {
           alignItems: "center",
         }}
       >
+        
+        
         <Text
           style={{
             fontWeight: "bold",
@@ -189,9 +190,27 @@ const PostDetail = ({ explore, route, navigation }) => {
 
 const mapStateToProps = (state) => ({
   explore: state.feedsReducer.explore,
+  profile: state.profileReducer.userProfile,
+  profile1: state.profileReducer.profile,
+  likers: state.likersReducer.likers,
+  user: state.user,
+  comments: state.commentsReducer.comments,
 });
 
-export default connect(mapStateToProps)(PostDetail);
+
+const mapDispatchToProps = {
+  likePost,
+  fetchLikers,
+  fetchUserProfile,
+  fetchComments,
+  addComment,
+  fetchExplore,
+  fetchFeeds,
+};
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);
 
 {
   /* <PostCard

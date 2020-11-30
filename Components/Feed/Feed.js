@@ -20,11 +20,13 @@ const Feed = ({ feeds, navigation, explore, profile }) => {
         >
           <Image
             source={{ uri: item.photos[0].image }}
+
             style={{
               width: 164,
               height: 213,
               marginRight: 2,
             }}
+
           />
         </TouchableOpacity>
         <View style={styles.rect7}>
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   rect7: {
-    width: 165,
+    width: 166,
     height: 50,
     //backgroundColor: "rgba(248,231,28,0.32)",
     marginTop: 1,

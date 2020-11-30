@@ -8,9 +8,9 @@ export default styles = StyleSheet.create({
     justifyContent: "center",
   },
   feedListImage: {
-    width: 120,
+    width: 136,
     height: 120,
-    margin: 2,
+    margin: 1,
   },
   feedTitle: {
     color: "#000",

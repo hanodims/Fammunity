@@ -11,6 +11,8 @@ import {
   fetchUserProfile,
   fetchComments,
   addComment,
+  fetchExplore,
+  fetchFeeds,
 } from "../../redux/actions";
 
 //screens
@@ -48,14 +50,18 @@ const PostCard = ({
   comments,
   likers,
   isLiked,
+  fetchExplore,
+  fetchFeeds,
   r,
 }) => {
   useEffect(() => {
-    console.log("im here");
+    //console.log("im here");
+    fetchExplore();
+    fetchFeeds();
     fetchUserProfile(post.owner);
     fetchLikers(post.id);
-    fetchComments(r);
-  }, []);
+    fetchComments(post.id);
+  }, [liked]);
 
   const [liked, setLiked] = useState(isLiked);
   const [likersNumber, setLikersNumber] = useState(post.likers_number);
@@ -76,6 +82,7 @@ const PostCard = ({
   };
 
   let handelComment = () => {
+    console.log(r);
     fetchComments(r);
   };
   function handelLike() {
@@ -170,9 +177,11 @@ const PostCard = ({
       >
         <Text>Comment</Text>
       </Button>
-      {/* <Comments comments={comments}></Comments> */}
 
-      <ScrollView>{itemsList}</ScrollView>
+      <ScrollView>
+        {itemsList}
+        <Comments comments={comments}></Comments>
+      </ScrollView>
       <View
         style={{
           padding: 5,
@@ -202,6 +211,8 @@ const mapDispatchToProps = {
   fetchUserProfile,
   fetchComments,
   addComment,
+  fetchExplore,
+  fetchFeeds,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostCard);

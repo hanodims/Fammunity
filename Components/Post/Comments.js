@@ -10,7 +10,7 @@ import { FlatList } from "react-native-gesture-handler";
 
 const Comments = ({ comments }) => {
   function commentsList({ item }) {
-    console.log("item", item);
+    console.log("comments ,item", item);
     return <CommentCard key={item.id} comment={item} />;
   }
 

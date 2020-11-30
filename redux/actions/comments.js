@@ -7,7 +7,7 @@ export const fetchComments = (post_id) => async (dispatch) => {
   try {
     const res = await instance.get(`/comments/` + post_id);
     const comments = res.data;
-    console.log(comments.comments);
+    // console.log(comments.comments);
     dispatch({
       type: SET_COMMENT,
       payload: comments.comments,
@@ -21,7 +21,7 @@ export const addComment = (comment) => async (dispatch) => {
   try {
     const res = await instance.post("/comment/", comment);
     const newComment = res.data;
-    console.log(newComment);
+    // console.log(newComment);
 
     dispatch({
       type: ADD_COMMENT,

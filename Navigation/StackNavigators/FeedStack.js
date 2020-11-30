@@ -18,7 +18,18 @@ import { tabScreenOptions } from "../options";
 function FeedStack() {
   return (
     <Navigator screenOptions={tabScreenOptions} initialRouteName={FEED}>
-      <Screen name={FEED} component={Feed} options={{ headerShown: false }} />
+      <Screen
+        name={FEED}
+        component={Feed}
+        options={{
+          headerShown: true,
+          title: "My World",
+          headerTitleStyle: {
+            fontFamily: "Cochin",
+            fontSize: 25,
+          },
+        }}
+      />
       <Screen
         name={POST_DETAIL}
         component={PostDetail}
@@ -32,7 +43,7 @@ function FeedStack() {
       <Screen
         name={USER_PROFILE}
         component={UserProfile}
-        options={{ headerShown: false }}
+        //options={{ headerShown: false }}
       />
     </Navigator>
   );

@@ -5,6 +5,8 @@ export const fetchLikers = (post_id) => async (dispatch) => {
   try {
     const res = await instance.get(`/likers/` + post_id);
     const likers = res.data;
+    //console.log("likers", likers);
+
     dispatch({
       type: SET_LIKERS,
       payload: likers,
@@ -17,7 +19,7 @@ export const fetchLikers = (post_id) => async (dispatch) => {
 export const likePost = (post_id) => async (dispatch) => {
   try {
     const allLikers = await instance.post(`/like/`, post_id);
-    console.log("allLikers", allLikers.data);
+    //console.log("allLikers", allLikers.data);
     dispatch({
       type: SET_LIKERS,
       payload: allLikers.data.likers,

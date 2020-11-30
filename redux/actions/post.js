@@ -11,7 +11,7 @@ import {
 import instance from "./instance";
 
 export const addItem = (item) => {
-  console.log("items act: ", item);
+  // console.log("items act: ", item);
   return {
     type: ADD_ITEM,
     payload: item,

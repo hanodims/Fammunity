@@ -20,7 +20,7 @@ const Likers = ({ route }) => {
 
   function likersList({ item }) {
     return (
-      <ListItem key={item.id} bottomDivider>
+      <ListItem bottomDivider>
         <Avatar
           source={{
             uri: item.image
@@ -30,9 +30,9 @@ const Likers = ({ route }) => {
         />
         <ListItem.Content>
           <ListItem.Title>{item.user.username}</ListItem.Title>
-          <ListItem.Subtitle>{item.user.username}</ListItem.Subtitle>
+          {/* <ListItem.Subtitle>{item.user.username}</ListItem.Subtitle> */}
         </ListItem.Content>
-        <ListItem.Chevron />
+        {/* <ListItem.Chevron /> */}
       </ListItem>
     );
   }
@@ -42,7 +42,7 @@ const Likers = ({ route }) => {
       <FlatList
         data={postLikers}
         renderItem={likersList}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
       />
     </Container>
   );
@@ -57,3 +57,4 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Likers);
+//onPress={() => navigation.navigate(LIKED_FEEDS)

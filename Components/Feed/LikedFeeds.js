@@ -16,7 +16,7 @@ const LikedFeeds = ({ explore, navigation }) => {
   const likedFeeds = explore.filter((feed) => feed.liked == true);
   //console.log("likedFeeds", likedFeeds);
   return (
-    <Container style={styles.FeedDev}>
+    <Container style={styles.container}>
       <View style={{ paddingBottom: 30 }}>
         <Text style={styles.feedTitle}>Liked Posts</Text>
       </View>

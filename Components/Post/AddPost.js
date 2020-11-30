@@ -18,8 +18,8 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 const AddPost = ({ navigation, items, photos, addPost }) => {
   const [description, setDescription] = useState("");
-  console.log(photos.length);
-  console.log(items.length);
+  // console.log(photos.length);
+  // console.log(items.length);
 
   function handelAddPost() {
     if (description != "" && items.length > 0 && photos.length > 0) {

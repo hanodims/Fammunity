@@ -26,7 +26,7 @@ const AddItem = ({ addItem, navigation, items, removeItem }) => {
       : require("../../assets/white.png");
 
   const itemsList = items.map((item) => {
-    console.log("itemid", item.id);
+    //console.log("itemid", item.id);
     return (
       <View key={item.id} style={{}}>
         <Card>
@@ -67,7 +67,7 @@ const AddItem = ({ addItem, navigation, items, removeItem }) => {
       setName("");
       setPrice("");
       Alert.alert("Done");
-      console.log(items);
+      //console.log(items);
     } else Alert.alert("please fill all Fields");
   }
   return (

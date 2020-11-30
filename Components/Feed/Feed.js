@@ -7,30 +7,39 @@ import FeedList from "./FeedList";
 //style
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
+import { POST_DETAIL } from "../../Navigation/screenNames";
 
-const Feed = ({ feeds, navigation }) => {
+const Feed = ({ feeds, navigation, explore, profile }) => {
   function feedsList({ item }) {
-    console.log("item", item);
+    console.log("profile.image ", item);
     return (
       <View style={styles.rect2}>
-        <TouchableOpacity style={styles.button1}>
+        <TouchableOpacity
+          onPress={() => navigation.push(POST_DETAIL, { feed: item })}
+          style={styles.button1}
+        >
           <Image
-            source={{ uri: item.photos.image }}
-            style={{ width: 166, height: 213, marginLeft: 1 }}
+            source={{ uri: item.photos[0].image }}
+            style={{
+              width: 164,
+              height: 213,
+              marginRight: 2,
+            }}
           />
         </TouchableOpacity>
         <View style={styles.rect7}>
           <View style={styles.rect6Row}>
             <View style={styles.rect6}>
-              <Text>HI</Text>
+              <Image
+                source={{ uri: item.owner.image }}
+                style={{ width: 36, height: 35, borderRadius: 20 }}
+              />
             </View>
-            <View style={styles.rect4Column}>
-              <View style={styles.rect4}>
-                <Text>HI</Text>
-              </View>
-              <View style={styles.rect5}>
-                <Text>HI</Text>
-              </View>
+
+            <View style={styles.rect4}>
+              <Text style={{ fontSize: 16, fontFamily: "Arial" }}>
+                {item.owner.user.username}
+              </Text>
             </View>
           </View>
         </View>
@@ -41,8 +50,8 @@ const Feed = ({ feeds, navigation }) => {
     <View style={styles.container}>
       <View style={styles.rect}>
         <FlatList
-          data={feeds}
-          numColumns={3}
+          data={explore}
+          numColumns={2}
           renderItem={feedsList}
           keyExtractor={(item) => item.id}
         />
@@ -55,50 +64,46 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignSelf: "center",
+    backgroundColor: "white",
   },
   rect: {
     width: 375,
     height: 735,
-    backgroundColor: "rgba(255,255,255,1)",
-    marginTop: 48,
+    marginTop: 0,
   },
   rect2: {
     width: 166,
     height: 264,
-    backgroundColor: "rgba(241,233,233,1)",
-    marginTop: 45,
+    opacity: 1,
+    marginTop: 20,
     marginLeft: 12,
   },
   button1: {
     width: 166,
     height: 213,
-    backgroundColor: "#E6E6E6",
-    marginLeft: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   rect7: {
     width: 165,
     height: 50,
-    backgroundColor: "rgba(248,231,28,0.32)",
+    //backgroundColor: "rgba(248,231,28,0.32)",
     marginTop: 1,
     marginLeft: 1,
   },
   rect6: {
     width: 36,
     height: 35,
-    backgroundColor: "#E6E6E6",
+    //backgroundColor: "#E6E6E6",
     borderRadius: 20,
   },
   rect4: {
     width: 107,
     height: 17,
-    backgroundColor: "#E6E6E6",
+    alignSelf: "center",
+    paddingLeft: 8,
   },
-  rect5: {
-    width: 107,
-    height: 17,
-    backgroundColor: "#E6E6E6",
-    marginTop: 1,
-  },
+
   rect4Column: {
     width: 107,
     marginLeft: 4,
@@ -115,6 +120,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   feeds: state.feedsReducer.feeds,
+  explore: state.feedsReducer.explore,
+  profile: state.profileReducer.userProfile,
 });
 export default connect(mapStateToProps)(Feed);
 

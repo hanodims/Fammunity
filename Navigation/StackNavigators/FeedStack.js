@@ -33,7 +33,14 @@ function FeedStack() {
       <Screen
         name={POST_DETAIL}
         component={PostDetail}
-        // options={{ headerShown: false }}
+        options={{ headerShown: false }}
+        // options={({ route }) => ({
+        //   title: route.params.feed.owner.user.username,
+        //   headerTitleStyle: {
+        //     fontFamily: "Cochin",
+        //     fontSize: 25,
+        //   },
+        // })}
       />
       <Screen
         name={LIKERS}

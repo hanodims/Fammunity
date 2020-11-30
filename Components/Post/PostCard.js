@@ -58,7 +58,7 @@ const PostCard = ({
     //console.log("im here");
     fetchExplore();
     fetchFeeds();
-    fetchUserProfile(post.owner);
+    fetchUserProfile(post.owner.id);
     fetchLikers(post.id);
     fetchComments(post.id);
   }, [liked]);

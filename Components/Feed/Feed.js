@@ -38,9 +38,9 @@ const Feed = ({ feeds, navigation, explore, profile }) => {
                 />
               </View>
 
-//     return (
-//       <View style={styles.rect2}>
-//         <TouchableOpacity
+              {/*     return (
+      <View style={styles.rect2}>
+         <TouchableOpacity
 //           onPress={() => navigation.push(POST_DETAIL, { feed: item })}
 //           style={styles.button1}
 //         >
@@ -62,8 +62,7 @@ const Feed = ({ feeds, navigation, explore, profile }) => {
 //                 source={{ uri: item.owner.image }}
 //                 style={{ width: 36, height: 35, borderRadius: 20 }}
 //               />
-//             </View>
-
+//             </View> */}
 
               <View style={styles.rect4}>
                 <Text style={{ fontSize: 16, fontFamily: "Arial" }}>

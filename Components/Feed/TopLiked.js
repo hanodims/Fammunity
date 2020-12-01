@@ -140,7 +140,7 @@ const TopLiked = ({ explore, navigation }) => {
               <Animated.View
                 style={{
                   marginHorizontal: SPACING,
-                  padding: SPACING * 2,
+                  padding: SPACING * 1.5,
                   alignItems: "center",
                   transform: [{ translateY }],
                   backgroundColor: "white",

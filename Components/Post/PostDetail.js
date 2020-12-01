@@ -81,7 +81,7 @@ const PostDetail = ({ explore, route, navigation, profile }) => {
           <ScrollView>{itemsList}</ScrollView>
         </View>
         <View style={{ width: "90%" }}>
-          <SwiperComponent post={post} />
+          <SwiperComponent post={post} key={post.id} />
         </View>
       </View>
 

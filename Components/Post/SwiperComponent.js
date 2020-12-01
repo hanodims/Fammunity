@@ -2,23 +2,22 @@ import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import Swiper from "react-native-swiper";
 
-const SwiperComponent = ({post}) => {
+const SwiperComponent = ({ post }) => {
   const imgList = post.photos.map((item) => {
     return (
-      
       <View style={styles.slide} key={item.id}>
-      <Image
-        source={{ uri: item.image }}
-        style={{
-          marginLeft: 50,
-          marginBottom: 210,
-          height: "70%",
-          width: "70%" ,
-          marginTop: 100,
-          resizeMode: "stretch",
-        }}
-      />
-    </View>
+        <Image
+          source={{ uri: item.image }}
+          style={{
+            marginLeft: 50,
+            marginBottom: 210,
+            height: "70%",
+            width: "70%",
+            marginTop: 100,
+            resizeMode: "stretch",
+          }}
+        />
+      </View>
     );
   });
   return (
@@ -41,7 +40,7 @@ const SwiperComponent = ({post}) => {
         activeDotColor: "#FFF",
       }}
     >
-     {imgList}
+      {imgList}
     </Swiper>
   );
 };

@@ -12,7 +12,7 @@ import {
   Right,
   Button,
 } from "native-base";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import PostItems from "./PostItems";
 
@@ -31,7 +31,9 @@ import {
 
 const PostDetail = ({ explore, route, navigation, profile }) => {
   const { feed } = route.params;
-
+  const [name, setName] = useState("");
+  const [brand, setBrand] = useState("");
+  const [price, setPrice] = useState("");
 
   useEffect(() => {
     //console.log("im here");
@@ -40,33 +42,26 @@ const PostDetail = ({ explore, route, navigation, profile }) => {
     fetchUserProfile(post.owner.id);
     fetchLikers(post.id);
     fetchComments(post.id);
-  }, );
+  });
 
-
+  function handelPress(n, p, b) {
+    setBrand(b), setName(n), setPrice(p);
+  }
   let handelUserProfile = () => {
     navigation.navigate(USER_PROFILE, { owner: post.owner_name, profile });
   };
-
-
+  const post = explore.find((post) => post.id === feed.id);
   const itemsList = feed.items.map((item) => {
-    return <PostItems key={item.id} item={item} />;
+    return <PostItems key={item.id} item={item} handelPress={handelPress} />;
   });
 
-
-  const post = explore.find((post) => post.id === feed.id);
-
-
-
   return (
-
-    
     <View
       style={{
         flex: 1,
         backgroundColor: "#FFF",
       }}
     >
-      
       <View
         style={{
           flexDirection: "row",
@@ -74,9 +69,7 @@ const PostDetail = ({ explore, route, navigation, profile }) => {
           height: "90%",
         }}
       >
-        
         <View style={{ width: "18%", paddingLeft: 20 }}>
-          
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons
               name="ios-arrow-back"
@@ -85,15 +78,11 @@ const PostDetail = ({ explore, route, navigation, profile }) => {
               style={{ marginVertical: 30 }}
             />
           </TouchableOpacity>
-          <ScrollView>
-        {itemsList}
-      </ScrollView>
-          
+          <ScrollView>{itemsList}</ScrollView>
         </View>
         <View style={{ width: "90%" }}>
-          <SwiperComponent post={post}/>
+          <SwiperComponent post={post} />
         </View>
-        
       </View>
 
       <View
@@ -104,16 +93,15 @@ const PostDetail = ({ explore, route, navigation, profile }) => {
           alignItems: "center",
         }}
       >
-        
-        
         <Text
           style={{
             fontWeight: "bold",
             fontSize: 28,
             color: "#62636a",
+            fontFamily: "Cochin",
           }}
         >
-          Angelica
+          {name}
         </Text>
         <Text
           style={{
@@ -123,7 +111,7 @@ const PostDetail = ({ explore, route, navigation, profile }) => {
             fontSize: 20,
           }}
         >
-          $400
+          {price}
         </Text>
       </View>
 
@@ -134,9 +122,10 @@ const PostDetail = ({ explore, route, navigation, profile }) => {
           color: "#b1e5d3",
           paddingTop: 3,
           fontSize: 20,
+          fontFamily: "Cochin",
         }}
       >
-        Russia
+        {brand}
       </Text>
 
       <View
@@ -147,10 +136,10 @@ const PostDetail = ({ explore, route, navigation, profile }) => {
       >
         <View
           style={{
-            width: "50%",
-            backgroundColor: "#00a46c",
-            height: 70,
-            marginTop: 20,
+            width: "80%",
+            backgroundColor: "rgba(0,0,0,0.1)",
+            height: 100,
+            marginTop: 0,
             borderTopRightRadius: 25,
             alignItems: "center",
             justifyContent: "center",
@@ -158,36 +147,17 @@ const PostDetail = ({ explore, route, navigation, profile }) => {
         >
           <Text
             style={{
-              color: "#FFF",
+              color: "#000",
               fontSize: 17,
+              fontFamily: "Cochin",
             }}
           >
-            Buy Now
-          </Text>
-        </View>
-
-        <View
-          style={{
-            width: "50%",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: 20,
-          }}
-        >
-          <Text
-            style={{
-              color: "#62636a",
-              fontWeight: "bold",
-              fontSize: 17,
-            }}
-          >
-            Description
+            {post.description}
           </Text>
         </View>
       </View>
     </View>
   );
-
 };
 
 const mapStateToProps = (state) => ({
@@ -199,7 +169,6 @@ const mapStateToProps = (state) => ({
   comments: state.commentsReducer.comments,
 });
 
-
 const mapDispatchToProps = {
   likePost,
   fetchLikers,
@@ -209,8 +178,6 @@ const mapDispatchToProps = {
   fetchExplore,
   fetchFeeds,
 };
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);
 
@@ -222,4 +189,26 @@ post={post}
 isLiked={feed.liked}
 r={feed.id}
 /> */
+}
+
+{
+  /* <View
+style={{
+  width: "50%",
+  alignItems: "center",
+  justifyContent: "center",
+  marginTop: 20,
+}}
+>
+<Text
+  style={{
+    color: "#62636a",
+    fontWeight: "bold",
+    fontSize: 17,
+    fontFamily: "Cochin",
+  }}
+>
+  Description
+</Text>
+</View> */
 }

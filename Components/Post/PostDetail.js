@@ -56,6 +56,7 @@ const PostDetail = ({ explore, route, navigation, profile }) => {
   const post = explore.find((post) => post.id === feed.id);
 
 
+
   return (
 
     
@@ -186,6 +187,7 @@ const PostDetail = ({ explore, route, navigation, profile }) => {
       </View>
     </View>
   );
+
 };
 
 const mapStateToProps = (state) => ({

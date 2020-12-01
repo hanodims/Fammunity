@@ -3,7 +3,7 @@ import { Icon } from "native-base";
 //import Icon from "react-native-vector-icons/AntDesign";
 
 // Screens
-import { EXPLORE, FEED, POST_ADDING, USER } from "./screenNames";
+import { EXPLORE, FEED, POST_ADDING, TOPLIKED, USER } from "./screenNames";
 
 export const tabBarOptions = {
   showLabel: true,
@@ -23,7 +23,7 @@ export const tabScreenOptions = ({ route }) => ({
         break;
 
       case POST_ADDING:
-        iconName = "star-half";
+        iconName = "plus";
         // color = "black";
         break;
 
@@ -34,6 +34,11 @@ export const tabScreenOptions = ({ route }) => ({
 
       case EXPLORE:
         iconName = "earth";
+        // color = "black";
+        break;
+
+      case TOPLIKED:
+        iconName = "star-half";
         // color = "black";
         break;
 

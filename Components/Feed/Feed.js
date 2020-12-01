@@ -12,41 +12,68 @@ import { POST_DETAIL } from "../../Navigation/screenNames";
 const Feed = ({ feeds, navigation, explore, profile }) => {
   function feedsList({ item }) {
     console.log("profile.image ", item);
-    return (
-      <View style={styles.rect2}>
-        <TouchableOpacity
-          onPress={() => navigation.push(POST_DETAIL, { feed: item })}
-          style={styles.button1}
-        >
-          <Image
-            source={{ uri: item.photos[0].image }}
 
-            style={{
-              width: 164,
-              height: 213,
-              marginRight: 2,
-            }}
+    if (item.id != 14 && item.id != 15)
+      return (
+        <View style={styles.rect2}>
+          <TouchableOpacity
+            onPress={() => navigation.push(POST_DETAIL, { feed: item })}
+            style={styles.button1}
+          >
+            <Image
+              source={{ uri: item.photos[0].image }}
+              style={{
+                width: 164,
+                height: 213,
+                marginRight: 2,
+              }}
+            />
+          </TouchableOpacity>
+          <View style={styles.rect7}>
+            <View style={styles.rect6Row}>
+              <View style={styles.rect6}>
+                <Image
+                  source={{ uri: item.owner.image }}
+                  style={{ width: 36, height: 35, borderRadius: 20 }}
+                />
+              </View>
 
-          />
-        </TouchableOpacity>
-        <View style={styles.rect7}>
-          <View style={styles.rect6Row}>
-            <View style={styles.rect6}>
-              <Image
-                source={{ uri: item.owner.image }}
-                style={{ width: 36, height: 35, borderRadius: 20 }}
-              />
-            </View>
+//     return (
+//       <View style={styles.rect2}>
+//         <TouchableOpacity
+//           onPress={() => navigation.push(POST_DETAIL, { feed: item })}
+//           style={styles.button1}
+//         >
+//           <Image
+//             source={{ uri: item.photos[0].image }}
 
-            <View style={styles.rect4}>
-              <Text style={{ fontSize: 16, fontFamily: "Arial" }}>
-                {item.owner.user.username}
-              </Text>
+//             style={{
+//               width: 164,
+//               height: 213,
+//               marginRight: 2,
+//             }}
+
+//           />
+//         </TouchableOpacity>
+//         <View style={styles.rect7}>
+//           <View style={styles.rect6Row}>
+//             <View style={styles.rect6}>
+//               <Image
+//                 source={{ uri: item.owner.image }}
+//                 style={{ width: 36, height: 35, borderRadius: 20 }}
+//               />
+//             </View>
+
+
+              <View style={styles.rect4}>
+                <Text style={{ fontSize: 16, fontFamily: "Arial" }}>
+                  {item.owner.user.username}
+                </Text>
+              </View>
             </View>
           </View>
         </View>
-      </View>
-    );
+      );
   }
   return (
     <View style={styles.container}>

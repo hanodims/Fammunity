@@ -21,6 +21,7 @@ import {
 } from "react-native";
 
 const { width, height } = Dimensions.get("window");
+
 import { LinearGradient } from "expo-linear-gradient";
 const SPACING = 10;
 const ITEM_SIZE = Platform.OS === "ios" ? width * 0.72 : width * 0.74;
@@ -42,7 +43,7 @@ const Backdrop = ({ explore, scrollX }) => {
         removeClippedSubviews={false}
         contentContainerStyle={{ width, height: BACKDROP_HEIGHT }}
         renderItem={({ item, index }) => {
-          if (item.id == 11 || item.id == 15) {
+          if (!item.photos) {
             return null;
           }
           const translateX = scrollX.interpolate({
@@ -90,14 +91,17 @@ const Backdrop = ({ explore, scrollX }) => {
 };
 
 const TopLiked = ({ explore, navigation }) => {
+  const mostLiked = [{ id: "empty-left" }, ...explore, { id: "empty-right" }];
+  // console.log(mostLiked);
+  if (mostLiked.length == 0) return <Loading />;
   const scrollX = React.useRef(new Animated.Value(0)).current;
   return (
     <View style={styles.container}>
-      <Backdrop explore={explore} scrollX={scrollX} />
+      <Backdrop explore={mostLiked} scrollX={scrollX} />
       <StatusBar hidden />
       <Animated.FlatList
         showsHorizontalScrollIndicator={false}
-        data={explore}
+        data={mostLiked}
         keyExtractor={(item) => item.id.toString()}
         horizontal
         bounces={false}
@@ -112,8 +116,8 @@ const TopLiked = ({ explore, navigation }) => {
         )}
         scrollEventThrottle={16}
         renderItem={({ item, index }) => {
-          console.log("item.id d", item.id);
-          if (item.id == 11 || item.id == 15) {
+          // console.log("item.id d", item.id);
+          if (!item.photos) {
             return (
               <View
                 style={{

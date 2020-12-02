@@ -14,7 +14,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_ITEM:
-      console.log("items red: ", state.items);
+      // console.log("items red: ", state.items);
       return {
         ...state,
         items: state.items.concat(action.payload),

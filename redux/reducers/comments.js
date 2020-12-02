@@ -6,14 +6,14 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_COMMENT:
-      console.log("set comment", action.payload);
+      // console.log("set comment", action.payload);
       return {
         ...state,
         comments: action.payload,
       };
 
     case ADD_COMMENT:
-      console.log("set comment", action.payload);
+      // console.log("set comment", action.payload);
 
       const newComment = action.payload;
       return {

@@ -11,7 +11,7 @@ import { addImage, removePhoto } from "../../redux/actions";
 
 //style
 import Icon from "react-native-vector-icons/Feather";
-import { View } from "native-base";
+import { Button, View } from "native-base";
 import { ImageBackground, Text } from "react-native";
 import styles from "./styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -156,12 +156,14 @@ const AddImage = ({ addImage, navigation, photos, removePhoto }) => {
             </View>
           )}
         </View>
-        <TouchableOpacity
+        <Button
+          rounded
+          dark
           onPress={() => navigation.navigate(ADDITEM)}
           style={styles.nextButton}
         >
           <Text style={styles.showOff}>Inspire{"\n\t"}the word... </Text>
-        </TouchableOpacity>
+        </Button>
       </ImageBackground>
     </View>
   );

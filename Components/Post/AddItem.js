@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 //style
 import DropDownPicker from "react-native-dropdown-picker";
 import Icon from "react-native-vector-icons/Feather";
-import { Card, View } from "native-base";
+import { Button, Card, View } from "native-base";
 import { Alert, ImageBackground, Text } from "react-native";
 import styles from "./styles";
 import {
@@ -161,12 +161,14 @@ const AddItem = ({ addItem, navigation, items, removeItem }) => {
           </View>
         </View>
 
-        <TouchableOpacity
+        <Button
+          rounded
+          dark
           onPress={() => navigation.navigate(FINISH_ADDING)}
           style={styles.nextButton}
         >
           <Text style={styles.showOff}>Prepare for{"\n\t"}the show... </Text>
-        </TouchableOpacity>
+        </Button>
       </ImageBackground>
     </View>
   );

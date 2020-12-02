@@ -8,7 +8,7 @@ import { ADDIMAGE } from "../../Navigation/screenNames";
 import { addPost } from "../../redux/actions";
 
 //style
-import { Container } from "native-base";
+import { Button, Container } from "native-base";
 import { Text, Alert, ImageBackground } from "react-native";
 import styles from "./styles";
 
@@ -38,12 +38,14 @@ const AddPost = ({ navigation, items, photos, addPost }) => {
         source={require("../../assets/add_post17.png")}
         style={{ flex: 1, resizeMode: "cover" }}
       >
-        <TouchableOpacity
+        <Button
+          rounded
+          dark
           onPress={() => navigation.navigate(ADDIMAGE)}
           style={styles.startPostButtonDiv}
         >
           <Text style={styles.showOff}>show off your elegance..</Text>
-        </TouchableOpacity>
+        </Button>
       </ImageBackground>
     </Container>
   );

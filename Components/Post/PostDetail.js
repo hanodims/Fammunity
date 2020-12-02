@@ -7,12 +7,20 @@ import {
   Thumbnail,
   Left,
   Body,
-  Icon,
   Container,
   Right,
   Button,
 } from "native-base";
-import { View, Text, Image } from "react-native";
+import Carousel from "react-native-snap-carousel";
+import Icon from "react-native-vector-icons/AntDesign";
+import {
+  View,
+  Text,
+  Image,
+  Alert,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import PostItems from "./PostItems";
 
@@ -28,167 +36,249 @@ import {
   fetchExplore,
   fetchFeeds,
 } from "../../redux/actions";
+import { FEED } from "../../Navigation/screenNames";
+import Images from "./Images";
 
 const PostDetail = ({ explore, route, navigation, profile }) => {
   const { feed } = route.params;
+  const [name, setName] = useState("");
+  const [brand, setBrand] = useState("");
+  const [price, setPrice] = useState("");
 
-
-  useEffect(() => {
-    //console.log("im here");
-    fetchExplore();
-    fetchFeeds();
-    fetchUserProfile(post.owner.id);
-    fetchLikers(post.id);
-    fetchComments(post.id);
-  }, );
-
-
+  function handelPress(n, p, b) {
+    setBrand(b), setName(n), setPrice(p);
+  }
   let handelUserProfile = () => {
     navigation.navigate(USER_PROFILE, { owner: post.owner_name, profile });
   };
-
-
+  const post = explore.find((post) => post.id === feed.id);
   const itemsList = feed.items.map((item) => {
-    return <PostItems key={item.id} item={item} />;
+    return <PostItems key={item.id} item={item} handelPress={handelPress} />;
   });
 
-
-  const post = explore.find((post) => post.id === feed.id);
-
-
-
   return (
-
-    
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: "#FFF",
-      }}
-    >
-      
-      <View
-        style={{
-          flexDirection: "row",
-          width: "100%",
-          height: "90%",
-        }}
-      >
-        
-        <View style={{ width: "18%", paddingLeft: 20 }}>
-          
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Ionicons
-              name="ios-arrow-back"
-              size={24}
-              color="black"
-              style={{ marginVertical: 30 }}
-            />
-          </TouchableOpacity>
-          <ScrollView>
-        {itemsList}
-      </ScrollView>
-          
+    <View style={styles.container}>
+      <View style={styles.all}>
+        <View style={styles.header}>
+          <Icon
+            onPress={() => navigation.goBack(FEED)}
+            name="back"
+            size={25}
+            style={styles.back}
+          />
+          <Text style={styles.title}>{post.owner.user.username}</Text>
         </View>
-        <View style={{ width: "90%" }}>
-          <SwiperComponent post={post}/>
+        <View style={styles.photos}>
+          <Images
+            likers_number={post.likers_number}
+            photos={post.photos}
+            isLiked={post.liked}
+            post_id={post.id}
+          />
         </View>
-        
-      </View>
-
-      <View
-        style={{
-          flexDirection: "row",
-          marginTop: -80,
-          marginHorizontal: 20,
-          alignItems: "center",
-        }}
-      >
-        
-        
-        <Text
-          style={{
-            fontWeight: "bold",
-            fontSize: 28,
-            color: "#62636a",
-          }}
-        >
-          Angelica
-        </Text>
-        <Text
-          style={{
-            fontWeight: "bold",
-            color: "#00a46c",
-            paddingLeft: 170,
-            fontSize: 20,
-          }}
-        >
-          $400
-        </Text>
-      </View>
-
-      <Text
-        style={{
-          paddingHorizontal: 20,
-          fontWeight: "bold",
-          color: "#b1e5d3",
-          paddingTop: 3,
-          fontSize: 20,
-        }}
-      >
-        Russia
-      </Text>
-
-      <View
-        style={{
-          flexDirection: "row",
-          width: "100%",
-        }}
-      >
-        <View
-          style={{
-            width: "50%",
-            backgroundColor: "#00a46c",
-            height: 70,
-            marginTop: 20,
-            borderTopRightRadius: 25,
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Text
-            style={{
-              color: "#FFF",
-              fontSize: 17,
-            }}
-          >
-            Buy Now
-          </Text>
-        </View>
-
-        <View
-          style={{
-            width: "50%",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: 20,
-          }}
-        >
-          <Text
-            style={{
-              color: "#62636a",
-              fontWeight: "bold",
-              fontSize: 17,
-            }}
-          >
-            Description
-          </Text>
+        <View style={styles.details}>
+          <View style={styles.descStack}>
+            <View style={styles.desc}>
+              <Text style={styles.description}>{post.description}</Text>
+            </View>
+            <View style={styles.selectDiv}>
+              <Text style={styles.select}>
+                Select Brand Name for more detail
+              </Text>
+            </View>
+          </View>
+          <View style={styles.scrollAreaStack}>
+            <View style={styles.scrollArea}>
+              <ScrollView
+                horizontal={true}
+                contentContainerStyle={styles.scrollArea_contentContainerStyle}
+              >
+                {itemsList}
+              </ScrollView>
+            </View>
+            <View style={styles.itemDetailDiv}>
+              <Text style={styles.name}>{name}</Text>
+              <Text style={styles.price}>{price}</Text>
+              <Text style={styles.brandName}>{brand}</Text>
+            </View>
+          </View>
         </View>
       </View>
     </View>
   );
-
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+  },
+  all: {
+    width: 414,
+    height: 896,
+    marginTop: 33,
+    backgroundColor: "white",
+  },
+  header: {
+    width: 375,
+    height: 75,
+    flexDirection: "row",
+    alignSelf: "center",
+  },
+  back: {
+    width: 75,
+    height: 30,
+    marginLeft: 23,
+    alignSelf: "center",
+  },
+  title: {
+    fontFamily: "Cochin",
+    color: "#121212",
+    height: 30,
+    width: 160,
+    textAlign: "center",
+    marginLeft: 10,
+    alignSelf: "center",
+    fontSize: 25,
+  },
+  photos: {
+    width: 375,
+    height: 470,
+    marginTop: 2,
+    marginLeft: 20,
+  },
+
+  likers: {
+    fontFamily: "Cochin",
+    color: "#121212",
+    alignSelf: "center",
+    width: 37,
+    height: 41,
+    textAlign: "center",
+  },
+  details: {
+    width: 375,
+    height: 237,
+    backgroundColor: "white",
+    marginTop: 0,
+    alignSelf: "center",
+    borderTopRightRadius: 25,
+    borderTopLeftRadius: 25,
+    //shadowColor: "black",
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    shadowOffset: {
+      height: 0,
+      width: 0,
+    },
+    elevation: 2,
+  },
+  desc: {
+    top: 0,
+    width: 343,
+    height: 85,
+    position: "absolute",
+    left: 0,
+    justifyContent: "center",
+  },
+  description: {
+    fontFamily: "Cochin",
+    color: "#121212",
+    textAlign: "left",
+    fontSize: 22,
+    width: 255,
+    height: 60,
+    marginTop: 5,
+  },
+  selectDiv: {
+    top: 90,
+    width: 343,
+    height: 20,
+    position: "absolute",
+    left: 0,
+  },
+  select: {
+    fontFamily: "Arial",
+    color: "#121212",
+    width: 249,
+    height: 16,
+    textAlign: "left",
+    marginTop: 11,
+  },
+  descStack: {
+    width: 343,
+    height: 121,
+    marginTop: 7,
+    marginLeft: 16,
+  },
+  scrollArea: {
+    top: 0,
+    width: 343,
+    height: 37,
+    position: "absolute",
+    left: 0,
+  },
+  scrollArea_contentContainerStyle: {
+    height: 37,
+    width: 1000,
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+  },
+  brand: {
+    fontFamily: "Cochin",
+    color: "#121212",
+    textAlign: "center",
+    width: 76,
+    height: 16,
+    marginTop: 11,
+    alignSelf: "center",
+  },
+  itemDetailDiv: {
+    top: 34,
+    width: 343,
+    height: 58,
+    position: "absolute",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    left: 0,
+  },
+  name: {
+    fontFamily: "Cochin",
+    color: "#121212",
+    textAlign: "left",
+    alignSelf: "center",
+    width: 155,
+    height: 50,
+    fontWeight: "bold",
+    fontSize: 20,
+  },
+  price: {
+    fontFamily: "Cochin",
+    color: "#5A0016",
+    textAlign: "left",
+    alignSelf: "center",
+    width: 80,
+    height: 50,
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+  brandName: {
+    textAlign: "left",
+    fontFamily: "Cochin",
+    color: "#121212",
+    alignSelf: "center",
+    width: 150,
+    height: 50,
+    fontWeight: "bold",
+    fontSize: 20,
+  },
+  scrollAreaStack: {
+    width: 343,
+    height: 92,
+    marginTop: 4,
+    marginLeft: 16,
+  },
+});
 
 const mapStateToProps = (state) => ({
   explore: state.feedsReducer.explore,
@@ -198,7 +288,6 @@ const mapStateToProps = (state) => ({
   user: state.user,
   comments: state.commentsReducer.comments,
 });
-
 
 const mapDispatchToProps = {
   likePost,
@@ -210,8 +299,6 @@ const mapDispatchToProps = {
   fetchFeeds,
 };
 
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);
 
 {
@@ -222,4 +309,26 @@ post={post}
 isLiked={feed.liked}
 r={feed.id}
 /> */
+}
+
+{
+  /* <View
+style={{
+  width: "50%",
+  alignItems: "center",
+  justifyContent: "center",
+  marginTop: 20,
+}}
+>
+<Text
+  style={{
+    color: "#62636a",
+    fontWeight: "bold",
+    fontSize: 17,
+    fontFamily: "Cochin",
+  }}
+>
+  Description
+</Text>
+</View> */
 }

@@ -2,12 +2,13 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 // Screens
-import { USER_PROFILE, EXPLORE, POST_DETAIL, LIKERS } from "../screenNames";
+import { USER_PROFILE, EXPLORE, POST_DETAIL, LIKERS, COMMENTS } from "../screenNames";
 
 //components
 import Explore from "../../Components/Feed/Explore";
 import PostDetail from "../../Components/Post/PostDetail";
 import Likers from "../../Components/Post/Likers";
+import Comm from "../../Components/Post/Comm";
 import UserProfile from "../../Components/Profile/UserProfile";
 
 const { Navigator, Screen } = createStackNavigator();
@@ -47,6 +48,11 @@ function ExploreStack() {
             color: "black",
           },
         }}
+      />
+      <Screen
+        name={COMMENTS}
+        component={Comm}
+        // options={{ headerShown: false }}
       />
       <Screen
         name={USER_PROFILE}

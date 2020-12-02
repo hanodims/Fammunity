@@ -20,5 +20,6 @@ export const FEED_LIST = "FeedList";
 export const POST_DETAIL = "PostDetail";
 
 export const LIKERS = "likers";
+export const COMMENTS = "Comments";
 
 export const TOPLIKED = "TopLiked";

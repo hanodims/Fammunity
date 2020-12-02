@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 
 //components
 import FeedList from "./FeedList";
-
+import { logout } from "../../redux/actions";
+import { Ionicons } from "@expo/vector-icons";
 //style
 import {
   StyleSheet,
@@ -17,7 +18,15 @@ import { FlatList } from "react-native-gesture-handler";
 import { POST_DETAIL, USER_PROFILE } from "../../Navigation/screenNames";
 import { Container } from "native-base";
 
-const Explore = ({ explore, navigation, profile }) => {
+
+//         <Ionicons
+//               name="md-log-out"
+//               size={24}
+//               color="red"
+//               onPress={logout}
+//             ></Ionicons>
+
+const Explore = ({ explore, navigation, profile,logout }) => {
   function feedsList({ item }) {
     //console.log("profile.explo ", profile);
     //if (item.id != 11 && item.id != 19)
@@ -64,6 +73,7 @@ const Explore = ({ explore, navigation, profile }) => {
             </TouchableOpacity>
           </View>
         </View>
+
       </View>
     );
   }
@@ -135,4 +145,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   explore: state.feedsReducer.explore,
 });
-export default connect(mapStateToProps)(Explore);
+const mapDispatchToProps = {
+  logout,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Explore);

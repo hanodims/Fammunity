@@ -1,12 +1,13 @@
 import React from "react";
-import { Icon } from "native-base";
-//import Icon from "react-native-vector-icons/AntDesign";
+//import { Icon } from "native-base";
+import Icon from "react-native-vector-icons/Feather";
+//import { Ionicons } from "@expo/vector-icons";
 
 // Screens
 import { EXPLORE, FEED, POST_ADDING, TOPLIKED, USER } from "./screenNames";
 
 export const tabBarOptions = {
-  showLabel: true,
+  showLabel: false,
   activeTintColor: "#111",
   inactiveTintColor: "grey",
   style: {
@@ -14,31 +15,37 @@ export const tabBarOptions = {
   },
 };
 export const tabScreenOptions = ({ route }) => ({
-  tabBarIcon: ({ color }) => {
+  tabBarIcon: ({ color, size }) => {
     let iconName = "";
     switch (route.name) {
       case FEED:
         iconName = "grid";
+        size = 25;
         // color = "black";
         break;
 
       case POST_ADDING:
-        iconName = "plus";
-        // color = "black";
+        iconName = "plus-circle";
+        color = "#5A0016";
+        size = 35;
+
         break;
 
       case USER:
-        iconName = "account";
-        // color = "black";
-        break;
-
-      case EXPLORE:
-        iconName = "earth";
+        iconName = "user";
+        size = 25;
         // color = "black";
         break;
 
       case TOPLIKED:
-        iconName = "star-half";
+        iconName = "star";
+        size = 25;
+        // color = "black";
+        break;
+
+      case EXPLORE:
+        iconName = "globe";
+        size = 25;
         // color = "black";
         break;
 
@@ -46,7 +53,12 @@ export const tabScreenOptions = ({ route }) => ({
         return 0;
     }
     return (
-      <Icon name={iconName} type="MaterialCommunityIcons" style={{ color }} />
+      <Icon
+        name={iconName}
+        size={size}
+        type="MaterialCommunityIcons"
+        style={{ color }}
+      />
     );
   },
 });

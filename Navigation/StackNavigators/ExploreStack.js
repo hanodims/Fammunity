@@ -22,17 +22,32 @@ function ExploreStack() {
       <Screen
         name={EXPLORE}
         component={Explore}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: true,
+          title: "Explore",
+          headerTitleStyle: {
+            fontFamily: "Cochin",
+            fontSize: 25,
+            color: "black",
+          },
+        }}
       />
       <Screen
         name={POST_DETAIL}
         component={PostDetail}
-        // options={{ headerShown: false }}
+        options={{ headerShown: false }}
       />
       <Screen
         name={LIKERS}
         component={Likers}
-        // options={{ headerShown: false }}
+        options={{
+          headerShown: true,
+          headerTitleStyle: {
+            fontFamily: "Cochin",
+            fontSize: 25,
+            color: "black",
+          },
+        }}
       />
       <Screen
         name={COMMENTS}

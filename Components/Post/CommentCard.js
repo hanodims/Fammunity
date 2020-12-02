@@ -6,7 +6,7 @@ import {  Card,ListItem, Button, Icon } from 'react-native-elements'
 
 
 const CommentCard = ({ comment }) => {
-  console.log("card ,item", comment.txt);
+  //console.log("card ,item", comment.txt);
   return (
    <Card>
       <Text>{comment.txt}</Text>

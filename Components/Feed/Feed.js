@@ -10,63 +10,60 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image,
   ImageBackground,
 } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 import { FlatList } from "react-native-gesture-handler";
 import { POST_DETAIL } from "../../Navigation/screenNames";
-import { Button, Container } from "native-base";
+import { Container } from "native-base";
 
 const Feed = ({ feeds, navigation, explore, profile }) => {
   function feedsList({ item }) {
-    console.log("profile.image ", item);
-    if (item.id != 14 && item.id != 15)
-      return (
-        <View style={styles.postContainer}>
-          <View style={styles.button1Stack}>
-            <TouchableOpacity
+    //console.log("profile.image ", item);
+    //if (item.id != 11 && item.id != 19)
+    return (
+      <View style={styles.postContainer}>
+        <View style={styles.button1Stack}>
+          <TouchableOpacity
+            style={styles.button1}
+            onPress={() => navigation.push(POST_DETAIL, { feed: item })}
+          >
+            <ImageBackground
+              source={{ uri: item.photos[0].image }}
               style={styles.button1}
-              onPress={() => navigation.push(POST_DETAIL, { feed: item })}
             >
-              <ImageBackground
-                source={{ uri: item.photos[0].image }}
-                style={styles.button1}
-              >
-                <Icon
-                  name="heart"
-                  color="tomato"
-                  size={22}
-                  style={styles.button2}
-                />
-              </ImageBackground>
-            </TouchableOpacity>
-            <View style={styles.rect7}>
-              <View style={styles.rect4}>
-                <Text style={styles.loremIpsum}>
-                  {item.owner.user.username}
-                </Text>
+              <Icon
+                name="heart"
+                color="tomato"
+                size={22}
+                style={styles.button2}
+              />
+            </ImageBackground>
+          </TouchableOpacity>
+          <View style={styles.rect7}>
+            <View style={styles.rect4}>
+              <Text style={styles.loremIpsum}>{item.owner.user.username}</Text>
 
-                <Text
-                  style={{
-                    marginTop: 0,
-                    fontFamily: "Cochin",
-                    fontWeight: "bold",
-                    color: "white",
-                  }}
-                >
-                  {item.likers_number}
-                </Text>
-              </View>
+              <Text
+                style={{
+                  marginTop: 0,
+                  fontFamily: "Cochin",
+                  fontWeight: "bold",
+                  color: "white",
+                }}
+              >
+                {item.likers_number}
+              </Text>
             </View>
           </View>
         </View>
-      );
+      </View>
+    );
   }
   return (
     <Container style={{ flex: 1, alignItems: "center" }}>
       <FlatList
-        data={explore}
+        data={feeds}
         numColumns={2}
         renderItem={feedsList}
         keyExtractor={(item) => item.id}

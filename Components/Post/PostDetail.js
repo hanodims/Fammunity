@@ -8,12 +8,20 @@ import {
   Thumbnail,
   Left,
   Body,
-  Icon,
   Container,
   Right,
   Button,
 } from "native-base";
-import { View, Text, Image, Alert } from "react-native";
+import Carousel from "react-native-snap-carousel";
+import Icon from "react-native-vector-icons/AntDesign";
+import {
+  View,
+  Text,
+  Image,
+  Alert,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import PostItems from "./PostItems";
 
@@ -29,6 +37,8 @@ import {
   fetchExplore,
   fetchFeeds,
 } from "../../redux/actions";
+import { FEED } from "../../Navigation/screenNames";
+import Images from "./Images";
 
 const PostDetail = ({ explore, route, profile, comments,
   likePost,
@@ -49,13 +59,14 @@ const PostDetail = ({ explore, route, profile, comments,
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState("");
 
+
   
   useEffect(() => {
     //console.log("im here");
-    fetchExplore();
-    fetchFeeds();
-    fetchUserProfile(feed.owner.id);
-    fetchLikers(feed.id);
+//     fetchExplore();
+//     fetchFeeds();
+//     fetchUserProfile(feed.owner.id);
+//     fetchLikers(feed.id);
     fetchComments(feed.id);
   },[liked]);
 
@@ -63,6 +74,7 @@ const PostDetail = ({ explore, route, profile, comments,
   const [liked, setLiked] = useState(isLiked);
   const [likersNumber, setLikersNumber] = useState(feed.likers_number);
   const [comment, setComment] = useState("");
+
 
 
   function handelPress(n, p, b) {
@@ -96,159 +108,306 @@ const PostDetail = ({ explore, route, profile, comments,
   });
   
   return (
+
     
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: "#FFF",
-      }}
-    >
-      <View></View>
-      <View
-        style={{
-          flexDirection: "row",
-          width: "100%",
-          height: "90%",
-        }}
-      >
-        <View style={{ width: "18%", paddingLeft: 20 }}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Ionicons
-              name="ios-arrow-back"
-              size={24}
-              color="black"
-              style={{ marginVertical: 30 }}
-            />
-          </TouchableOpacity>
-          <ScrollView>{itemsList}</ScrollView>
+//     <View
+//       style={{
+//         flex: 1,
+//         backgroundColor: "#FFF",
+//       }}
+//     >
+//       <View></View>
+//       <View
+//         style={{
+//           flexDirection: "row",
+//           width: "100%",
+//           height: "90%",
+//         }}
+//       >
+//         <View style={{ width: "18%", paddingLeft: 20 }}>
+//           <TouchableOpacity onPress={() => navigation.goBack()}>
+//             <Ionicons
+//               name="ios-arrow-back"
+//               size={24}
+//               color="black"
+//               style={{ marginVertical: 30 }}
+//             />
+//           </TouchableOpacity>
+//           <ScrollView>{itemsList}</ScrollView>
+
+    <View style={styles.container}>
+      <View style={styles.all}>
+        <View style={styles.header}>
+          <Icon
+            onPress={() => navigation.goBack(FEED)}
+            name="back"
+            size={25}
+            style={styles.back}
+          />
+          <Text style={styles.title}>{post.owner.user.username}</Text>
+
         </View>
-        <View style={{ width: "90%" }}>
-          <SwiperComponent post={post} key={post.id} />
+        <View style={styles.photos}>
+          <Images
+            likers_number={post.likers_number}
+            photos={post.photos}
+            isLiked={post.liked}
+            post_id={post.id}
+          />
         </View>
-      </View>
 
-      <View
-        style={{
-          flexDirection: "row",
-          marginTop: -80,
-          marginHorizontal: 20,
-          alignItems: "center",
-        }}
-      >
-        <Text
-          style={{
-            fontWeight: "bold",
-            fontSize: 28,
-            color: "#62636a",
-            fontFamily: "Cochin",
-          }}
-        >
-          {name}
-        </Text>
-        <Text
-          style={{
-            fontWeight: "bold",
-            color: "#00a46c",
-            paddingLeft: 170,
-            fontSize: 20,
-          }}
-        >
-          {price}
-        </Text>
-      </View>
 
-      <Text
-        style={{
-          paddingHorizontal: 20,
-          fontWeight: "bold",
-          color: "#b1e5d3",
-          paddingTop: 3,
-          fontSize: 20,
-          fontFamily: "Cochin",
-        }}
-      >
-        {brand}
-      </Text>
 
-      <View
-        style={{
-          flexDirection: "row",
-          width: "100%",
-        }}
-      >
-        <View
-          style={{
-            width: "80%",
-            backgroundColor: "rgba(0,0,0,0.1)",
-            height: 100,
-            marginTop: 0,
-            borderTopRightRadius: 25,
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Text
-            style={{
-              color: "#000",
-              fontSize: 17,
-              fontFamily: "Cochin",
-            }}
-          >
-            <View>
-            <Card transparent style={{}}>
-        <CardItem>
-          <Left>
-            <Thumbnail
-              source={{
-                uri: profile.image
-                  ? profile.image
-                  : "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png",
-              }}
-            />
-            <Body>
-              <TouchableOpacity onPress={handelUserProfile}>
-                <Text>{feed.owner_name}</Text>
-                <Text note> decide later</Text>
-              </TouchableOpacity>
-            </Body>
-          </Left>
-          <Right>
-            <Icon
-              onPress={handelLike}
-              name="heart"
-              style={liked ? { color: "#ED4A6A" } : { color: "#000" }}
-            />
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate(LIKERS, {
-                  likers: likers,
-                  post_id: post.id,
-                })
-              }
-            >
-              <Text note>{likersNumber}</Text>
-            </TouchableOpacity>
-          </Right>
-        </CardItem>
-      </Card>
-              <TouchableOpacity onPress={() =>
-                navigation.navigate(COMMENTS, {
-                  comments: comments,
-                  post_id: post.id,
-                })
-              }>
-          <Text>Comments</Text>
-        </TouchableOpacity>
+//      
+//             <View>
+//             <Card transparent style={{}}>
+//         <CardItem>
+//           <Left>
+//             <Thumbnail
+//               source={{
+//                 uri: profile.image
+//                   ? profile.image
+//                   : "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png",
+//               }}
+//             />
+//            
+//           </Left>
+//           <Right>
+//             <Icon
+//               onPress={handelLike}
+//               name="heart"
+//               style={liked ? { color: "#ED4A6A" } : { color: "#000" }}
+//             />
+//             <TouchableOpacity
+//               onPress={() =>
+//                 navigation.navigate(LIKERS, {
+//                   likers: likers,
+//                   post_id: post.id,
+//                 })
+//               }
+//             >
+//               <Text note>{likersNumber}</Text>
+//             </TouchableOpacity>
+//           </Right>
+//         </CardItem>
+//       </Card>
+//               <TouchableOpacity onPress={() =>
+//                 navigation.navigate(COMMENTS, {
+//                   comments: comments,
+//                   post_id: post.id,
+//                 })
+//               }>
+//           <Text>Comments</Text>
+//         </TouchableOpacity>
             
-              <Comments comments={comments}></Comments></View>
-    
-            {post.description}
-          </Text>
+//               <Comments comments={comments}></Comments></View>
+
+//           </Text>
+
+        <View style={styles.details}>
+          <View style={styles.descStack}>
+            <View style={styles.desc}>
+              <Text style={styles.description}>{post.description}</Text>
+            </View>
+            <View style={styles.selectDiv}>
+              <Text style={styles.select}>
+                Select Brand Name for more detail
+              </Text>
+            </View>
+          </View>
+          <View style={styles.scrollAreaStack}>
+            <View style={styles.scrollArea}>
+              <ScrollView
+                horizontal={true}
+                contentContainerStyle={styles.scrollArea_contentContainerStyle}
+              >
+                {itemsList}
+              </ScrollView>
+            </View>
+            <View style={styles.itemDetailDiv}>
+              <Text style={styles.name}>{name}</Text>
+              <Text style={styles.price}>{price}</Text>
+              <Text style={styles.brandName}>{brand}</Text>
+            </View>
+          </View>
+
         </View>
       </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+  },
+  all: {
+    width: 414,
+    height: 896,
+    marginTop: 33,
+    backgroundColor: "white",
+  },
+  header: {
+    width: 375,
+    height: 75,
+    flexDirection: "row",
+    alignSelf: "center",
+  },
+  back: {
+    width: 75,
+    height: 30,
+    marginLeft: 23,
+    alignSelf: "center",
+  },
+  title: {
+    fontFamily: "Cochin",
+    color: "#121212",
+    height: 30,
+    width: 160,
+    textAlign: "center",
+    marginLeft: 10,
+    alignSelf: "center",
+    fontSize: 25,
+  },
+  photos: {
+    width: 375,
+    height: 470,
+    marginTop: 2,
+    marginLeft: 20,
+  },
+
+  likers: {
+    fontFamily: "Cochin",
+    color: "#121212",
+    alignSelf: "center",
+    width: 37,
+    height: 41,
+    textAlign: "center",
+  },
+  details: {
+    width: 375,
+    height: 237,
+    backgroundColor: "white",
+    marginTop: 0,
+    alignSelf: "center",
+    borderTopRightRadius: 25,
+    borderTopLeftRadius: 25,
+    //shadowColor: "black",
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    shadowOffset: {
+      height: 0,
+      width: 0,
+    },
+    elevation: 2,
+  },
+  desc: {
+    top: 0,
+    width: 343,
+    height: 85,
+    position: "absolute",
+    left: 0,
+    justifyContent: "center",
+  },
+  description: {
+    fontFamily: "Cochin",
+    color: "#121212",
+    textAlign: "left",
+    fontSize: 22,
+    width: 255,
+    height: 60,
+    marginTop: 5,
+  },
+  selectDiv: {
+    top: 90,
+    width: 343,
+    height: 20,
+    position: "absolute",
+    left: 0,
+  },
+  select: {
+    fontFamily: "Arial",
+    color: "#121212",
+    width: 249,
+    height: 16,
+    textAlign: "left",
+    marginTop: 11,
+  },
+  descStack: {
+    width: 343,
+    height: 121,
+    marginTop: 7,
+    marginLeft: 16,
+  },
+  scrollArea: {
+    top: 0,
+    width: 343,
+    height: 37,
+    position: "absolute",
+    left: 0,
+  },
+  scrollArea_contentContainerStyle: {
+    height: 37,
+    width: 1000,
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+  },
+  brand: {
+    fontFamily: "Cochin",
+    color: "#121212",
+    textAlign: "center",
+    width: 76,
+    height: 16,
+    marginTop: 11,
+    alignSelf: "center",
+  },
+  itemDetailDiv: {
+    top: 34,
+    width: 343,
+    height: 58,
+    position: "absolute",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    left: 0,
+  },
+  name: {
+    fontFamily: "Cochin",
+    color: "#121212",
+    textAlign: "left",
+    alignSelf: "center",
+    width: 155,
+    height: 50,
+    fontWeight: "bold",
+    fontSize: 20,
+  },
+  price: {
+    fontFamily: "Cochin",
+    color: "#5A0016",
+    textAlign: "left",
+    alignSelf: "center",
+    width: 80,
+    height: 50,
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+  brandName: {
+    textAlign: "left",
+    fontFamily: "Cochin",
+    color: "#121212",
+    alignSelf: "center",
+    width: 150,
+    height: 50,
+    fontWeight: "bold",
+    fontSize: 20,
+  },
+  scrollAreaStack: {
+    width: 343,
+    height: 92,
+    marginTop: 4,
+    marginLeft: 16,
+  },
+});
 
 const mapStateToProps = (state) => ({
   explore: state.feedsReducer.explore,

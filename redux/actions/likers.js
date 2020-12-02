@@ -1,5 +1,6 @@
+import { Alert } from "react-native";
 import instance from "./instance";
-import { SET_LIKERS } from "./types";
+import { SET_LIKERS, ADD_LIKE } from "./types";
 
 export const fetchLikers = (post_id) => async (dispatch) => {
   try {
@@ -20,11 +21,13 @@ export const likePost = (post_id) => async (dispatch) => {
   try {
     const allLikers = await instance.post(`/like/`, post_id);
     //console.log("allLikers", allLikers.data);
-    dispatch({
-      type: SET_LIKERS,
-      payload: allLikers.data.likers,
-    });
+    if (allLikers.data.liked) {
+      dispatch({
+        type: ADD_LIKE,
+        payload: allLikers.data.liker,
+      });
+    }
   } catch (error) {
-    Alert.alert("Failed");
+    console.log("err like post", error);
   }
 };

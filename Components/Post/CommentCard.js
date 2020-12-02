@@ -1,19 +1,20 @@
-import { Card } from "native-base";
 import React from "react";
 
 //style
-import { Image, Text } from "react-native";
+import { View, Text, Image } from 'react-native'
+import {  Card,ListItem, Button, Icon } from 'react-native-elements'
 
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const CommentCard = ({ comment }) => {
   console.log("card ,item", comment.txt);
   return (
-    <Card>
+   <Card>
       <Text>{comment.txt}</Text>
       <Text>{comment.commenter}</Text>
-    </Card>
+    </Card> 
+    
   );
 };
 
 export default CommentCard;
+

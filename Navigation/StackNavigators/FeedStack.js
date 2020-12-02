@@ -2,12 +2,13 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 // Screens
-import { USER_PROFILE, FEED, POST_DETAIL, LIKERS } from "../screenNames";
+import { USER_PROFILE, FEED, POST_DETAIL, LIKERS,COMMENTS } from "../screenNames";
 
 //components
 import Feed from "../../Components/Feed/Feed";
 import PostDetail from "../../Components/Post/PostDetail";
 import Likers from "../../Components/Post/Likers";
+import Comm from "../../Components/Post/Comm";
 import UserProfile from "../../Components/Profile/UserProfile";
 
 const { Navigator, Screen } = createStackNavigator();
@@ -45,6 +46,11 @@ function FeedStack() {
       <Screen
         name={LIKERS}
         component={Likers}
+        // options={{ headerShown: false }}
+      />
+      <Screen
+        name={COMMENTS}
+        component={Comm}
         // options={{ headerShown: false }}
       />
       <Screen

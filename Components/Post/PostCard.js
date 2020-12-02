@@ -85,6 +85,7 @@ const PostCard = ({
     console.log(r);
     fetchComments(r);
   };
+  
   function handelLike() {
     likePost({ post_id: post.id });
 

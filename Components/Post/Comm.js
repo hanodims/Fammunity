@@ -9,7 +9,8 @@ import { fetchComments } from "../../redux/actions";
 import { connect } from "react-redux";
 
 const Comm = ({ route }) => {
-  const { comments, post_id } = route.params;
+  const { comments, post_id, owner } = route.params;
+  console.log(owner);
 
   const postComments = comments.map((comment) => comment);
 
@@ -18,13 +19,13 @@ const Comm = ({ route }) => {
       <ListItem bottomDivider>
         <Avatar
           source={{
-            uri: item.image
-              ? item.image
+            uri: owner?.image
+              ? owner?.image
               : "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png",
           }}
         />
         <ListItem.Content>
-          <ListItem.Title>{item.commenter}</ListItem.Title>
+          <ListItem.Title>{owner.user.username}</ListItem.Title>
           <ListItem.Subtitle>{item.txt}</ListItem.Subtitle>
         </ListItem.Content>
         {/* <ListItem.Chevron /> */}
@@ -44,11 +45,11 @@ const Comm = ({ route }) => {
 };
 
 const mapStateToProps = (state) => ({
-    comments: state.commentsReducer.comments,
+  comments: state.commentsReducer.comments,
 });
 
 const mapDispatchToProps = {
-    fetchComments,
+  fetchComments,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comm);

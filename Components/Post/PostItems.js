@@ -6,10 +6,10 @@ import { Image, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const PostItems = ({ item, handelPress }) => {
-  // console.log("im working", item);
+  //console.log("im working", item.brand.id);
 
   return (
-    <View key={item.id}>
+    <View>
       <TouchableOpacity
         onPress={() => handelPress(item.name, item.price, item.brand.name)}
       >
@@ -21,8 +21,8 @@ const PostItems = ({ item, handelPress }) => {
             fontWeight: "bold",
             color: "#5A0016",
             textAlign: "center",
-            width: 76,
-            height: 16,
+            width: 120,
+            height: 20,
             marginTop: 11,
             alignSelf: "center",
             marginHorizontal: 4,

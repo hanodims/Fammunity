@@ -13,7 +13,7 @@ import {
   Button,
 } from "native-base";
 import Carousel from "react-native-snap-carousel";
-import Icon from "react-native-vector-icons/AntDesign";
+import Icon from "react-native-vector-icons/Feather";
 import {
   View,
   Text,
@@ -40,7 +40,11 @@ import {
 import { FEED } from "../../Navigation/screenNames";
 import Images from "./Images";
 
-const PostDetail = ({ explore, route, profile, comments,
+const PostDetail = ({
+  explore,
+  route,
+  profile,
+  comments,
   likePost,
   fetchLikers,
   fetchUserProfile,
@@ -51,31 +55,25 @@ const PostDetail = ({ explore, route, profile, comments,
   isLiked,
   fetchExplore,
   fetchFeeds,
-  r, }) => {
-
-
+  r,
+}) => {
   const { feed } = route.params;
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState("");
 
-
-  
   useEffect(() => {
     //console.log("im here");
-//     fetchExplore();
-//     fetchFeeds();
-//     fetchUserProfile(feed.owner.id);
-//     fetchLikers(feed.id);
+    //     fetchExplore();
+    //     fetchFeeds();
+    //     fetchUserProfile(feed.owner.id);
+    //     fetchLikers(feed.id);
     fetchComments(feed.id);
-  },[liked]);
-
+  }, [liked]);
 
   const [liked, setLiked] = useState(isLiked);
   const [likersNumber, setLikersNumber] = useState(feed.likers_number);
   const [comment, setComment] = useState("");
-
-
 
   function handelPress(n, p, b) {
     setBrand(b), setName(n), setPrice(p);
@@ -90,62 +88,35 @@ const PostDetail = ({ explore, route, profile, comments,
     navigation.navigate(USER_PROFILE, { owner: post.owner_name, profile });
   };
 
-
-  function handelLike() {
-    likePost({ post_id: post.id });
-
-    if (liked) {
-      setLiked(false);
-      setLikersNumber(likersNumber - 1);
-    } else {
-      setLiked(true);
-      setLikersNumber(likersNumber + 1);
-    }
-  }
   const post = explore.find((post) => post.id === feed.id);
-  const itemsList = feed.items.map((item) => {
-    return <PostItems key={item.id} item={item} handelPress={handelPress} />;
+  const itemsList = feed.items.map((item, index) => {
+    // console.log("im working", post.owner);
+    return <PostItems key={index} item={item} handelPress={handelPress} />;
   });
-  
+
   return (
-
-    
-//     <View
-//       style={{
-//         flex: 1,
-//         backgroundColor: "#FFF",
-//       }}
-//     >
-//       <View></View>
-//       <View
-//         style={{
-//           flexDirection: "row",
-//           width: "100%",
-//           height: "90%",
-//         }}
-//       >
-//         <View style={{ width: "18%", paddingLeft: 20 }}>
-//           <TouchableOpacity onPress={() => navigation.goBack()}>
-//             <Ionicons
-//               name="ios-arrow-back"
-//               size={24}
-//               color="black"
-//               style={{ marginVertical: 30 }}
-//             />
-//           </TouchableOpacity>
-//           <ScrollView>{itemsList}</ScrollView>
-
     <View style={styles.container}>
       <View style={styles.all}>
         <View style={styles.header}>
           <Icon
             onPress={() => navigation.goBack(FEED)}
-            name="back"
+            name="corner-up-left"
             size={25}
             style={styles.back}
           />
           <Text style={styles.title}>{post.owner.user.username}</Text>
-
+          <Icon
+            onPress={() =>
+              navigation.navigate(COMMENTS, {
+                comments: comments,
+                post_id: post.id,
+                owner: post.owner,
+              })
+            }
+            name="message-circle"
+            size={25}
+            style={styles.back}
+          />
         </View>
         <View style={styles.photos}>
           <Images
@@ -155,54 +126,6 @@ const PostDetail = ({ explore, route, profile, comments,
             post_id={post.id}
           />
         </View>
-
-
-
-//      
-//             <View>
-//             <Card transparent style={{}}>
-//         <CardItem>
-//           <Left>
-//             <Thumbnail
-//               source={{
-//                 uri: profile.image
-//                   ? profile.image
-//                   : "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png",
-//               }}
-//             />
-//            
-//           </Left>
-//           <Right>
-//             <Icon
-//               onPress={handelLike}
-//               name="heart"
-//               style={liked ? { color: "#ED4A6A" } : { color: "#000" }}
-//             />
-//             <TouchableOpacity
-//               onPress={() =>
-//                 navigation.navigate(LIKERS, {
-//                   likers: likers,
-//                   post_id: post.id,
-//                 })
-//               }
-//             >
-//               <Text note>{likersNumber}</Text>
-//             </TouchableOpacity>
-//           </Right>
-//         </CardItem>
-//       </Card>
-//               <TouchableOpacity onPress={() =>
-//                 navigation.navigate(COMMENTS, {
-//                   comments: comments,
-//                   post_id: post.id,
-//                 })
-//               }>
-//           <Text>Comments</Text>
-//         </TouchableOpacity>
-            
-//               <Comments comments={comments}></Comments></View>
-
-//           </Text>
 
         <View style={styles.details}>
           <View style={styles.descStack}>
@@ -230,7 +153,6 @@ const PostDetail = ({ explore, route, profile, comments,
               <Text style={styles.brandName}>{brand}</Text>
             </View>
           </View>
-
         </View>
       </View>
     </View>

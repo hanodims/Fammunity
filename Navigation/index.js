@@ -28,8 +28,8 @@ export default function RootTabNavigator() {
       <Screen name={FEED} component={FeedStack} />
       <Screen name={TOPLIKED} component={TopLiked} />
       <Screen name={POST_ADDING} component={PostAddingStack} />
-      <Screen name={USER} component={UserStack} />
       <Screen name={EXPLORE} component={ExploreStack} />
+      <Screen name={USER} component={UserStack} />
     </Navigator>
   );
 }

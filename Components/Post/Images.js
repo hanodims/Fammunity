@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { likePost } from "../../redux/actions";
 
 //style
-import Icon from "react-native-vector-icons/Feather";
+import Icon from "react-native-vector-icons/AntDesign";
 import { View } from "native-base";
 import { ImageBackground, Text, StyleSheet } from "react-native";
 
@@ -110,3 +110,12 @@ const mapDispatchToProps = {
   likePost,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AddImage);
+
+// <TouchableOpacity
+//               onPress={() =>
+//                 navigation.navigate(LIKERS, {
+//                    likers: likers,
+//                    post_id: post.id,
+//                 })
+//                }
+//             >

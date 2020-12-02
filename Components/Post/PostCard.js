@@ -82,7 +82,7 @@ const PostCard = ({
   };
 
   let handelComment = () => {
-    console.log(r);
+    // console.log(r);
     fetchComments(r);
   };
   function handelLike() {

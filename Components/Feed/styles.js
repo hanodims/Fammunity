@@ -11,6 +11,7 @@ export default styles = StyleSheet.create({
     width: 136,
     height: 120,
     margin: 1,
+    resizeMode: "stretch",
   },
   feedTitle: {
     color: "#000",

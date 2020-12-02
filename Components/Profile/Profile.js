@@ -59,6 +59,7 @@ const Profile = ({ logout, name, profile, navigation }) => {
             height: 100,
             borderRadius: 200,
             alignSelf: "center",
+            resizeMode: "cover",
           }}
         ></Image>
       </View>

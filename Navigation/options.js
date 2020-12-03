@@ -4,14 +4,24 @@ import Icon from "react-native-vector-icons/Feather";
 //import { Ionicons } from "@expo/vector-icons";
 
 // Screens
-import { EXPLORE, FEED, POST_ADDING, TOPLIKED, USER } from "./screenNames";
+import {
+  EXPLORE,
+  FEED,
+  LOGIN,
+  POST_ADDING,
+  PROFILE,
+  SIGNUP,
+  TOPLIKED,
+  TREESTACK,
+  USER,
+} from "./screenNames";
 
 export const tabBarOptions = {
   showLabel: false,
   activeTintColor: "#111",
   inactiveTintColor: "grey",
   style: {
-    backgroundColor: "transparent",
+    backgroundColor: "#fff",
   },
 };
 export const tabScreenOptions = ({ route }) => ({
@@ -26,8 +36,9 @@ export const tabScreenOptions = ({ route }) => ({
 
       case POST_ADDING:
         iconName = "plus-circle";
-        color = "#5A0016";
-        size = 35;
+        //color = "#809FA2";
+        color = "black";
+        size = 45;
 
         break;
 
@@ -44,6 +55,18 @@ export const tabScreenOptions = ({ route }) => ({
         break;
 
       case EXPLORE:
+        iconName = "globe";
+        size = 25;
+        // color = "black";
+        break;
+
+      // break;
+      case LOGIN:
+        iconName = "globe";
+        size = 25;
+        // color = "black";
+        break;
+      case SIGNUP:
         iconName = "globe";
         size = 25;
         // color = "black";

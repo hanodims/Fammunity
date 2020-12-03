@@ -16,28 +16,17 @@ const PostItems = ({ item, handelPress }) => {
         <Text
           style={{
             fontFamily: "Cochin",
-            fontSize: 15,
+            fontSize: 20,
             letterSpacing: 1,
             fontWeight: "bold",
-            color: "#5A0016",
-            textAlign: "center",
-            width: 120,
-            height: 20,
-            marginTop: 11,
-            alignSelf: "center",
-            marginHorizontal: 4,
+            color: "#DCAF85",
+            textAlign: "left",
+            marginTop: 5,
+            marginEnd: 20,
           }}
         >
           {item.brand.name}
         </Text>
-        {/* <Image
-          source={{ uri: item.brand.image }}
-          style={{
-            width: 73,
-            height: 65,
-            alignSelf: "stretch",
-          }}
-        /> */}
       </TouchableOpacity>
     </View>
   );

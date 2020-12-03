@@ -115,7 +115,12 @@ const PostDetail = ({
             }
             name="message-circle"
             size={25}
-            style={styles.back}
+            style={{
+              width: 75,
+              height: 30,
+              marginLeft: 52,
+              alignSelf: "center",
+            }}
           />
         </View>
         <View style={styles.photos}>
@@ -194,7 +199,7 @@ const styles = StyleSheet.create({
   },
   photos: {
     width: 375,
-    height: 470,
+    height: 500,
     marginTop: 2,
     marginLeft: 20,
   },
@@ -238,19 +243,18 @@ const styles = StyleSheet.create({
     textAlign: "left",
     fontSize: 22,
     width: 255,
-    height: 60,
+    // height: 60,
     marginTop: 5,
   },
   selectDiv: {
-    top: 90,
+    top: 80,
     width: 343,
     height: 20,
     position: "absolute",
     left: 0,
   },
   select: {
-    fontFamily: "Arial",
-    color: "#121212",
+    color: "#809FA2",
     width: 249,
     height: 16,
     textAlign: "left",
@@ -263,7 +267,7 @@ const styles = StyleSheet.create({
     marginLeft: 16,
   },
   scrollArea: {
-    top: 0,
+    top: -15,
     width: 343,
     height: 37,
     position: "absolute",
@@ -275,17 +279,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopWidth: 1,
   },
-  brand: {
-    fontFamily: "Cochin",
-    color: "#121212",
-    textAlign: "center",
-    width: 76,
-    height: 16,
-    marginTop: 11,
-    alignSelf: "center",
-  },
+
   itemDetailDiv: {
-    top: 34,
+    top: 38,
     width: 343,
     height: 58,
     position: "absolute",
@@ -305,7 +301,9 @@ const styles = StyleSheet.create({
   },
   price: {
     fontFamily: "Cochin",
-    color: "#5A0016",
+    color: "#DCAF85",
+    //color: "#809FA2",
+
     textAlign: "left",
     alignSelf: "center",
     width: 80,

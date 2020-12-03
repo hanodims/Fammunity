@@ -11,7 +11,7 @@ import styles from "./styles";
 import { fetchExplore } from "../../redux/actions";
 
 const LikedFeeds = ({ explore, navigation }) => {
-  //console.log("explore", explore);
+  console.log("explore", explore.liked);
 
   const likedFeeds = explore.filter((feed) => feed.liked == true);
   //console.log("likedFeeds", likedFeeds);

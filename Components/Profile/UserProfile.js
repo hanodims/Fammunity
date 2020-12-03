@@ -28,9 +28,9 @@ const UserProfile = ({
   const [followed, setFollowed] = useState(profile?.followed);
   const [following, setFollowing] = useState(profile?.following?.length);
   const [followers, setFollowers] = useState(profile?.followers?.length);
-  console.log("followed1", followed);
-  console.log("following1", following);
-  console.log("followers1", followers);
+  // console.log("followed1", followed);
+  // console.log("following1", following);
+  // console.log("followers1", followers);
 
   function handelPress(isFollowed, followingN, followersN) {
     setFollowed(isFollowed), setFollowing(followingN), setFollowers(followersN);

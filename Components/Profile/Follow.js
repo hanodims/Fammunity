@@ -16,9 +16,9 @@ const Follow = ({
   following,
   followers,
 }) => {
-  console.log("followed", followed);
-  console.log("following", following);
-  console.log("followers", followers);
+  // console.log("followed", followed);
+  // console.log("following", following);
+  // console.log("followers", followers);
 
   function handelFollow() {
     followProfile({ profile_id: profile.id });

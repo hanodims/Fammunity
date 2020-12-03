@@ -11,8 +11,12 @@ import { TextInput } from "react-native-gesture-handler";
 
 const Comm = ({ route, addComment }) => {
   const { comments, post_id, owner } = route.params;
-  console.log(owner);
+
+  //console.log(owner);
+
+
   const [newComment, setComment] = useState("");
+
 
   const postComments = comments.map((comment) => comment);
 

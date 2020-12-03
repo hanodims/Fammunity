@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 //components
 import FeedList from "./FeedList";
-import { logout } from "../../redux/actions";
+import { fetchExplore, logout } from "../../redux/actions";
 import { Ionicons } from "@expo/vector-icons";
 //style
 import {
@@ -18,7 +18,6 @@ import { FlatList } from "react-native-gesture-handler";
 import { POST_DETAIL, USER_PROFILE } from "../../Navigation/screenNames";
 import { Container } from "native-base";
 
-
 //         <Ionicons
 //               name="md-log-out"
 //               size={24}
@@ -26,7 +25,11 @@ import { Container } from "native-base";
 //               onPress={logout}
 //             ></Ionicons>
 
-const Explore = ({ explore, navigation, profile,logout }) => {
+const Explore = ({ explore, navigation, profile, logout }) => {
+  // useEffect(() => {
+  //   console.log("im here");
+  //   fetchExplore();
+  // }, []);
   function feedsList({ item }) {
     //console.log("profile.explo ", profile);
     //if (item.id != 11 && item.id != 19)
@@ -73,7 +76,6 @@ const Explore = ({ explore, navigation, profile,logout }) => {
             </TouchableOpacity>
           </View>
         </View>
-
       </View>
     );
   }

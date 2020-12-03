@@ -64,16 +64,18 @@ const PostDetail = ({
 
   useEffect(() => {
     //console.log("im here");
-    //     fetchExplore();
+    //fetchExplore();
     //     fetchFeeds();
     //     fetchUserProfile(feed.owner.id);
     //     fetchLikers(feed.id);
     fetchComments(feed.id);
-  }, [liked]);
+  }, []);
 
-  const [liked, setLiked] = useState(isLiked);
+  const [liked, setLiked] = useState(feed.liked);
   const [likersNumber, setLikersNumber] = useState(feed.likers_number);
   const [comment, setComment] = useState("");
+
+  console.log(feed.liked);
 
   function handelPress(n, p, b) {
     setBrand(b), setName(n), setPrice(p);

@@ -11,16 +11,21 @@ import styles from "./styles";
 import { fetchExplore } from "../../redux/actions";
 
 const LikedFeeds = ({ explore, navigation }) => {
-  console.log("explore", explore.liked);
+  // useEffect(() => {
+  //   console.log("im here2");
+  //   fetchLikers(post_id);
+  // }, []);
 
-  const likedFeeds = explore.filter((feed) => feed.liked == true);
-  //console.log("likedFeeds", likedFeeds);
+  const likedFeeds = explore?.filter((feed) => feed.liked == true);
+  console.log("likedFeeds", likedFeeds);
   return (
     <Container style={styles.container}>
       <View style={{ paddingBottom: 30 }}>
         <Text style={styles.feedTitle}>Liked Posts</Text>
       </View>
-      <FeedList feeds={likedFeeds} navigation={navigation} />
+      {likedFeeds > 0 && (
+        <FeedList feeds={likedFeeds} navigation={navigation} />
+      )}
     </Container>
   );
 };

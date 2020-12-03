@@ -20,7 +20,8 @@ export const fetchLikers = (post_id) => async (dispatch) => {
 export const likePost = (post_id) => async (dispatch) => {
   try {
     const allLikers = await instance.post(`/like/`, post_id);
-    //console.log("allLikers", allLikers.data);
+    console.log("allLikers.data.liked", allLikers.data.liked);
+    console.log("allLikers.data.liker", allLikers.data.liker);
     if (allLikers.data.liked) {
       dispatch({
         type: ADD_LIKE,

@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
 const Comm = ({ route }) => {
   const { comments, post_id, owner } = route.params;
-  console.log(owner);
+  //console.log(owner);
 
   const postComments = comments.map((comment) => comment);
 

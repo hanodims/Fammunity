@@ -6,10 +6,10 @@ import { Button, Container, Text, View, Icon } from "native-base";
 import { connect } from "react-redux";
 import { logout } from "../../redux/actions";
 import { Ionicons } from "@expo/vector-icons";
-import { LIKED_FEEDS } from "../../Navigation/screenNames";
 
 // Components
 import FeedList from "../Feed/FeedList";
+import { LIKED_FEEDS } from "../../Navigation/screenNames";
 
 const Profile = ({ logout, name, profile, navigation }) => {
   //console.log("profile.posts", profile.posts);
@@ -66,7 +66,7 @@ const Profile = ({ logout, name, profile, navigation }) => {
       <View style={styles.statsContainer}>
         <View style={styles.statsBox}>
           <Text style={[styles.text, { fontSize: 18 }]}>
-            {profile.posts.length}
+            {profile?.posts?.length}
           </Text>
           <Text style={[styles.text, styles.subText]}>Posts</Text>
         </View>

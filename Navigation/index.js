@@ -1,11 +1,21 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 
 // Config
 import { tabBarOptions, tabScreenOptions } from "./options";
 
 // Screens
-import { FEED, POST_ADDING, USER, EXPLORE, TOPLIKED } from "./screenNames.js";
+import {
+  FEED,
+  POST_ADDING,
+  USER,
+  EXPLORE,
+  TOPLIKED,
+  LOGIN,
+  SIGNUP,
+  TREESTACK,
+} from "./screenNames.js";
 
 //stacks
 import FeedStack from "./StackNavigators/FeedStack";
@@ -14,22 +24,48 @@ import UserStack from "./StackNavigators/UserStack";
 
 import ExploreStack from "./StackNavigators/ExploreStack";
 import TopLiked from "../Components/Feed/TopLiked";
+import TreeStack from "./StackNavigators/TreeStack";
+import { connect } from "react-redux";
+import Login from "../Components/Authentication/Login";
+import Signup from "../Components/Authentication/Signup";
 
 //import Profile from "../Components/Profile/Profile";
-const { Navigator, Screen } = createBottomTabNavigator();
+const { Navigator, Screen } = createStackNavigator();
 
-export default function RootTabNavigator() {
+function RootTabNavigator({ user }) {
   return (
     <Navigator
-      initialRouteName={FEED}
-      tabBarOptions={tabBarOptions}
+      initialRouteName={user ? TREESTACK : LOGIN}
       screenOptions={tabScreenOptions}
     >
-      <Screen name={FEED} component={FeedStack} />
-      <Screen name={TOPLIKED} component={TopLiked} />
-      <Screen name={POST_ADDING} component={PostAddingStack} />
-      <Screen name={EXPLORE} component={ExploreStack} />
-      <Screen name={USER} component={UserStack} />
+      {user ? (
+        <>
+          <Screen
+            name={TREESTACK}
+            component={TreeStack}
+            options={{ headerShown: false }}
+          />
+        </>
+      ) : (
+        <>
+          <Screen
+            name={LOGIN}
+            component={Login}
+            options={{ headerShown: false, tabBarVisible: false }}
+          />
+          <Screen
+            name={SIGNUP}
+            component={Signup}
+            options={{ headerShown: false, tabBarVisible: false }}
+          />
+        </>
+      )}
     </Navigator>
   );
 }
+
+const mapStateToProps = ({ user }) => ({
+  user,
+});
+
+export default connect(mapStateToProps)(RootTabNavigator);

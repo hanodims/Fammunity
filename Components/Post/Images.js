@@ -74,7 +74,7 @@ const AddImage = ({ photos, isLiked, likers_number, likePost, post_id }) => {
 const styles = StyleSheet.create({
   image: {
     width: 310,
-    height: 470,
+    height: 500,
     backgroundColor: "red",
     marginTop: 8,
     alignSelf: "center",

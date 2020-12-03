@@ -4,54 +4,62 @@ const styles = StyleSheet.create({
   authButton: {
     alignSelf: "stretch",
     alignItems: "center",
-    padding: 20,
-    backgroundColor: "black",
-    marginTop: 30
+    //backgroundColor: "#809FA2",
+    backgroundColor: "#000000",
+    marginTop: 5,
+    borderRadius: 20,
+    height: 40,
+    justifyContent: "center",
+    textAlign: "center",
   },
   authButtonText: {
-    color: "#FCFDFF",
-    fontWeight: "bold",
-    fontSize: 18
+    color: "#fff",
+    fontSize: 20,
+    height: 40,
+    paddingTop: 5,
   },
   authContainer: {
-    flex: 1,
-    alignSelf: "stretch",
-    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FCFDFF",
-    paddingRight: 60,
-    paddingLeft: 60
+    paddingRight: 80,
+    paddingLeft: 80,
+    paddingTop: 550,
   },
   authOther: {
-    color: "grey",
-    marginTop: 15
+    // color: "grey",
+    color: "black",
+    marginTop: 15,
   },
   authTextInput: {
     alignSelf: "stretch",
-    textAlign: "left",
+    textAlign: "center",
     height: 40,
-    marginBottom: 30,
-    color: "rgb(20,90,100)",
-    borderBottomColor: "rgb(20,90,100)",
-    borderBottomWidth: 1
+    marginBottom: 7,
+    //color: "rgb(20,90,100)",
+    color: "#000",
+    // borderBottomColor: "rgb(20,90,100)",
+    // borderBottomWidth: 1,
+    //borderColor: "#999",
+    borderColor: "#777",
+    borderRadius: 20,
+    borderWidth: 1,
   },
   authTitle: {
-    color: "grey",
+    //color: "grey",
     fontSize: 24,
     marginBottom: 20,
-    borderBottomColor: "rgb(20,90,100)"
+    borderBottomColor: "rgb(20,90,100)",
   },
   profileImage: {
     height: 75,
     width: 150,
     flex: 0.5,
-    marginBottom: 10
+    marginBottom: 10,
   },
   profiletext: {
     textAlign: "left",
     color: "rgb(20,90,100)",
-    fontSize: 16
-  }
+    fontSize: 16,
+  },
 });
 
 export default styles;

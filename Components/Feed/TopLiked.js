@@ -91,17 +91,29 @@ const Backdrop = ({ explore, scrollX }) => {
 };
 
 const TopLiked = ({ explore, navigation }) => {
-  const mostLiked = [{ id: "empty-left" }, ...explore, { id: "empty-right" }];
+  console.log(
+    "liiiiii",
+    explore.filter((item) => item.likers_number > 9)
+  );
+  const filterLiked = explore.filter((item) => item.likers_number > 9);
+  const filterLiked2 = filterLiked.sort(
+    (a, b) => parseInt(a.likers_number) - parseInt(b.likers_number)
+  );
+  const filterLiked3 = [
+    { id: "empty-left" },
+    ...filterLiked2,
+    { id: "empty-right" },
+  ];
   // console.log(mostLiked);
-  if (mostLiked.length == 0) return <Loading />;
+  if (explore.length == 0) return <Loading />;
   const scrollX = React.useRef(new Animated.Value(0)).current;
   return (
     <View style={styles.container}>
-      <Backdrop explore={mostLiked} scrollX={scrollX} />
+      <Backdrop explore={filterLiked3} scrollX={scrollX} />
       <StatusBar hidden />
       <Animated.FlatList
         showsHorizontalScrollIndicator={false}
-        data={mostLiked}
+        data={filterLiked3}
         keyExtractor={(item) => item.id.toString()}
         horizontal
         bounces={false}

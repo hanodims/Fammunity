@@ -27,39 +27,22 @@ function UserStack({ user }) {
       initialRouteName={user ? PROFILE : LOGIN}
       screenOptions={tabScreenOptions}
     >
-      {user ? (
-        <>
-          <Screen
-            name={PROFILE}
-            component={Profile}
-            options={{ headerShown: false }}
-          />
+      <Screen
+        name={PROFILE}
+        component={Profile}
+        options={{ headerShown: false }}
+      />
 
-          <Screen
-            name={POST_DETAIL}
-            component={PostDetail}
-            options={{ headerShown: false }}
-          />
-          <Screen
-            name={LIKED_FEEDS}
-            component={LikedFeeds}
-            options={{ headerShown: false }}
-          />
-        </>
-      ) : (
-        <>
-          <Screen
-            name={LOGIN}
-            component={Login}
-            // options={{ headerShown: false }}
-          />
-          <Screen
-            name={SIGNUP}
-            component={Signup}
-            // options={{ headerShown: false }}
-          />
-        </>
-      )}
+      <Screen
+        name={POST_DETAIL}
+        component={PostDetail}
+        options={{ headerShown: false }}
+      />
+      <Screen
+        name={LIKED_FEEDS}
+        component={LikedFeeds}
+        options={{ headerShown: false }}
+      />
     </Navigator>
   );
 }

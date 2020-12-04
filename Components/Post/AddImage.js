@@ -17,7 +17,9 @@ import styles from "./styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Carousel from "react-native-snap-carousel";
 
-const AddImage = ({ addImage, navigation, photos, removePhoto }) => {
+const AddImage = ({ addImage, navigation, photos, removePhoto, route }) => {
+  const { description } = route.params;
+
   function renderPhotos({ item }) {
     return (
       <View
@@ -135,7 +137,12 @@ const AddImage = ({ addImage, navigation, photos, removePhoto }) => {
         <View style={styles.showPhotos}>
           {photos.length == 0 && (
             <View style={styles.addFirsttIcon}>
-              <Icon name="image" size={30} onPress={openImage}></Icon>
+              <Icon
+                name="image"
+                color="black"
+                size={30}
+                onPress={openImage}
+              ></Icon>
             </View>
           )}
           {photos.length > 0 && (
@@ -159,10 +166,10 @@ const AddImage = ({ addImage, navigation, photos, removePhoto }) => {
         <Button
           rounded
           dark
-          onPress={() => navigation.navigate(ADDITEM)}
+          onPress={() => navigation.navigate(ADDITEM, { description })}
           style={styles.nextButton}
         >
-          <Text style={styles.showOff}>Inspire{"\n\t"}the word... </Text>
+          <Text style={styles.showOff}>Next</Text>
         </Button>
       </ImageBackground>
     </View>

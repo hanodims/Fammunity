@@ -14,12 +14,30 @@ import {
 } from "react-native-gesture-handler";
 
 //screens
-import { ADD_POST, FINISH_ADDING } from "../../Navigation/screenNames";
+import { ADD_POST, EXPLORE } from "../../Navigation/screenNames";
 
 //actions
-import { addItem, removeItem } from "../../redux/actions";
+import { addItem, removeItem, addPost } from "../../redux/actions";
 
-const AddItem = ({ addItem, navigation, items, removeItem }) => {
+const AddItem = ({
+  addItem,
+  navigation,
+  items,
+  removeItem,
+  addPost,
+  route,
+  photos,
+}) => {
+  const { description } = route.params;
+
+  function handelAddPost() {
+    addPost({
+      description,
+      items,
+      photos,
+    });
+    navigation.push(EXPLORE);
+  }
   var img =
     items.length == 0
       ? require("../../assets/add_items.png")
@@ -29,7 +47,15 @@ const AddItem = ({ addItem, navigation, items, removeItem }) => {
     //console.log("itemid", item.id);
     return (
       <View key={item.id} style={{}}>
-        <Card>
+        <Card
+          style={{
+            // backgroundColor: "seashell",
+            borderRadius: 20,
+            height: 150,
+            width: 200,
+            borderColor: "#5A0016",
+          }}
+        >
           <Icon
             style={{ alignSelf: "flex-end" }}
             onPress={() => removeItem(item)}
@@ -40,7 +66,7 @@ const AddItem = ({ addItem, navigation, items, removeItem }) => {
             {item.name}
           </Text>
           <Text key={item.brand} style={styles.itemShow}>
-            {item.brand} Prada
+            {item.brand}
           </Text>
           <Text key={item.price} style={styles.itemShow}>
             {item.price} SR
@@ -109,7 +135,10 @@ const AddItem = ({ addItem, navigation, items, removeItem }) => {
                   width: 200,
                   alignSelf: "center",
                 }}
-                style={{ backgroundColor: "#fff", opacity: 1 }}
+                style={{
+                  backgroundColor: "#fff",
+                  opacity: 1,
+                }}
                 itemStyle={{
                   justifyContent: "flex-start",
                   fontFamily: "Cochin",
@@ -133,6 +162,7 @@ const AddItem = ({ addItem, navigation, items, removeItem }) => {
                   value={name}
                   maxLength={250}
                   onChangeText={setName}
+                  style={{ fontSize: 16 }}
                 ></TextInput>
               </View>
               <Text style={styles.itemBrand}>Price:</Text>
@@ -145,12 +175,18 @@ const AddItem = ({ addItem, navigation, items, removeItem }) => {
                   autoCapitalize="words"
                   value={price}
                   onChangeText={setPrice}
+                  style={{ fontSize: 16 }}
                 ></TextInput>
               </View>
             </View>
             <View style={styles.addItemButtonDiv}>
-              <View style={styles.addPostIcon}>
-                <Icon onPress={handelAdding} name="plus" size={20} />
+              <View style={styles.addPostIcon1}>
+                <Icon
+                  onPress={handelAdding}
+                  name="plus"
+                  size={20}
+                  color="white"
+                />
               </View>
             </View>
           </View>
@@ -161,13 +197,8 @@ const AddItem = ({ addItem, navigation, items, removeItem }) => {
           </View>
         </View>
 
-        <Button
-          rounded
-          dark
-          onPress={() => navigation.navigate(FINISH_ADDING)}
-          style={styles.nextButton}
-        >
-          <Text style={styles.showOff}>Prepare for{"\n\t"}the show... </Text>
+        <Button rounded dark onPress={handelAddPost} style={styles.nextButton}>
+          <Text style={styles.showOff}>Post </Text>
         </Button>
       </ImageBackground>
     </View>
@@ -175,10 +206,12 @@ const AddItem = ({ addItem, navigation, items, removeItem }) => {
 };
 const mapStateToProps = (state) => ({
   items: state.postReducer.items,
+  photos: state.postReducer.photos,
 });
 const mapDispatchToProps = {
   addItem,
   removeItem,
+  addPost,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddItem);

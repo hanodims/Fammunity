@@ -12,7 +12,6 @@ import FeedList from "../Feed/FeedList";
 import { LIKED_FEEDS } from "../../Navigation/screenNames";
 
 const Profile = ({ logout, name, profile, navigation }) => {
-  //console.log("profile.posts", profile.posts);
   return (
     <Container style={styles.container}>
       <View style={styles.titleBar}>
@@ -21,7 +20,7 @@ const Profile = ({ logout, name, profile, navigation }) => {
             <Ionicons
               name="md-heart"
               size={24}
-              color="black"
+              color="#5A0016"
               onPress={() => navigation.navigate(LIKED_FEEDS)}
             ></Ionicons>
 
@@ -76,11 +75,15 @@ const Profile = ({ logout, name, profile, navigation }) => {
             { borderColor: "#DFD8C8", borderLeftWidth: 1, borderRightWidth: 1 },
           ]}
         >
-          <Text style={[styles.text, { fontSize: 18 }]}>45</Text>
+          <Text style={[styles.text, { fontSize: 18 }]}>
+            {profile?.followers.length}
+          </Text>
           <Text style={[styles.text, styles.subText]}>Followers</Text>
         </View>
         <View style={styles.statsBox}>
-          <Text style={[styles.text, { fontSize: 18 }]}>30</Text>
+          <Text style={[styles.text, { fontSize: 18 }]}>
+            {profile?.following.length}
+          </Text>
           <Text style={[styles.text, styles.subText]}>Following</Text>
         </View>
       </View>

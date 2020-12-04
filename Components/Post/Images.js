@@ -13,6 +13,7 @@ import Carousel from "react-native-snap-carousel";
 
 const AddImage = ({ photos, isLiked, likers_number, likePost, post_id }) => {
   const [liked, setLiked] = useState(isLiked);
+  console.log("isLiked", isLiked);
   const [likersNumber, setLikersNumber] = useState(likers_number);
 
   function handelLike() {

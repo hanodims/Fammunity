@@ -2,32 +2,13 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Comments from "./Comments";
 import { COMMENTS, LIKERS, USER_PROFILE } from "../../Navigation/screenNames";
-import {
-  Card,
-  CardItem,
-  Thumbnail,
-  Left,
-  Body,
-  Container,
-  Right,
-  Button,
-} from "native-base";
-import Carousel from "react-native-snap-carousel";
+
 import Icon from "react-native-vector-icons/Feather";
-import {
-  View,
-  Text,
-  Image,
-  Alert,
-  StyleSheet,
-  ImageBackground,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View, Text, StyleSheet } from "react-native";
+
 import PostItems from "./PostItems";
 
-import PostCard from "./PostCard";
-import SwiperComponent from "./SwiperComponent";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import { ScrollView } from "react-native-gesture-handler";
 import {
   likePost,
   fetchLikers,
@@ -70,12 +51,6 @@ const PostDetail = ({
     //     fetchLikers(feed.id);
     fetchComments(feed.id);
   }, []);
-
-  const [liked, setLiked] = useState(feed.liked);
-  const [likersNumber, setLikersNumber] = useState(feed.likers_number);
-  const [comment, setComment] = useState("");
-
-  console.log(feed.liked);
 
   function handelPress(n, p, b) {
     setBrand(b), setName(n), setPrice(p);
@@ -256,7 +231,7 @@ const styles = StyleSheet.create({
     left: 0,
   },
   select: {
-    color: "#809FA2",
+    color: "#000",
     width: 249,
     height: 16,
     textAlign: "left",
@@ -283,7 +258,7 @@ const styles = StyleSheet.create({
   },
 
   itemDetailDiv: {
-    top: 38,
+    top: 20,
     width: 343,
     height: 58,
     position: "absolute",
@@ -303,9 +278,7 @@ const styles = StyleSheet.create({
   },
   price: {
     fontFamily: "Cochin",
-    color: "#DCAF85",
-    //color: "#809FA2",
-
+    color: "#5A0016",
     textAlign: "left",
     alignSelf: "center",
     width: 80,
@@ -316,7 +289,6 @@ const styles = StyleSheet.create({
   brandName: {
     textAlign: "left",
     fontFamily: "Cochin",
-    color: "#121212",
     alignSelf: "center",
     width: 150,
     height: 50,

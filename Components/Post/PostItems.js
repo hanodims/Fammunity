@@ -19,7 +19,7 @@ const PostItems = ({ item, handelPress }) => {
             fontSize: 20,
             letterSpacing: 1,
             fontWeight: "bold",
-            color: "#DCAF85",
+            color: "#5A0016",
             textAlign: "left",
             marginTop: 5,
             marginEnd: 20,

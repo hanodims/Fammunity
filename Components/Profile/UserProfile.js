@@ -22,12 +22,16 @@ const UserProfile = ({
 }) => {
   const { owner } = route.params;
   useEffect(() => {
+    console.log("im heeeeer");
     fetchUserProfile(owner.id);
+    // if (!profile.following) return <Text>Loading</Text>;
+    // if (!profile.followers) return <Text>Loading</Text>;
   }, []);
 
+  console.log("profile", profile);
   const [followed, setFollowed] = useState(profile?.followed);
-  const [following, setFollowing] = useState(profile?.following?.length);
-  const [followers, setFollowers] = useState(profile?.followers?.length);
+  const [following, setFollowing] = useState(profile?.following.length);
+  const [followers, setFollowers] = useState(profile?.followers.length);
   // console.log("followed1", followed);
   // console.log("following1", following);
   // console.log("followers1", followers);
@@ -47,7 +51,7 @@ const UserProfile = ({
               <Ionicons
                 name="md-heart"
                 size={24}
-                color="black"
+                color="#5A0016"
                 onPress={() => navigation.navigate(LIKED_FEEDS)}
               ></Ionicons>
               <Text style={[styles.text, styles.subText]}>Liked</Text>
@@ -69,7 +73,7 @@ const UserProfile = ({
               <Ionicons
                 name="md-log-out"
                 size={24}
-                color="red"
+                color="black"
                 onPress={logout}
               ></Ionicons>
               <Text style={[styles.text, styles.subText]}>Log out</Text>
@@ -111,11 +115,15 @@ const UserProfile = ({
             { borderColor: "#DFD8C8", borderLeftWidth: 1, borderRightWidth: 1 },
           ]}
         >
-          <Text style={[styles.text, { fontSize: 18 }]}>{followers}</Text>
+          <Text style={[styles.text, { fontSize: 18 }]}>
+            {followers && followers}
+          </Text>
           <Text style={[styles.text, styles.subText]}>Followers</Text>
         </View>
         <View style={styles.statsBox}>
-          <Text style={[styles.text, { fontSize: 18 }]}>{following}</Text>
+          <Text style={[styles.text, { fontSize: 18 }]}>
+            {following && following}
+          </Text>
           <Text style={[styles.text, styles.subText]}>Following</Text>
         </View>
       </View>

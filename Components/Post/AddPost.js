@@ -35,13 +35,13 @@ const AddPost = ({ navigation, items, photos, addPost }) => {
   return (
     <Container style={{ flex: 1 }}>
       <ImageBackground
-        source={require("../../assets/add_post17.png")}
+        source={require("../../assets/66.png")}
         style={{ flex: 1, resizeMode: "cover" }}
       >
         <Button
           rounded
           dark
-          onPress={() => navigation.navigate(ADDIMAGE)}
+          onPress={() => navigation.navigate(ADDIMAGE, { description })}
           style={styles.startPostButtonDiv}
         >
           <Text style={styles.showOff}>show off your elegance..</Text>

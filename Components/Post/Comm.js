@@ -1,18 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 //style
-import { Container } from "native-base";
+import { Container, Text, Button } from "native-base";
 import styles from "./styles";
-import { FlatList } from "react-native-gesture-handler";
+import { FlatList, TextInput } from "react-native-gesture-handler";
 import { ListItem, Avatar } from "react-native-elements";
-import { fetchComments } from "../../redux/actions";
+import { fetchComments, addComment } from "../../redux/actions";
 import { connect } from "react-redux";
 
-const Comm = ({ route }) => {
+const Comm = ({ route, addComment }) => {
+  useEffect(() => {
+    console.log("im here");
+    fetchComments();
+  }, []);
   const { comments, post_id, owner } = route.params;
   //console.log(owner);
 
   const postComments = comments.map((comment) => comment);
+
+  const [newComment, setComment] = useState("");
+  //const [counter, setCounter] = useState(0);
+
+  let handelAddComment = () => {
+    if (newComment != "") {
+      addComment({ txt: newComment, post_id: post_id });
+      // window.location.reload(false);
+    }
+  };
 
   function commentsList({ item }) {
     return (
@@ -40,6 +54,22 @@ const Comm = ({ route }) => {
         renderItem={commentsList}
         keyExtractor={(item) => item.id.toString()}
       />
+      <TextInput
+        placeholder="description"
+        placeholderTextColor="#A6AEC1"
+        value={newComment}
+        onChangeText={setComment}
+        autoCapitalize="none"
+        style={{ height: 100 }}
+      ></TextInput>
+      <Button
+        style={{ alignSelf: "center" }}
+        bordered
+        dark
+        onPress={() => handelAddComment()}
+      >
+        <Text>Comment</Text>
+      </Button>
     </Container>
   );
 };
@@ -50,6 +80,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   fetchComments,
+  addComment,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comm);

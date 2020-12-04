@@ -15,6 +15,6 @@ const store = createStore(
 );
 
 store.dispatch(checkForToken());
-store.dispatch(fetchExplore());
+//store.dispatch(fetchExplore());
 
 export default store;

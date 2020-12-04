@@ -12,12 +12,47 @@ import { addImage, removePhoto } from "../../redux/actions";
 //style
 import Icon from "react-native-vector-icons/Feather";
 import { Button, View } from "native-base";
-import { ImageBackground, Text } from "react-native";
+import { ImageBackground, Text, Dimensions } from "react-native";
 import styles from "./styles";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Carousel from "react-native-snap-carousel";
 
 const AddImage = ({ addImage, navigation, photos, removePhoto }) => {
+
+  let tagUser = (user) => {
+    let newView = {
+      locationX:this.left,
+      locationY:this.top,
+    }
+  }
+
+  let handelPress = (evt) => {
+    this.top = (evt.nativeEvent.locationY*100)/screenHeight;
+    this.left = (evt.nativeEvent.locationX*100)/screenWidth;
+  };
+
+  let removeUser = (user) => {
+    let tempUser = this.state.tagList;
+    let index =  _.findIndex(tempUser, function(o) { return o.id == user.id });
+    tempUser.splice(index, 1);
+    this.setState({tagList: tempUser });
+  }
+
+
+  let dynamicStyle = (data) => {
+
+    let left = (screenWidth * data.locationX)/100;
+    let top =  (screenHeight * data.locationY)/100;
+
+    return {
+      position:'absolute',
+      top:top,
+      left:left-22,
+      justifyContent:'center'
+    }
+  }
+
+  
   function renderPhotos({ item }) {
     return (
       <View

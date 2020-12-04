@@ -4,6 +4,7 @@ const initialState = {
   profile: {},
   userProfile: {},
   name: "",
+  loading: true
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -14,6 +15,7 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         profile: profile,
         name: profile.user,
+        loading: false,
       };
 
     case SET_USER_PROFILE:
@@ -21,6 +23,7 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         userProfile: userProfile,
+        loading: false,
       };
     default:
       return state;

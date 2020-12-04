@@ -1,4 +1,4 @@
-import { SET_PROFILE, SET_USER_PROFILE } from "./types";
+import { SET_PROFILE, SET_USER_PROFILE, LOADING } from "./types";
 import instance from "./instance";
 import { fetchFeeds } from "./feeds";
 
@@ -10,6 +10,9 @@ export const fetchProfile = () => async (dispatch) => {
     dispatch({
       type: SET_PROFILE,
       payload: profile,
+    });
+    dispatch({
+      type: LOADING,
     });
   } catch (error) {
     console.error(error);
@@ -25,6 +28,9 @@ export const fetchUserProfile = (owner_id) => async (dispatch) => {
       type: SET_USER_PROFILE,
       payload: profile,
     });
+    dispatch({
+      type: LOADING,
+    });
   } catch (error) {
     console.error(error);
   }
@@ -35,7 +41,16 @@ export const followProfile = (profile_id) => async (dispatch) => {
     await instance.post(`/follow/`, profile_id);
     dispatch(fetchProfile());
     dispatch(fetchFeeds());
+    dispatch({
+      type: LOADING,
+    });
   } catch (error) {
     Alert.alert("Failed");
   }
+};
+
+export const resetLoading = () => {
+  return {
+    type: LOADING,
+  };
 };

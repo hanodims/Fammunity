@@ -6,15 +6,18 @@ import { Button, Container, Text, View, Icon } from "native-base";
 import { connect } from "react-redux";
 import { logout } from "../../redux/actions";
 import { Ionicons } from "@expo/vector-icons";
-
+import Loading from "./Loading";
 // Components
 import FeedList from "../Feed/FeedList";
 import { LIKED_FEEDS } from "../../Navigation/screenNames";
 
-const Profile = ({ logout, name, profile, navigation }) => {
+const Profile = ({ logout, name, profile, navigation, loading }) => {
   //console.log("profile.posts", profile.posts);
+  if (loading) return <Loading />;
   return (
+    
     <Container style={styles.container}>
+      
       <View style={styles.titleBar}>
         <View>
           <View style={styles.statsBoxTitle}>
@@ -24,6 +27,7 @@ const Profile = ({ logout, name, profile, navigation }) => {
               color="black"
               onPress={() => navigation.navigate(LIKED_FEEDS)}
             ></Ionicons>
+            
 
             <Text style={[styles.text, styles.subText]}>Liked</Text>
           </View>
@@ -142,6 +146,8 @@ const mapStateToProps = (state) => {
   return {
     profile: state.profileReducer.profile,
     name: state.profileReducer.name,
+    loading: state.profileReducer.loading,
+
   };
 };
 

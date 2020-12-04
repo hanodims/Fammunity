@@ -8,7 +8,7 @@ export * from "./types";
 // Auth
 export * from "./authentication";
 
-export { fetchProfile, fetchUserProfile, followProfile } from "./profile";
+export { fetchProfile, fetchUserProfile, followProfile, resetLoading } from "./profile";
 
 
 export * from "./comments";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState } from "react";
 import { connect } from "react-redux";
 
 //components
@@ -16,7 +16,8 @@ import {
 import Icon from "react-native-vector-icons/AntDesign";
 import { FlatList } from "react-native-gesture-handler";
 import { POST_DETAIL, USER_PROFILE } from "../../Navigation/screenNames";
-import { Container } from "native-base";
+import { Card, Container } from "native-base";
+import SearchBar from "./SearchBar"
 
 
 //         <Ionicons
@@ -27,11 +28,30 @@ import { Container } from "native-base";
 //             ></Ionicons>
 
 const Explore = ({ explore, navigation, profile,logout }) => {
+  const [query, setQeury] = useState("");
+
+  const filterProfiles = () => {
+    return profile.filter((chanel) => {
+      return `${chanel.user.username}`.toLowerCase().includes(query.toLowerCase());
+    });
+  };
+
+
+  function ProsList({ item }) {
+    return (
+      <Card>
+        <Text>{item}</Text>
+      </Card>
+    );
+  }
+
+
   function feedsList({ item }) {
     //console.log("profile.explo ", profile);
     //if (item.id != 11 && item.id != 19)
     return (
       <View style={styles.postContainer}>
+        
         <View style={styles.button1Stack}>
           <TouchableOpacity
             style={styles.button1}
@@ -79,6 +99,12 @@ const Explore = ({ explore, navigation, profile,logout }) => {
   }
   return (
     <Container style={{ flex: 1, alignItems: "center" }}>
+      <SearchBar onChangeText={setQeury} />
+      <FlatList
+        data={filterProfiles}
+        renderItem={ProsList}
+        keyExtractor={(item) => item.id.toString()}
+      />
       <FlatList
         data={explore}
         numColumns={2}

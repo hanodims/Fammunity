@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Comments from "./Comments";
-import { COMMENTS, LIKERS, USER_PROFILE } from "../../Navigation/screenNames";
+import {
+  COMMENTS,
+  LIKED_FEEDS,
+  LIKERS,
+  USER_PROFILE,
+} from "../../Navigation/screenNames";
 
 import Icon from "react-native-vector-icons/Feather";
+
 import { View, Text, StyleSheet } from "react-native";
 
 import PostItems from "./PostItems";
@@ -42,15 +48,30 @@ const PostDetail = ({
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState("");
+  const [liked, setLiked] = useState(feed.liked);
+  //console.log("isLiked", feed);
+  const [likersNumber, setLikersNumber] = useState(feed.likers_number);
+
+  function handelLike() {
+    likePost({ post_id: feed.id });
+
+    if (liked) {
+      setLiked(false);
+      setLikersNumber(likersNumber - 1);
+    } else {
+      setLiked(true);
+      setLikersNumber(likersNumber + 1);
+    }
+  }
 
   useEffect(() => {
-    //console.log("im here");
-    //fetchExplore();
+    console.log("im here7");
+    fetchExplore();
     //     fetchFeeds();
-    //     fetchUserProfile(feed.owner.id);
-    //     fetchLikers(feed.id);
+    fetchUserProfile(feed.owner.id);
+    fetchLikers(feed.id);
     fetchComments(feed.id);
-  }, []);
+  }, [likersNumber]);
 
   function handelPress(n, p, b) {
     setBrand(b), setName(n), setPrice(p);
@@ -62,7 +83,9 @@ const PostDetail = ({
   };
 
   let handelUserProfile = () => {
-    navigation.navigate(USER_PROFILE, { owner: post.owner_name, profile });
+    navigation.navigate(USER_PROFILE, {
+      owner: post.owner,
+    });
   };
 
   const post = explore.find((post) => post.id === feed.id);
@@ -81,7 +104,9 @@ const PostDetail = ({
             size={25}
             style={styles.back}
           />
-          <Text style={styles.title}>{post.owner.user.username}</Text>
+          <Text onPress={handelUserProfile} style={styles.title}>
+            {post.owner.user.username}
+          </Text>
           <Icon
             onPress={() =>
               navigation.navigate(COMMENTS, {
@@ -107,6 +132,30 @@ const PostDetail = ({
             isLiked={post.liked}
             post_id={post.id}
           />
+          <View style={styles.buttonDiv}>
+            <Icon
+              name="heart"
+              onPress={handelLike}
+              size={24}
+              style={
+                liked
+                  ? {
+                      color: "tomato",
+                    }
+                  : {
+                      color: "black",
+                    }
+              }
+            />
+            <Text
+              onPress={() =>
+                navigation.navigate(LIKERS, { likers, post_id: feed.id })
+              }
+              style={styles.likers}
+            >
+              {likersNumber}
+            </Text>
+          </View>
         </View>
 
         <View style={styles.details}>
@@ -145,6 +194,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+  },
+  buttonDiv: {
+    top: -50,
+    backgroundColor: "white",
+    width: 50,
+    height: 50,
+    alignItems: "center",
+    borderRadius: 40,
+    alignSelf: "flex-end",
+    justifyContent: "center",
+    marginEnd: 20,
   },
   all: {
     width: 414,
@@ -185,8 +245,6 @@ const styles = StyleSheet.create({
     fontFamily: "Cochin",
     color: "#121212",
     alignSelf: "center",
-    width: 37,
-    height: 41,
     textAlign: "center",
   },
   details: {

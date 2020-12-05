@@ -11,6 +11,7 @@ import Follow from "./Follow";
 import { fetchUserProfile, logout } from "../../redux/actions";
 
 import { LIKED_FEEDS } from "../../Navigation/screenNames";
+import Loading from "./Loading";
 
 const UserProfile = ({
   navigation,
@@ -19,29 +20,24 @@ const UserProfile = ({
   fetchUserProfile,
   userAccount,
   logout,
+  loading,
 }) => {
   const { owner } = route.params;
   useEffect(() => {
-    console.log("im heeeeer");
+    // console.log("im heeeeer");
     fetchUserProfile(owner.id);
-    // if (!profile.following) return <Text>Loading</Text>;
-    // if (!profile.followers) return <Text>Loading</Text>;
   }, []);
+  if (loading) return <Loading />;
 
-  console.log("profile", profile);
+  // console.log("profile here", profile);
   const [followed, setFollowed] = useState(profile?.followed);
-  const [following, setFollowing] = useState(profile?.following.length);
-  const [followers, setFollowers] = useState(profile?.followers.length);
-  // console.log("followed1", followed);
-  // console.log("following1", following);
-  // console.log("followers1", followers);
+  const [following, setFollowing] = useState(profile?.following?.length);
+  const [followers, setFollowers] = useState(profile?.followers?.length);
 
   function handelPress(isFollowed, followingN, followersN) {
     setFollowed(isFollowed), setFollowing(followingN), setFollowers(followersN);
   }
 
-  // console.log("profile", userAccount);
-  // console.log("owner", owner);
   return (
     <Container style={styles.container}>
       <View style={styles.titleBar}>
@@ -183,6 +179,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.userProfile,
   userAccount: state.profileReducer.profile,
+  loading: state.profileReducer.loading,
 });
 const mapDispatchToProps = {
   logout,

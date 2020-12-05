@@ -91,10 +91,6 @@ const Backdrop = ({ explore, scrollX }) => {
 };
 
 const TopLiked = ({ explore, navigation }) => {
-  console.log(
-    "liiiiii",
-    explore.filter((item) => item.likers_number > 9)
-  );
   const filterLiked = explore.filter((item) => item.likers_number > 9);
   const filterLiked2 = filterLiked.sort(
     (a, b) => parseInt(a.likers_number) - parseInt(b.likers_number)

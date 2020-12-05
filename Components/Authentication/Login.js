@@ -23,7 +23,7 @@ const Login = ({ navigation, login }) => {
 
   return (
     <ImageBackground
-      source={require("../../assets/design1.png")}
+      source={require("../../assets/m5.png")}
       style={{ flex: 1, resizeMode: "cover" }}
     >
       <View style={styles.authContainer}>
@@ -31,7 +31,7 @@ const Login = ({ navigation, login }) => {
         <TextInput
           style={styles.authTextInput}
           placeholder="Username"
-          placeholderTextColor="#A6AEC1"
+          placeholderTextColor="#777"
           value={username}
           onChangeText={setUsername}
           autoCapitalize="none"
@@ -39,7 +39,7 @@ const Login = ({ navigation, login }) => {
         <TextInput
           style={styles.authTextInput}
           placeholder="Password"
-          placeholderTextColor="#A6AEC1"
+          placeholderTextColor="#777"
           value={password}
           onChangeText={setPassword}
           autoCapitalize="none"

@@ -25,7 +25,7 @@ const PostItems = ({ item, handelPress }) => {
             marginEnd: 20,
           }}
         >
-          {item.brand.name}
+          {item.name}
         </Text>
       </TouchableOpacity>
     </View>

@@ -35,27 +35,7 @@ const AddImage = ({ photos, isLiked, likers_number, likePost, post_id }) => {
           source={{ uri: item.image }}
           resizeMode="cover"
           style={styles.image}
-        >
-          <View style={styles.buttonDiv}>
-            <Icon
-              name="heart"
-              onPress={handelLike}
-              size={20}
-              style={
-                liked
-                  ? {
-                      color: "tomato",
-                      alignSelf: "center",
-                    }
-                  : {
-                      color: "black",
-                      alignSelf: "center",
-                    }
-              }
-            />
-            <Text style={styles.likers}>{likersNumber}</Text>
-          </View>
-        </ImageBackground>
+        ></ImageBackground>
       </View>
     );
   }

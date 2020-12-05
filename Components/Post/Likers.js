@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 //style
-import { Container } from "native-base";
+import { Container, Text } from "native-base";
 import styles from "./styles";
 import { FlatList } from "react-native-gesture-handler";
 import { ListItem, Avatar } from "react-native-elements";
@@ -15,8 +15,8 @@ const Likers = ({ route }) => {
   //   console.log("im here2");
   //   fetchLikers(post_id);
   // }, []);
-
-  const postLikers = likers.liked_by.map((liker) => liker);
+  if (!likers?.liked_by) return <Text>No Likes</Text>;
+  const postLikers = likers?.liked_by?.map((liker) => liker);
 
   function likersList({ item }) {
     return (
@@ -48,13 +48,13 @@ const Likers = ({ route }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  likers: state.likersReducer.likers,
-});
+// const mapStateToProps = (state) => ({
+//   likers: state.likersReducer.likers,
+// });
 
 const mapDispatchToProps = {
   fetchLikers,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Likers);
+export default connect(null, mapDispatchToProps)(Likers);
 //onPress={() => navigation.navigate(LIKED_FEEDS)

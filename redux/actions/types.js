@@ -23,3 +23,5 @@ export const SET_USER_PROFILE = "SET_USER_PROFILE";
 
 export const SET_COMMENT = "SET_COMMENT";
 export const ADD_COMMENT = "ADD_COMMENT";
+
+export const LOADING = "LOADING";

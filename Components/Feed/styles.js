@@ -17,8 +17,9 @@ export default styles = StyleSheet.create({
     color: "#000",
     fontSize: 30,
     lineHeight: 40,
-    fontFamily: "Chalkboard SE",
+    fontFamily: "Cochin",
     alignSelf: "center",
+    paddingTop: 20,
   },
   container: { flex: 1, paddingTop: 30 },
 });

@@ -21,15 +21,17 @@ export const addComment = (comment) => async (dispatch) => {
   try {
     const res = await instance.post("/comment/", comment);
     const newComment = res.data;
+    const post_id = comment.post_id;
     // console.log(newComment);
 
     dispatch({
       type: ADD_COMMENT,
       payload: newComment,
     });
-    Alert.alert("Done");
+    dispatch(fetchComments(comment.post_id));
+    // Alert.alert("Done");
   } catch (error) {
     console.error("no adding", error);
-    Alert.alert("Failed");
+    //  Alert.alert("Failed");
   }
 };

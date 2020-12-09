@@ -36,7 +36,7 @@ const AddItem = ({
       items,
       photos,
     });
-    navigation.push(EXPLORE);
+    navigation.push(ADD_POST);
   }
   var img =
     items.length == 0

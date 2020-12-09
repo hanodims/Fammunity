@@ -3,7 +3,7 @@ import React, { useState } from "react";
 // Redux
 import { connect } from "react-redux";
 import { login } from "../../redux/actions/authentication";
-
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 // Screen Names
 import { SIGNUP } from "../../Navigation/screenNames";
 
@@ -24,7 +24,7 @@ const Login = ({ navigation, login }) => {
   return (
     <ImageBackground
       source={require("../../assets/m5.png")}
-      style={{ flex: 1, resizeMode: "cover" }}
+      style={{ flex: 1, resizeMode: "cover"}}
     >
       <View style={styles.authContainer}>
         {/* <Text style={styles.authTitle}>Login</Text> */}

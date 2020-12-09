@@ -1,12 +1,15 @@
+
 import React, { useEffect, useState } from "react";
 
 //style
 import { Container, Text, Button, List, View } from "native-base";
+
 import styles from "./styles";
 import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
 import { ListItem, Avatar } from "react-native-elements";
 import { fetchComments, addComment } from "../../redux/actions";
 import { connect } from "react-redux";
+
 
 const Comm = ({ route, addComment, comments }) => {
   const { post_id } = route.params;
@@ -30,6 +33,7 @@ const Comm = ({ route, addComment, comments }) => {
   };
 
   const commentsList = postComments.map((item, index) => {
+
     return (
       <ListItem key={index} bottomDivider>
         <Avatar
@@ -44,12 +48,15 @@ const Comm = ({ route, addComment, comments }) => {
           <ListItem.Subtitle>{item.txt}</ListItem.Subtitle>
         </ListItem.Content>
         {/* <ListItem.Chevron /> */}
+        
       </ListItem>
+      
     );
   });
 
   return (
     <Container>
+
       <ScrollView horizontal={false}>
         <List>{commentsList}</List>
       </ScrollView>
@@ -89,6 +96,7 @@ const Comm = ({ route, addComment, comments }) => {
           <Text style={{ color: "white" }}> Comment</Text>
         </Button>
       </View>
+
     </Container>
   );
 };
@@ -100,6 +108,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   fetchComments,
   addComment,
+
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comm);

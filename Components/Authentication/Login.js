@@ -27,7 +27,7 @@ const Login = ({ navigation, login }) => {
       style={{ flex: 1, resizeMode: "cover" }}
     >
       <View style={styles.authContainer}>
-        {/* <Text style={styles.authTitle}>Login</Text> */}
+  
         <TextInput
           style={styles.authTextInput}
           placeholder="Username"

@@ -16,10 +16,6 @@ const Follow = ({
   following,
   followers,
 }) => {
-  // console.log("followed", followed);
-  // console.log("following", following);
-  // console.log("followers", followers);
-
   function handelFollow() {
     followProfile({ profile_id: profile.id });
     if (followed) {
@@ -71,18 +67,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Follow);
-{
-  /* <View style={{ alignContent: "center", alignItems: "center" }}>
-      <View style={{ padding: 10 }}>
-        <Text>{following} Following</Text>
-        <Text>{followers} Followers</Text>
-      </View>
-      <View style={{ padding: 20 }}>
-        {username != owner && (
-          <Button bordered dark onPress={handelFollow}>
-            {followed ? <Text>Unfollow</Text> : <Text>Follow</Text>}
-          </Button>
-        )}
-      </View>
-    </View> */
-}

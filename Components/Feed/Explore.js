@@ -2,14 +2,8 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 //components
-<<<<<<< Updated upstream
-import FeedList from "./FeedList";
-import { fetchExplore, logout } from "../../redux/actions";
-import { Ionicons } from "@expo/vector-icons";
-=======
 import { logout } from "../../redux/actions";
 
->>>>>>> Stashed changes
 //style
 import {
   StyleSheet,
@@ -23,22 +17,8 @@ import { FlatList } from "react-native-gesture-handler";
 import { POST_DETAIL, USER_PROFILE } from "../../Navigation/screenNames";
 import { Container } from "native-base";
 
-<<<<<<< Updated upstream
-//         <Ionicons
-//               name="md-log-out"
-//               size={24}
-//               color="red"
-//               onPress={logout}
-//             ></Ionicons>
-
-const Explore = ({ explore, navigation, profile, logout }) => {
-  // useEffect(() => {
-  //   console.log("im here");
-  //   fetchExplore();
-  // }, []);
-=======
 const Explore = ({ explore, navigation }) => {
->>>>>>> Stashed changes
+
   function feedsList({ item }) {
     return (
       <View style={styles.postContainer}>

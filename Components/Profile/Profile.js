@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, StyleSheet } from "react-native";
-import { Button, Container, Text, View, Icon } from "native-base";
+import { Container, Text, View } from "native-base";
 
 // Redux
 import { connect } from "react-redux";

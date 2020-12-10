@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import { Image, StyleSheet } from "react-native";
-import { Button, Container, Text, View, Icon } from "native-base";
+import { Container, Text, View } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 
 // Components
@@ -24,12 +24,10 @@ const UserProfile = ({
 }) => {
   const { owner } = route.params;
   useEffect(() => {
-    // console.log("im heeeeer");
     fetchUserProfile(owner.id);
   }, []);
   if (loading) return <Loading />;
 
-  // console.log("profile here", profile);
   const [followed, setFollowed] = useState(profile?.followed);
   const [following, setFollowing] = useState(profile?.following?.length);
   const [followers, setFollowers] = useState(profile?.followers?.length);
@@ -187,27 +185,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
-
-{
-  /* <Container style={{ flex: 1, paddingTop: 100 }}>
-<View>
-  <Image
-    source={{
-      uri: profile.image
-        ? profile.image
-        : "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png",
-    }}
-    style={{
-      width: 100,
-      height: 100,
-      borderRadius: 200,
-      alignSelf: "center",
-    }}
-  ></Image>
-</View>
-<View>
-  <Follow owner={owner} profile={profile} />
-</View>
-<FeedList feeds={profile.posts} navigation={navigation} />
-</Container> */
-}

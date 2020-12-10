@@ -16,7 +16,6 @@ import {
   Image,
   Dimensions,
   Animated,
-  TouchableOpacity,
   Platform,
 } from "react-native";
 
@@ -49,7 +48,6 @@ const Backdrop = ({ explore, scrollX }) => {
           const translateX = scrollX.interpolate({
             inputRange: [(index - 2) * ITEM_SIZE, (index - 1) * ITEM_SIZE],
             outputRange: [0, width],
-            // extrapolate:'clamp'
           });
           const img =
             item.photos.length > 1
@@ -100,7 +98,6 @@ const TopLiked = ({ explore, navigation }) => {
     ...filterLiked2,
     { id: "empty-right" },
   ];
-  // console.log(mostLiked);
   if (explore.length == 0) return <Loading />;
   const scrollX = React.useRef(new Animated.Value(0)).current;
   return (
@@ -124,7 +121,6 @@ const TopLiked = ({ explore, navigation }) => {
         )}
         scrollEventThrottle={16}
         renderItem={({ item, index }) => {
-          // console.log("item.id d", item.id);
           if (!item.photos) {
             return (
               <View

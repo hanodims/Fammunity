@@ -42,12 +42,8 @@ const Likers = ({ route }) => {
   );
 };
 
-// const mapStateToProps = (state) => ({
-//   likers: state.likersReducer.likers,
-// });
-
 const mapDispatchToProps = {
   fetchLikers,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Likers);
+export default connect(null, mapDispatchToProps)(Likers);

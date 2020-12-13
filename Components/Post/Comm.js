@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 
 //style
@@ -8,10 +9,9 @@ import { fetchComments, addComment } from "../../redux/actions";
 import { connect } from "react-redux";
 import { TextInput } from "react-native-gesture-handler";
 
+
 const Comm = ({ route, addComment }) => {
   const { comments, post_id, owner } = route.params;
-
-  //console.log(owner);
 
   const [newComment, setComment] = useState("");
 
@@ -25,21 +25,21 @@ const Comm = ({ route, addComment }) => {
 
   function commentsList({ item }) {
     return (
-      <ListItem bottomDivider>
+      <ListItem key={index} bottomDivider>
         <Avatar
           source={{
-            uri: owner?.image
-              ? owner?.image
+            uri: item.commenter?.image
+              ? item.commenter?.image
               : "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png",
           }}
         />
         <ListItem.Content>
-          <ListItem.Title>{owner.user.username}</ListItem.Title>
+          <ListItem.Title>{item.commenter?.user.username}</ListItem.Title>
           <ListItem.Subtitle>{item.txt}</ListItem.Subtitle>
         </ListItem.Content>
       </ListItem>
     );
-  }
+  });
 
   return (
     <Container>

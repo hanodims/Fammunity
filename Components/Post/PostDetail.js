@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+
 import { COMMENTS } from "../../Navigation/screenNames";
 
 import Icon from "react-native-vector-icons/Feather";
@@ -8,6 +9,7 @@ import PostItems from "./PostItems";
 
 import { ScrollView } from "react-native-gesture-handler";
 import { fetchComments } from "../../redux/actions";
+
 import { FEED } from "../../Navigation/screenNames";
 import Images from "./Images";
 
@@ -22,14 +24,31 @@ const PostDetail = ({
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
   const [price, setPrice] = useState("");
+  const [liked, setLiked] = useState(feed.liked);
+  //console.log("isLiked", feed);
+  const [likersNumber, setLikersNumber] = useState(feed.likers_number);
+
+  function handelLike() {
+    likePost({ post_id: feed.id });
+
+    if (liked) {
+      setLiked(false);
+      setLikersNumber(likersNumber - 1);
+    } else {
+      setLiked(true);
+      setLikersNumber(likersNumber + 1);
+    }
+  }
 
   useEffect(() => {
     fetchComments(feed.id);
   }, []);
 
+
   function handelPress(n, p, b) {
     setBrand(b), setName(n), setPrice(p);
   }
+
 
   const post = explore.find((post) => post.id === feed.id);
   const itemsList = feed.items.map((item, index) => {
@@ -46,7 +65,9 @@ const PostDetail = ({
             size={25}
             style={styles.back}
           />
-          <Text style={styles.title}>{post.owner.user.username}</Text>
+          <Text onPress={handelUserProfile} style={styles.title}>
+            {post.owner.user.username}
+          </Text>
           <Icon
             onPress={() =>
               navigation.navigate(COMMENTS, {
@@ -72,6 +93,30 @@ const PostDetail = ({
             isLiked={post.liked}
             post_id={post.id}
           />
+          <View style={styles.buttonDiv}>
+            <Icon
+              name="heart"
+              onPress={handelLike}
+              size={24}
+              style={
+                liked
+                  ? {
+                      color: "tomato",
+                    }
+                  : {
+                      color: "black",
+                    }
+              }
+            />
+            <Text
+              onPress={() =>
+                navigation.navigate(LIKERS, { likers, post_id: feed.id })
+              }
+              style={styles.likers}
+            >
+              {likersNumber}
+            </Text>
+          </View>
         </View>
 
         <View style={styles.details}>
@@ -110,6 +155,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+  },
+  buttonDiv: {
+    top: -50,
+    backgroundColor: "white",
+    width: 50,
+    height: 50,
+    alignItems: "center",
+    borderRadius: 40,
+    alignSelf: "flex-end",
+    justifyContent: "center",
+    marginEnd: 20,
   },
   all: {
     width: 414,
@@ -150,8 +206,6 @@ const styles = StyleSheet.create({
     fontFamily: "Cochin",
     color: "#121212",
     alignSelf: "center",
-    width: 37,
-    height: 41,
     textAlign: "center",
   },
   details: {
@@ -194,7 +248,7 @@ const styles = StyleSheet.create({
     left: 0,
   },
   select: {
-    color: "#809FA2",
+    color: "#000",
     width: 249,
     height: 16,
     textAlign: "left",
@@ -221,7 +275,7 @@ const styles = StyleSheet.create({
   },
 
   itemDetailDiv: {
-    top: 38,
+    top: 20,
     width: 343,
     height: 58,
     position: "absolute",
@@ -241,6 +295,7 @@ const styles = StyleSheet.create({
   },
   price: {
     fontFamily: "Cochin",
+
     color: "#DCAF85",
 
     textAlign: "left",
@@ -253,7 +308,6 @@ const styles = StyleSheet.create({
   brandName: {
     textAlign: "left",
     fontFamily: "Cochin",
-    color: "#121212",
     alignSelf: "center",
     width: 150,
     height: 50,

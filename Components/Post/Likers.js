@@ -2,6 +2,7 @@ import React from "react";
 
 //style
 import { Container } from "native-base";
+
 import { FlatList } from "react-native-gesture-handler";
 import { ListItem, Avatar } from "react-native-elements";
 import { fetchLikers } from "../../redux/actions";
@@ -11,6 +12,7 @@ const Likers = ({ route }) => {
   const { likers } = route.params;
 
   const postLikers = likers.liked_by.map((liker) => liker);
+
 
   function likersList({ item }) {
     return (
@@ -40,9 +42,9 @@ const Likers = ({ route }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  likers: state.likersReducer.likers,
-});
+// const mapStateToProps = (state) => ({
+//   likers: state.likersReducer.likers,
+// });
 
 const mapDispatchToProps = {
   fetchLikers,

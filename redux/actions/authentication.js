@@ -15,6 +15,7 @@ const setCurrentUser = (token) => async (dispatch) => {
     payload: token ? decode(token) : null,
   });
   if (token) {
+    dispatch(fetchExplore());
     dispatch(fetchProfile());
     fetchExplore();
     dispatch(fetchFeeds());

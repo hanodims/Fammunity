@@ -11,15 +11,14 @@ import styles from "./styles";
 import { fetchExplore } from "../../redux/actions";
 
 const LikedFeeds = ({ explore, navigation }) => {
-  console.log("explore", explore.liked);
-
-  const likedFeeds = explore.filter((feed) => feed.liked == true);
-  //console.log("likedFeeds", likedFeeds);
+  const likedFeeds = explore?.filter((feed) => feed.liked == true);
+  console.log("likedFeeds", likedFeeds);
   return (
     <Container style={styles.container}>
       <View style={{ paddingBottom: 30 }}>
         <Text style={styles.feedTitle}>Liked Posts</Text>
       </View>
+
       <FeedList feeds={likedFeeds} navigation={navigation} />
     </Container>
   );

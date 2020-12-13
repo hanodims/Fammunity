@@ -39,10 +39,7 @@ export default (state = initialState, action) => {
       };
     case RESET:
       // console.log("RESET red", state);
-      return {
-        items: [],
-        photos: [],
-      };
+      return initialState;
     default:
       return state;
   }

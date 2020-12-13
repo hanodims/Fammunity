@@ -25,7 +25,7 @@ const reducer = (state = initialState, { type, payload }) => {
 
       return {
         ...state,
-        explore: state.feeds.concat(post),
+        explore: state.explore.concat(post),
       };
 
     default:

@@ -9,6 +9,7 @@ import {
   REMOVE_ITEM,
 } from "./types";
 import instance from "./instance";
+import { fetchExplore } from "./feeds";
 
 export const addItem = (item) => {
   // console.log("items act: ", item);
@@ -75,6 +76,7 @@ export const addPost = (item) => async (dispatch) => {
       type: ADD_FEED,
       payload: feed,
     });
+    dispatch(fetchExplore());
     Alert.alert("Done");
   } catch (error) {
     console.error("no adding", error);

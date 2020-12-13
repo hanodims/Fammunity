@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import { Image, StyleSheet } from "react-native";
-import { Button, Container, Text, View, Icon } from "native-base";
+import { Container, Text, View } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 
 // Components
@@ -11,6 +11,7 @@ import Follow from "./Follow";
 import { fetchUserProfile, logout } from "../../redux/actions";
 
 import { LIKED_FEEDS } from "../../Navigation/screenNames";
+import Loading from "./Loading";
 
 const UserProfile = ({
   navigation,
@@ -19,25 +20,22 @@ const UserProfile = ({
   fetchUserProfile,
   userAccount,
   logout,
+  loading,
 }) => {
   const { owner } = route.params;
   useEffect(() => {
     fetchUserProfile(owner.id);
   }, []);
+  if (loading) return <Loading />;
 
   const [followed, setFollowed] = useState(profile?.followed);
   const [following, setFollowing] = useState(profile?.following?.length);
   const [followers, setFollowers] = useState(profile?.followers?.length);
-  // console.log("followed1", followed);
-  // console.log("following1", following);
-  // console.log("followers1", followers);
 
   function handelPress(isFollowed, followingN, followersN) {
     setFollowed(isFollowed), setFollowing(followingN), setFollowers(followersN);
   }
 
-  // console.log("profile", userAccount);
-  // console.log("owner", owner);
   return (
     <Container style={styles.container}>
       <View style={styles.titleBar}>
@@ -47,7 +45,7 @@ const UserProfile = ({
               <Ionicons
                 name="md-heart"
                 size={24}
-                color="black"
+                color="#5A0016"
                 onPress={() => navigation.navigate(LIKED_FEEDS)}
               ></Ionicons>
               <Text style={[styles.text, styles.subText]}>Liked</Text>
@@ -69,7 +67,7 @@ const UserProfile = ({
               <Ionicons
                 name="md-log-out"
                 size={24}
-                color="red"
+                color="black"
                 onPress={logout}
               ></Ionicons>
               <Text style={[styles.text, styles.subText]}>Log out</Text>
@@ -111,11 +109,15 @@ const UserProfile = ({
             { borderColor: "#DFD8C8", borderLeftWidth: 1, borderRightWidth: 1 },
           ]}
         >
-          <Text style={[styles.text, { fontSize: 18 }]}>{followers}</Text>
+          <Text style={[styles.text, { fontSize: 18 }]}>
+            {followers && followers}
+          </Text>
           <Text style={[styles.text, styles.subText]}>Followers</Text>
         </View>
         <View style={styles.statsBox}>
-          <Text style={[styles.text, { fontSize: 18 }]}>{following}</Text>
+          <Text style={[styles.text, { fontSize: 18 }]}>
+            {following && following}
+          </Text>
           <Text style={[styles.text, styles.subText]}>Following</Text>
         </View>
       </View>
@@ -175,6 +177,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   profile: state.profileReducer.userProfile,
   userAccount: state.profileReducer.profile,
+  loading: state.profileReducer.loading,
 });
 const mapDispatchToProps = {
   logout,
@@ -182,27 +185,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);
-
-{
-  /* <Container style={{ flex: 1, paddingTop: 100 }}>
-<View>
-  <Image
-    source={{
-      uri: profile.image
-        ? profile.image
-        : "https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png",
-    }}
-    style={{
-      width: 100,
-      height: 100,
-      borderRadius: 200,
-      alignSelf: "center",
-    }}
-  ></Image>
-</View>
-<View>
-  <Follow owner={owner} profile={profile} />
-</View>
-<FeedList feeds={profile.posts} navigation={navigation} />
-</Container> */
-}

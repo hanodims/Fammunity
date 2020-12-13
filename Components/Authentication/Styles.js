@@ -4,7 +4,6 @@ const styles = StyleSheet.create({
   authButton: {
     alignSelf: "stretch",
     alignItems: "center",
-    //backgroundColor: "#809FA2",
     backgroundColor: "#000000",
     marginTop: 5,
     borderRadius: 20,
@@ -25,7 +24,6 @@ const styles = StyleSheet.create({
     paddingTop: 550,
   },
   authOther: {
-    // color: "grey",
     color: "black",
     marginTop: 15,
   },
@@ -34,17 +32,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     height: 40,
     marginBottom: 7,
-    //color: "rgb(20,90,100)",
     color: "#000",
-    // borderBottomColor: "rgb(20,90,100)",
-    // borderBottomWidth: 1,
-    //borderColor: "#999",
     borderColor: "#777",
     borderRadius: 20,
     borderWidth: 1,
   },
   authTitle: {
-    //color: "grey",
     fontSize: 24,
     marginBottom: 20,
     borderBottomColor: "rgb(20,90,100)",

@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
         likers: action.payload,
       };
     case ADD_LIKE:
-      //console.log("likers added", state.likers);
+      // console.log("likers added", state.likers);
       return {
         ...state,
         likers: state.likers.liked_by.concat(action.payload),

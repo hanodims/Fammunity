@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import * as ImagePicker from "expo-image-picker";
@@ -14,7 +14,6 @@ import Icon from "react-native-vector-icons/Feather";
 import { Button, View } from "native-base";
 import { ImageBackground, Text } from "react-native";
 import styles from "./styles";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import Carousel from "react-native-snap-carousel";
 
 const AddImage = ({ addImage, navigation, photos, removePhoto }) => {
@@ -40,7 +39,6 @@ const AddImage = ({ addImage, navigation, photos, removePhoto }) => {
         ></ImageBackground>
         <View style={styles.removeItemButton}>
           <Icon
-            style={{}}
             name="x-circle"
             size={20}
             color="#000"
@@ -50,28 +48,6 @@ const AddImage = ({ addImage, navigation, photos, removePhoto }) => {
       </View>
     );
   }
-
-  let takePhoto = async () => {
-    let permission = await ImagePicker.requestCameraPermissionsAsync();
-
-    if (permission.granted === false) {
-      return;
-    }
-    let permission2 = await ImagePicker.getCameraRollPermissionsAsync();
-
-    if (permission2.granted === false) {
-      return;
-    }
-
-    let picker = await ImagePicker.launchCameraAsync({
-      allowsEditing: true,
-      aspect: [4, 3],
-    });
-
-    if (picker.cancelled === true) {
-      return;
-    }
-  };
 
   let openImage = async () => {
     let permission = await ImagePicker.requestCameraRollPermissionsAsync();
@@ -89,7 +65,6 @@ const AddImage = ({ addImage, navigation, photos, removePhoto }) => {
       return;
     }
 
-    // console.log("picker", picker);
     let filename = picker.uri.split("/").pop();
     // image type
     let match = /\.(\w+)$/.exec(filename);
@@ -178,86 +153,3 @@ const mapDispatchToProps = {
   removePhoto,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AddImage);
-
-{
-  /* <View style={{ paddingBottom: 30 }}>
-<Text style={styles.feedTitle}>Add Image</Text>
-</View>
-
-<View style={styles.container}>
-{selectImg && (
-  <Image
-    style={styles.image}
-    source={{
-      uri:
-        selectImg.localUri !== null
-          ? selectImg.localUri
-          : "https://astronomy.com/-/media/Images/News%20and%20Observing/News/2019/08/FullMoon.jpg?mw=600",
-    }}
-  />
-)}
-<Button onPress={openImage} style={styles.button}>
-  <Text>Choose from library</Text>
-</Button>
-<Button onPress={takePhoto} style={styles.button}>
-  <Text>Take photo</Text>
-</Button>
-</View>
-<Button style={styles.button} onPress={handelAdding}>
-<Text>Add</Text>
-</Button>
-
-<Button
-rounded
-bordered
-dark
-style={styles.button}
-onPress={() => navigation.goBack(ADD_POST)}
->
-<Text>Done</Text>
-</Button> */
-}
-
-// let openImage = async () => {
-//   let permission = await ImagePicker.requestCameraRollPermissionsAsync();
-
-//   if (permission.granted === false) {
-//     return;
-//   }
-
-//   let picker = await ImagePicker.launchImageLibraryAsync({
-//     allowsEditing: true,
-//     aspect: [4, 3],
-//   });
-
-//   if (picker.cancelled === true) {
-//     return;
-//   }
-//   setSelectedImg({ localUri: picker.uri });
-//   // console.log("picker", picker);
-// };
-
-// function handelAdding() {
-//   if (selectImg) {
-//     let filename = selectImg.localUri.split("/").pop();
-//     // image type
-//     let match = /\.(\w+)$/.exec(filename);
-//     let type = match ? `image/${match[1]}` : `image`;
-
-//     let uri;
-//     if (Platform.OS === "ios") {
-//       uri = selectImg.localUri.replace("file://", "");
-//     } else {
-//       uri = selectImg.localUri;
-//     }
-
-//     addImage({
-//       uri: uri,
-//       name: filename,
-//       type,
-//     });
-//     setSelectedImg(null);
-//   } else {
-//     Alert.alert("Pick Image First");
-//   }
-// }

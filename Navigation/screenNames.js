@@ -11,7 +11,6 @@ export const EXPLORE = "Explore";
 export const POST_ADDING = "PostAdding";
 export const ADD_POST = "AddPost";
 export const ADDIMAGE = "AddImage";
-export const FINISH_ADDING = "FinishAdding";
 export const ADDITEM = "AddItem";
 
 //feed

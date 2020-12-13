@@ -1,20 +1,16 @@
 import React from "react";
 
 //style
-import { View, Text, Image } from 'react-native'
-import {  Card,ListItem, Button, Icon } from 'react-native-elements'
-
+import { Text } from "react-native";
+import { Card } from "react-native-elements";
 
 const CommentCard = ({ comment }) => {
-  //console.log("card ,item", comment.txt);
   return (
-   <Card>
+    <Card>
       <Text>{comment.txt}</Text>
       <Text>{comment.commenter}</Text>
-    </Card> 
-    
+    </Card>
   );
 };
 
 export default CommentCard;
-

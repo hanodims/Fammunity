@@ -1,8 +1,7 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 //style
-import { Text,Button,Container } from "native-base";
-import styles from "./styles";
+import { Text, Button, Container } from "native-base";
 import { FlatList } from "react-native-gesture-handler";
 import { ListItem, Avatar } from "react-native-elements";
 import { fetchComments, addComment } from "../../redux/actions";
@@ -14,9 +13,7 @@ const Comm = ({ route, addComment }) => {
 
   //console.log(owner);
 
-
   const [newComment, setComment] = useState("");
-
 
   const postComments = comments.map((comment) => comment);
 
@@ -25,7 +22,6 @@ const Comm = ({ route, addComment }) => {
       addComment({ txt: newComment, post_id: post_id });
     }
   };
-
 
   function commentsList({ item }) {
     return (
@@ -41,10 +37,7 @@ const Comm = ({ route, addComment }) => {
           <ListItem.Title>{owner.user.username}</ListItem.Title>
           <ListItem.Subtitle>{item.txt}</ListItem.Subtitle>
         </ListItem.Content>
-        {/* <ListItem.Chevron /> */}
-        
       </ListItem>
-      
     );
   }
 
@@ -62,11 +55,7 @@ const Comm = ({ route, addComment }) => {
         onChangeText={setComment}
         autoCapitalize="none"
       ></TextInput>
-      <Button
-        bordered
-        dark
-        onPress={() => handelAddComment()}
-      >
+      <Button bordered dark onPress={() => handelAddComment()}>
         <Text>Comment</Text>
       </Button>
     </Container>
@@ -79,8 +68,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   fetchComments,
-  addComment
+  addComment,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comm);
-//onPress={() => navigation.navigate(LIKED_FEEDS)

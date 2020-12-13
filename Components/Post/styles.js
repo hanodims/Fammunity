@@ -1,33 +1,12 @@
 import { StyleSheet, Dimensions } from "react-native";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
-const screen = Dimensions.get("screen");
 
 export default styles = StyleSheet.create({
   FeedDev: {
     paddingTop: 20,
     backgroundColor: "#fff",
     alignItems: "center",
-  },
-  feedListImage: {
-    width: 120,
-    height: 120,
-    margin: 2,
-  },
-  feedTitle: {
-    color: "#000",
-    fontSize: 30,
-    lineHeight: 40,
-    fontFamily: "Cochin",
-  },
-  AddPostDev: {
-    alignItems: "center",
-    alignSelf: "stretch",
-  },
-  button: {
-    width: 100,
-    justifyContent: "center",
-    backgroundColor: "transparent",
   },
   container: {
     flex: 1,
@@ -41,26 +20,7 @@ export default styles = StyleSheet.create({
     height: 300,
     resizeMode: "contain",
   },
-  sliderContainer: {
-    height: 200,
-    width: "90%",
-    marginTop: 20,
-    justifyContent: "center",
-    alignSelf: "center",
-    borderRadius: 8,
-  },
-  slide: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: "transparent",
-    borderRadius: 8,
-  },
-  sliderImage: {
-    height: "100%",
-    width: "100%",
-    alignSelf: "center",
-    borderRadius: 8,
-  },
+
   addPostIcon: {
     backgroundColor: "#5A0016",
     backgroundColor: "#000",
@@ -137,10 +97,7 @@ export default styles = StyleSheet.create({
     height: 124,
     width: 272,
   },
-  itemsContainer: {
-    width: 410,
-    height: 300,
-  },
+
   itemsView: {
     width: windowWidth - 20,
     height: windowHeight - 340,
@@ -188,12 +145,6 @@ export default styles = StyleSheet.create({
     marginTop: windowHeight / 30,
     marginLeft: 20,
   },
-  scrolItemsContent: {
-    height: 219,
-    width: 348,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   itemShow: {
     fontSize: 20,
     color: "#121212",
@@ -219,56 +170,9 @@ export default styles = StyleSheet.create({
     color: "#5A0016",
     fontWeight: "bold",
   },
-  rect5: {
-    marginTop: -40,
-    backgroundColor: "white",
-    borderColor: "white",
-    borderWidth: 1,
-    borderRadius: 60,
-    width: 25,
-    height: 25,
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "flex-end",
-    shadowColor: "rgb(210,169,223)",
-    shadowOpacity: 40,
-    marginBottom: 5,
-    shadowOffset: {
-      height: 1,
-    },
-  },
-  itemPrice: {
-    fontFamily: "Cochin",
-    fontSize: 20,
-    color: "#121212",
-    height: 20,
-    width: 300,
-    marginLeft: 21,
-  },
-  doneDive: {
-    width: 44,
-    height: 44,
-    marginTop: 17,
-    marginLeft: 184,
-  },
-  cupertinoButtonDelete: {
-    height: 44,
-    width: 44,
-  },
-  addPost: {
-    fontFamily: "Cochin",
-    color: "#121212",
-    height: 42,
-    width: 204,
-    fontSize: 30,
-    textAlign: "left",
-    marginTop: windowHeight / 4 - 100,
-    marginLeft: 50,
-    //borderWidth: 1,
-  },
+
   startPostButtonDiv: {
     width: 250,
-    //marginTop: windowHeight - 250,
     marginTop: windowHeight - 170,
     alignItems: "center",
     justifyContent: "center",
@@ -287,10 +191,7 @@ export default styles = StyleSheet.create({
     height: 20,
     fontSize: 18,
   },
-  addImageContainer: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
+
   AddTitleDiv: {
     width: 389,
     height: 83,
@@ -321,17 +222,21 @@ export default styles = StyleSheet.create({
     borderRadius: 50,
     width: 388,
     height: 570,
-    marginTop: -19,
+
+    marginTop: 12,
+
     marginLeft: 12,
     justifyContent: "center",
     alignItems: "center",
     color: "#809FA2",
   },
   nextButton: {
-    width: 250,
-    height: 45,
+
+    width: 170,
+    height: 57,
     marginTop: 0,
-    alignSelf: "center",
+    marginLeft: 121,
+
     alignContent: "flex-start",
     justifyContent: "center",
   },

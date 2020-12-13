@@ -1,35 +1,29 @@
-import React, { useEffect, useState } from "react";
+
+import React, { useState } from "react";
 
 //style
-import { Container, Text, Button, List, View } from "native-base";
-import styles from "./styles";
-import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
+import { Text, Button, Container } from "native-base";
+import { FlatList } from "react-native-gesture-handler";
 import { ListItem, Avatar } from "react-native-elements";
 import { fetchComments, addComment } from "../../redux/actions";
 import { connect } from "react-redux";
+import { TextInput } from "react-native-gesture-handler";
 
-const Comm = ({ route, addComment, comments }) => {
-  const { post_id } = route.params;
-  // useEffect(() => {
-  //   // console.log("im here");
-  //   fetchComments(post_id);
-  // }, []);
-  //console.log(owner);
 
-  const postComments = comments.map((comment) => comment);
+const Comm = ({ route, addComment }) => {
+  const { comments, post_id, owner } = route.params;
 
   const [newComment, setComment] = useState("");
-  //const [counter, setCounter] = useState(0);
+
+  const postComments = comments.map((comment) => comment);
 
   let handelAddComment = () => {
     if (newComment != "") {
       addComment({ txt: newComment, post_id: post_id });
-      // window.location.reload(false);
-      setComment("");
     }
   };
 
-  const commentsList = postComments.map((item, index) => {
+  function commentsList({ item }) {
     return (
       <ListItem key={index} bottomDivider>
         <Avatar
@@ -43,52 +37,27 @@ const Comm = ({ route, addComment, comments }) => {
           <ListItem.Title>{item.commenter?.user.username}</ListItem.Title>
           <ListItem.Subtitle>{item.txt}</ListItem.Subtitle>
         </ListItem.Content>
-        {/* <ListItem.Chevron /> */}
       </ListItem>
     );
   });
 
   return (
     <Container>
-      <ScrollView horizontal={false}>
-        <List>{commentsList}</List>
-      </ScrollView>
-      <View
-        style={{
-          flexDirection: "row",
-          // width: 140,
-          // height: 22,
-          justifyContent: "space-between",
-          marginLeft: 2,
-          marginRight: 2,
-          borderWidth: 1,
-          borderRadius: 10,
-        }}
-      >
-        <TextInput
-          placeholder="description"
-          placeholderTextColor="#A6AEC1"
-          value={newComment}
-          onChangeText={setComment}
-          autoCapitalize="none"
-          style={{
-            alignSelf: "flex-end",
-            height: 42,
-            width: 305,
-          }}
-        ></TextInput>
-        <Button
-          style={{
-            alignSelf: "flex-end",
-            backgroundColor: "black",
-            marginLeft: -10,
-          }}
-          bordered
-          onPress={() => handelAddComment()}
-        >
-          <Text style={{ color: "white" }}> Comment</Text>
-        </Button>
-      </View>
+      <FlatList
+        data={postComments}
+        renderItem={commentsList}
+        keyExtractor={(item) => item.id.toString()}
+      />
+      <TextInput
+        placeholder="description"
+        placeholderTextColor="#A6AEC1"
+        value={newComment}
+        onChangeText={setComment}
+        autoCapitalize="none"
+      ></TextInput>
+      <Button bordered dark onPress={() => handelAddComment()}>
+        <Text>Comment</Text>
+      </Button>
     </Container>
   );
 };
@@ -103,4 +72,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comm);
-//onPress={() => navigation.navigate(LIKED_FEEDS)

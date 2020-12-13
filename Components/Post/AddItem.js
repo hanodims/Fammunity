@@ -7,11 +7,7 @@ import Icon from "react-native-vector-icons/Feather";
 import { Button, Card, View } from "native-base";
 import { Alert, ImageBackground, Text } from "react-native";
 import styles from "./styles";
-import {
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
+import { ScrollView, TextInput } from "react-native-gesture-handler";
 
 //screens
 import { ADD_POST, EXPLORE } from "../../Navigation/screenNames";
@@ -44,7 +40,6 @@ const AddItem = ({
       : require("../../assets/white.png");
 
   const itemsList = items.map((item) => {
-    //console.log("itemid", item.id);
     return (
       <View key={item.id} style={{}}>
         <Card
@@ -93,7 +88,6 @@ const AddItem = ({
       setName("");
       setPrice("");
       Alert.alert("Done");
-      //console.log(items);
     } else Alert.alert("please fill all Fields");
   }
   return (

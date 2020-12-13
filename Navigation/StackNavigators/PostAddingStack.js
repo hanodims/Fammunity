@@ -9,7 +9,6 @@ import AddItem from "../../Components/Post/AddItem";
 
 // Config
 import { tabScreenOptions } from "../options";
-import FinishAdding from "../../Components/Post/FinishAdding";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -29,11 +28,6 @@ function PostAddingStack() {
       <Screen
         name={ADDITEM}
         component={AddItem}
-        options={{ headerShown: false }}
-      />
-      <Screen
-        name={FINISH_ADDING}
-        component={FinishAdding}
         options={{ headerShown: false }}
       />
     </Navigator>

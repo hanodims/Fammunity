@@ -41,7 +41,7 @@ const AddImage = ({ photos, isLiked, likers_number, likePost, post_id }) => {
   }
 
   return (
-    <View style={{}}>
+    <View>
       <Carousel
         renderItem={renderPhotos}
         sliderWidth={375}
@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
     height: 59,
     justifyContent: "space-between",
     marginTop: 336,
-    //marginLeft: 167,
     alignSelf: "flex-end",
   },
   icon: {
@@ -91,12 +90,3 @@ const mapDispatchToProps = {
   likePost,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AddImage);
-
-// <TouchableOpacity
-//               onPress={() =>
-//                 navigation.navigate(LIKERS, {
-//                    likers: likers,
-//                    post_id: post.id,
-//                 })
-//                }
-//             >

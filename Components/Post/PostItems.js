@@ -1,13 +1,10 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React from "react";
 
 import { View } from "native-base";
-import { Image, Text } from "react-native";
+import { Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const PostItems = ({ item, handelPress }) => {
-  //console.log("im working", item.brand.id);
-
   return (
     <View>
       <TouchableOpacity

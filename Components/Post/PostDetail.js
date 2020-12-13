@@ -1,48 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import Comments from "./Comments";
-import {
-  COMMENTS,
-  LIKED_FEEDS,
-  LIKERS,
-  USER_PROFILE,
-} from "../../Navigation/screenNames";
+
+import { COMMENTS } from "../../Navigation/screenNames";
 
 import Icon from "react-native-vector-icons/Feather";
-
 import { View, Text, StyleSheet } from "react-native";
-
 import PostItems from "./PostItems";
 
 import { ScrollView } from "react-native-gesture-handler";
-import {
-  likePost,
-  fetchLikers,
-  fetchUserProfile,
-  fetchComments,
-  addComment,
-  fetchExplore,
-  fetchFeeds,
-} from "../../redux/actions";
+import { fetchComments } from "../../redux/actions";
+
 import { FEED } from "../../Navigation/screenNames";
 import Images from "./Images";
 
 const PostDetail = ({
   explore,
   route,
-  profile,
   comments,
-  likePost,
-  fetchLikers,
-  fetchUserProfile,
-  addComment,
   navigation,
   fetchComments,
-  likers,
-  isLiked,
-  fetchExplore,
-  fetchFeeds,
-  r,
 }) => {
   const { feed } = route.params;
   const [name, setName] = useState("");
@@ -65,32 +41,17 @@ const PostDetail = ({
   }
 
   useEffect(() => {
-    console.log("im here7");
-    fetchExplore();
-    //     fetchFeeds();
-    fetchUserProfile(feed.owner.id);
-    fetchLikers(feed.id);
     fetchComments(feed.id);
-  }, [likersNumber]);
+  }, []);
+
 
   function handelPress(n, p, b) {
     setBrand(b), setName(n), setPrice(p);
   }
 
-  let handelComment = () => {
-    //console.log(feed.id);
-    fetchComments(feed.id);
-  };
-
-  let handelUserProfile = () => {
-    navigation.navigate(USER_PROFILE, {
-      owner: post.owner,
-    });
-  };
 
   const post = explore.find((post) => post.id === feed.id);
   const itemsList = feed.items.map((item, index) => {
-    // console.log("im working", post.owner);
     return <PostItems key={index} item={item} handelPress={handelPress} />;
   });
 
@@ -255,7 +216,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
-    //shadowColor: "black",
     shadowOpacity: 0.2,
     shadowRadius: 3,
     shadowOffset: {
@@ -278,7 +238,6 @@ const styles = StyleSheet.create({
     textAlign: "left",
     fontSize: 22,
     width: 255,
-    // height: 60,
     marginTop: 5,
   },
   selectDiv: {
@@ -336,7 +295,9 @@ const styles = StyleSheet.create({
   },
   price: {
     fontFamily: "Cochin",
-    color: "#5A0016",
+
+    color: "#DCAF85",
+
     textAlign: "left",
     alignSelf: "center",
     width: 80,
@@ -363,53 +324,12 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   explore: state.feedsReducer.explore,
-  profile: state.profileReducer.userProfile,
-  profile1: state.profileReducer.profile,
   likers: state.likersReducer.likers,
-  user: state.user,
   comments: state.commentsReducer.comments,
 });
 
 const mapDispatchToProps = {
-  likePost,
-  fetchLikers,
-  fetchUserProfile,
   fetchComments,
-  addComment,
-  fetchExplore,
-  fetchFeeds,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);
-
-{
-  /* <PostCard
-navigation={navigation}
-key={post.id}
-post={post}
-isLiked={feed.liked}
-r={feed.id}
-/> */
-}
-
-{
-  /* <View
-style={{
-  width: "50%",
-  alignItems: "center",
-  justifyContent: "center",
-  marginTop: 20,
-}}
->
-<Text
-  style={{
-    color: "#62636a",
-    fontWeight: "bold",
-    fontSize: 17,
-    fontFamily: "Cochin",
-  }}
->
-  Description
-</Text>
-</View> */
-}

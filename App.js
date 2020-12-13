@@ -13,18 +13,10 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Container style={styles.container}>
+        <Container>
           <RootNavigator />
         </Container>
       </NavigationContainer>
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    //flex: 1,
-    //backgroundColor: "#fff",
-    //paddingTop: 70,
-  },
-});

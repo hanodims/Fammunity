@@ -7,11 +7,9 @@ import CommentCard from "./CommentCard";
 import { Container } from "native-base";
 import styles from "./styles";
 import { FlatList } from "react-native-gesture-handler";
-import { ListItem, Avatar } from "react-native-elements";
 
 const Comments = ({ comments }) => {
   function commentsList({ item }) {
-    //  console.log("comments ,item", item);
     return <CommentCard key={item.id} comment={item} />;
   }
 

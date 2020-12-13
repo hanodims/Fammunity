@@ -9,28 +9,11 @@ import { addPost } from "../../redux/actions";
 
 //style
 import { Button, Container } from "native-base";
-import { Text, Alert, ImageBackground } from "react-native";
+import { Text, ImageBackground } from "react-native";
 import styles from "./styles";
 
-import { TouchableOpacity } from "react-native-gesture-handler";
-
-// import Icon from "react-native-vector-icons/Feather";
-
-const AddPost = ({ navigation, items, photos, addPost }) => {
+const AddPost = ({ navigation }) => {
   const [description, setDescription] = useState("");
-  // console.log(photos.length);
-  // console.log(items.length);
-
-  function handelAddPost() {
-    if (description != "" && items.length > 0 && photos.length > 0) {
-      addPost({
-        description,
-        items,
-        photos,
-      });
-      setDescription("");
-    } else Alert.alert("please fill all Fields");
-  }
 
   return (
     <Container style={{ flex: 1 }}>
